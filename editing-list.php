@@ -1,5 +1,7 @@
-<!doctype html>
-<html lang="en">
+<?php
+include_once ("includes/body.inc.php");
+top();
+?>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -32,8 +34,8 @@
 <body>
 
 <div class="container">
-    <a href="index.html">Voltar</a>
-    <a class="ml-5" href="add-product.html">Adicionar</a>
+    <a href="index.php">Voltar</a>
+    <a class="ml-5" href="add-product.php">Adicionar</a>
     <table class="table table-striped">
         <tr>
             <th>Id</th>
@@ -50,8 +52,9 @@
                 <td></td>
                 <td></td>
 
-                <td><a href="edit-product.html">Editar</a></td>
-                <td><a href="index.html">Eliminar</a></td>
+                <td><a href="edit-product.php">Editar</a></td>
+                <td><a href="available-sizes.php">Listar tamanhos</a></td>
+                <td><a href="index.php">Eliminar</a></td>
             </tr>
     </table>
 
@@ -62,4 +65,6 @@
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 </body>
-</html>
+<?php
+bottom();
+?>

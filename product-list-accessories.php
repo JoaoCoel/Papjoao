@@ -1,88 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>DRK Clothing Store</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="eCommerce HTML Template Free Download" name="keywords">
-    <meta content="eCommerce HTML Template Free Download" name="description">
-
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
-
-    <!-- CSS Libraries -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="lib/slick/slick.css" rel="stylesheet">
-    <link href="lib/slick/slick-theme.css" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
-</head>
-
-<body>
-<!-- Top bar Start -->
-<div class="top-bar">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6">
-                <i class="fa fa-envelope"></i>
-                drk.clothes.support@email.com
-            </div>
-            <div class="col-sm-6">
-                <i class="fa fa-phone-alt"></i>
-                +012-345-6789
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Top bar End -->
-
-<!-- Nav Bar Start -->
-<div class="nav">
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <a href="#" class="navbar-brand">MENU</a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                <div class="navbar-nav mr-auto">
-                    <a href="index.html" class="nav-item nav-link active">Página Principal</a>
-                    <a href="product-list.html" class="nav-item nav-link">Produtos</a>
-                    <a href="cart.html" class="nav-item nav-link">Carrinho</a>
-                    <a href="my-account.html" class="nav-item nav-link">Minha Conta</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mais Páginas</a>
-                        <div class="dropdown-menu">
-                            <a href="wishlist.html" class="dropdown-item">Lista de Desejos</a>
-                            <a href="contact.html" class="dropdown-item">Contacte-nos</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="navbar-nav ml-auto">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Conta do utilizador</a>
-                        <div class="dropdown-menu">
-                            <a href="login.html" class="dropdown-item">Login & Registar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-</div>
+<?php
+include_once ("includes/body.inc.php");
+top();
+?>
 <!-- Bottom Bar End -->
 
 <!-- Breadcrumb Start -->
 <div class="breadcrumb-wrap">
     <div class="container-fluid">
         <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Página Principal</a></li>
+            <li class="breadcrumb-item"><a href="index.php">Página Principal</a></li>
             <li class="breadcrumb-item active">Lista de Acessórios</li>
         </ul>
     </div>
@@ -142,7 +68,7 @@
                             <div class="col-md-4">
                                 <div class="product-item">
                                     <div class="product-title">
-                                        <a href="product-detail-accessories.html">Produto</a>
+                                        <a href="product-detail-accessories.php">Produto</a>
                                         <div class="ratting">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -152,25 +78,25 @@
                                         </div>
                                     </div>
                                     <div class="product-image">
-                                        <a href="product-detail-accessories.html">
+                                        <a href="product-detail-accessories.php">
                                             <img src="img/accessories-1.jpg" alt="Product Image">
                                         </a>
                                         <div class="product-action">
                                             <a href="#"><i class="fa fa-cart-plus"></i></a>
                                             <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="product-detail-accessories.html"><i class="fa fa-search"></i></a>
+                                            <a href="product-detail-accessories.php"><i class="fa fa-search"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-price">
                                         <h3><span>$</span>0.99</h3>
-                                        <a class="btn" href="product-detail-accessories.html"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                        <a class="btn" href="product-detail-accessories.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="product-item">
                                     <div class="product-title">
-                                        <a href="product-detail-accessories.html">Produto</a>
+                                        <a href="product-detail-accessories.php">Produto</a>
                                         <div class="ratting">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -180,25 +106,25 @@
                                         </div>
                                     </div>
                                     <div class="product-image">
-                                        <a href="product-detail-accessories.html">
+                                        <a href="product-detail-accessories.php">
                                             <img src="img/accessories-2.jpg" alt="Product Image">
                                         </a>
                                         <div class="product-action">
                                             <a href="#"><i class="fa fa-cart-plus"></i></a>
                                             <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="product-detail-accessories.html"><i class="fa fa-search"></i></a>
+                                            <a href="product-detail-accessories.php"><i class="fa fa-search"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-price">
                                         <h3><span>$</span>0.99</h3>
-                                        <a class="btn" href="product-detail-accessories.html"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                        <a class="btn" href="product-detail-accessories.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="product-item">
                                     <div class="product-title">
-                                        <a href="product-detail-accessories.html">Produto</a>
+                                        <a href="product-detail-accessories.php">Produto</a>
                                         <div class="ratting">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -208,25 +134,25 @@
                                         </div>
                                     </div>
                                     <div class="product-image">
-                                        <a href="product-detail-accessories.html">
+                                        <a href="product-detail-accessories.php">
                                             <img src="img/accessories-3.jpg" alt="Product Image">
                                         </a>
                                         <div class="product-action">
                                             <a href="#"><i class="fa fa-cart-plus"></i></a>
                                             <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="product-detail-accessories.html"><i class="fa fa-search"></i></a>
+                                            <a href="product-detail-accessories.php"><i class="fa fa-search"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-price">
                                         <h3><span>$</span>0.99</h3>
-                                        <a class="btn" href="product-detail-accessories.html"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                        <a class="btn" href="product-detail-accessories.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="product-item">
                                     <div class="product-title">
-                                        <a href="product-detail-accessories.html">Produto</a>
+                                        <a href="product-detail-accessories.php">Produto</a>
                                         <div class="ratting">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -236,25 +162,25 @@
                                         </div>
                                     </div>
                                     <div class="product-image">
-                                        <a href="product-detail-accessories.html">
+                                        <a href="product-detail-accessories.php">
                                             <img src="img/accessories-4.jpg" alt="Product Image">
                                         </a>
                                         <div class="product-action">
                                             <a href="#"><i class="fa fa-cart-plus"></i></a>
                                             <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="product-detail-accessories.html"><i class="fa fa-search"></i></a>
+                                            <a href="product-detail-accessories.php"><i class="fa fa-search"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-price">
                                         <h3><span>$</span>0.99</h3>
-                                        <a class="btn" href="product-detail-accessories.html"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                        <a class="btn" href="product-detail-accessories.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="product-item">
                                     <div class="product-title">
-                                        <a href="product-detail-accessories.html">Produto</a>
+                                        <a href="product-detail-accessories.php">Produto</a>
                                         <div class="ratting">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -264,25 +190,25 @@
                                         </div>
                                     </div>
                                     <div class="product-image">
-                                        <a href="product-detail-accessories.html">
+                                        <a href="product-detail-accessories.php">
                                             <img src="img/accessories-5.jpg" alt="Product Image">
                                         </a>
                                         <div class="product-action">
                                             <a href="#"><i class="fa fa-cart-plus"></i></a>
                                             <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="product-detail-accessories.html"><i class="fa fa-search"></i></a>
+                                            <a href="product-detail-accessories.php"><i class="fa fa-search"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-price">
                                         <h3><span>$</span>0.99</h3>
-                                        <a class="btn" href="product-detail-accessories.html"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                        <a class="btn" href="product-detail-accessories.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="product-item">
                                     <div class="product-title">
-                                        <a href="product-detail-accessories.html">Produto</a>
+                                        <a href="product-detail-accessories.php">Produto</a>
                                         <div class="ratting">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -292,25 +218,25 @@
                                         </div>
                                     </div>
                                     <div class="product-image">
-                                        <a href="product-detail-accessories.html">
+                                        <a href="product-detail-accessories.php">
                                             <img src="img/accessories-6.jpg" alt="Product Image">
                                         </a>
                                         <div class="product-action">
                                             <a href="#"><i class="fa fa-cart-plus"></i></a>
                                             <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="product-detail-accessories.html"><i class="fa fa-search"></i></a>
+                                            <a href="product-detail-accessories.php"><i class="fa fa-search"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-price">
                                         <h3><span>$</span>0.99</h3>
-                                        <a class="btn" href="product-detail-accessories.html"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                        <a class="btn" href="product-detail-accessories.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="product-item">
                                     <div class="product-title">
-                                        <a href="product-detail-accessories.html">Produto</a>
+                                        <a href="product-detail-accessories.php">Produto</a>
                                         <div class="ratting">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -320,25 +246,25 @@
                                         </div>
                                     </div>
                                     <div class="product-image">
-                                        <a href="product-detail-accessories.html">
+                                        <a href="product-detail-accessories.php">
                                             <img src="img/accessories-7.jpg" alt="Product Image">
                                         </a>
                                         <div class="product-action">
                                             <a href="#"><i class="fa fa-cart-plus"></i></a>
                                             <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="product-detail-accessories.html"><i class="fa fa-search"></i></a>
+                                            <a href="product-detail-accessories.php"><i class="fa fa-search"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-price">
                                         <h3><span>$</span>0.99</h3>
-                                        <a class="btn" href="product-detail-accessories.html"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                        <a class="btn" href="product-detail-accessories.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="product-item">
                                     <div class="product-title">
-                                        <a href="product-detail-accessories.html">Produto</a>
+                                        <a href="product-detail-accessories.php">Produto</a>
                                         <div class="ratting">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -348,25 +274,25 @@
                                         </div>
                                     </div>
                                     <div class="product-image">
-                                        <a href="product-detail-accessories.html">
+                                        <a href="product-detail-accessories.php">
                                             <img src="img/accessories-8.jpg" alt="Product Image">
                                         </a>
                                         <div class="product-action">
                                             <a href="#"><i class="fa fa-cart-plus"></i></a>
                                             <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="product-detail-accessories.html"><i class="fa fa-search"></i></a>
+                                            <a href="product-detail-accessories.php"><i class="fa fa-search"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-price">
                                         <h3><span>$</span>0.99</h3>
-                                        <a class="btn" href="product-detail-accessories.html"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                        <a class="btn" href="product-detail-accessories.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="product-item">
                                     <div class="product-title">
-                                        <a href="product-detail-accessories.html">Produto</a>
+                                        <a href="product-detail-accessories.php">Produto</a>
                                         <div class="ratting">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -376,18 +302,18 @@
                                         </div>
                                     </div>
                                     <div class="product-image">
-                                        <a href="product-detail-accessories.html">
+                                        <a href="product-detail-accessories.php">
                                             <img src="img/accessories-9.jpg" alt="Product Image">
                                         </a>
                                         <div class="product-action">
                                             <a href="#"><i class="fa fa-cart-plus"></i></a>
                                             <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="product-detail-accessories.html"><i class="fa fa-search"></i></a>
+                                            <a href="product-detail-accessories.php"><i class="fa fa-search"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-price">
                                         <h3><span>$</span>0.99</h3>
-                                        <a class="btn" href="product-detail-accessories.html"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                        <a class="btn" href="product-detail-accessories.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
                                     </div>
                                 </div>
                             </div>
@@ -419,13 +345,13 @@
                             <nav class="navbar bg-light">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="product-list-crincas.html"><i class="fa fa-child"></i>Crianças & Bébés</a>
+                                        <a class="nav-link" href="product-list-crincas.php"><i class="fa fa-child"></i>Crianças & Bébés</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="product-list.html"><i class="fa fa-tshirt"></i>Homem e Mulher</a>
+                                        <a class="nav-link" href="product-list.php"><i class="fa fa-tshirt"></i>Homem e Mulher</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="product-list-accessories.html"><i class="fa fa-mobile-alt"></i>Acessórios</a>
+                                        <a class="nav-link" href="product-list-accessories.php"><i class="fa fa-mobile-alt"></i>Acessórios</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -435,7 +361,7 @@
                             <div class="sidebar-slider normal-slider">
                                 <div class="product-item">
                                     <div class="product-title">
-                                        <a href="product-detail.html">Product Name</a>
+                                        <a href="product-detail.php">Product Name</a>
                                         <div class="ratting">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -445,13 +371,13 @@
                                         </div>
                                     </div>
                                     <div class="product-image">
-                                        <a href="product-detail.html">
+                                        <a href="product-detail.php">
                                             <img src="img/product-10.jpg" alt="Product Image">
                                         </a>
                                         <div class="product-action">
                                             <a href="#"><i class="fa fa-cart-plus"></i></a>
                                             <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="product-detail.html"><i class="fa fa-search"></i></a>
+                                            <a href="product-detail.php"><i class="fa fa-search"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-price">
@@ -461,7 +387,7 @@
                                 </div>
                                 <div class="product-item">
                                     <div class="product-title">
-                                        <a href="product-detail.html">Product Name</a>
+                                        <a href="product-detail.php">Product Name</a>
                                         <div class="ratting">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -471,23 +397,23 @@
                                         </div>
                                     </div>
                                     <div class="product-image">
-                                        <a href="product-detail.html">
+                                        <a href="product-detail.php">
                                             <img src="img/product-9.jpg" alt="Product Image">
                                         </a>
                                         <div class="product-action">
                                             <a href="#"><i class="fa fa-cart-plus"></i></a>
                                             <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="product-detail.html"><i class="fa fa-search"></i></a>
+                                            <a href="product-detail.php"><i class="fa fa-search"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-price">
                                         <h3><span>$</span>0.99</h3>
-                                        <a class="btn" href="product-detail.html"><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                                        <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Buy Now</a>
                                     </div>
                                 </div>
                                 <div class="product-item">
                                     <div class="product-title">
-                                        <a href="product-detail.html">Product Name</a>
+                                        <a href="product-detail.php">Product Name</a>
                                         <div class="ratting">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -497,18 +423,18 @@
                                         </div>
                                     </div>
                                     <div class="product-image">
-                                        <a href="product-detail.html">
+                                        <a href="product-detail.php">
                                             <img src="img/product-8.jpg" alt="Product Image">
                                         </a>
                                         <div class="product-action">
                                             <a href="#"><i class="fa fa-cart-plus"></i></a>
                                             <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="product-detail.html"><i class="fa fa-search"></i></a>
+                                            <a href="product-detail.php"><i class="fa fa-search"></i></a>
                                         </div>
                                     </div>
                                     <div class="product-price">
                                         <h3><span>$</span>0.99</h3>
-                                        <a class="btn" href="product-detail.html"><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                                        <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Buy Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -526,8 +452,8 @@
                                 <li><a href="#">Óculos</a><span>(28)</span></li>
                             </ul>
                         </div>
-
                     <!-- Side Bar End -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -622,31 +548,6 @@
          Footer End -->
         
         <!-- Footer Bottom Start -->
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 copyright">
-                        <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
-                    </div>
-
-                    <div class="col-md-6 template-by">
-                        <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer Bottom End -->       
-        
-        <!-- Back to Top -->
-        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-        
-        <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/slick/slick.min.js"></script>
-        
-        <!-- Template Javascript -->
-        <script src="js/main.js"></script>
-    </body>
-</html>
+<?php
+bottom();
+?>
