@@ -128,36 +128,15 @@ top();
                                     <li class="nav-item">
                                         <a class="nav-link active" data-toggle="pill" href="#description">Descrição</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-toggle="pill" href="#edit">Editar</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-toggle="pill" href="#eliminate">Eliminar</a>
-                                    </li>
+
                                 </ul>
 
                                 <div class="tab-content">
-                                    <div id="description" class="container tab-pane active">
+                                    <div id="description" class="container">
                                         <h4>Descrição</h4>
                                         <p>
                                             You thought it was a description but it was me a jojo reference
                                         </p>
-                                    </div>
-                                    <div id="edit" class="container tab-pane fade">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <h5>Tem a certeza?</h5>
-                                                <button class="btn" href="edit-product.html">Quero editar o produto</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="eliminate" class="container tab-pane fade">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <h5>Tem a certeza?</h5>
-                                                <button class="btn" href="index.html">Quero eliminar o produto</button>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>

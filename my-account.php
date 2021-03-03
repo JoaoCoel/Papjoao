@@ -148,16 +148,9 @@ top();
                                 <h4>Endereço</h4>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h5>Endereço de Pagamento</h5>
                                         <p>123 Payment Street, Los Angeles, CA</p>
                                         <p>Telemóvel: 012-345-6789</p>
-                                        <button class="btn" href="edit-adress.html">Editar Endereço</button>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h5>Endereço de Entrega</h5>
-                                        <p>123 Shipping Street, Los Angeles, CA</p>
-                                        <p>Telemóvel: 012-345-6789</p>
-                                        <button class="btn" href="edit-adress.html">Editar Endereço</button>
+                                        <a class="btn" href="edit-adress.php">Editar Endereço</a
                                     </div>
                                 </div>
                             </div>

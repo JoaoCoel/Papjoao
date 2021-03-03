@@ -44,7 +44,7 @@ top();
             <div class="container-fluid">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Página Principal</a></li>
-                    <li class="breadcrumb-item"><a href="product-list.php">Login & Registars</a></li>
+                    <li class="breadcrumb-item"><a href="product-list.php">Login & Registar</a></li>
                     <li class="breadcrumb-item active">Endereço</li>
                 </ul>
             </div>

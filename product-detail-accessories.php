@@ -121,6 +121,27 @@ top();
                             </div>
                         </div>
 
+
+                        <div class="row product-detail-bottom">
+                            <div class="col-lg-12">
+                                <ul class="nav nav-pills nav-justified">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="pill" href="#description">Descrição</a>
+                                    </li>
+
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div id="description" class="container">
+                                        <h4>Descrição</h4>
+                                        <p>
+                                            You thought it was a description but it was me a jojo reference
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!--<div class="row product-detail-bottom">
                             <div class="col-lg-12">
                                 <ul class="nav nav-pills nav-justified">
