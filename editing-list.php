@@ -45,6 +45,7 @@ top();
             <th>Tipo</th>
             <th>Tamanhos</th>
             <th colspan="4" width="20%">Opções</th>
+            <th></th>
         </tr>
             <tr>
                 <?php
@@ -54,15 +55,17 @@ top();
                 echo "<table>";
                     while($dados=mysqli_fetch_array($result)){
                     echo "<tr>";
+
                         echo "<td>".$dados['produtoId']."</td>";
-                        echo "<td>".$dados['produtoNome']."</td>";
-                        //echo "<td><img src=\"../".$dados['produtoImagemURL']."\"></td>";
-                        //echo "<td><a href=\"../edita/editaProduto.php?id=".$dados['produtoId']."\"> Editar</a></td>";
-                        //echo "<td><a href=\"#\" onclick=\"confirmaElimina(".$dados['produtoId'].");\">Eliminar</a></td>";
+                        echo "<td width='25%'>".$dados['produtoNome']."</td>";
+
+                        //echo "<td width="12,5%"><a href=\"../edita/editaProduto.php?id=".$dados['produtoId']."\"> Editar</a></td>";
+                        //echo "<td width="12,5%"><a href=\"#\" onclick=\"confirmaElimina(".$dados['produtoId'].");\">Eliminar</a></td>";
                         echo "<td></td>";
                         echo "<td></td>";
                         echo "<td></td>";
                         echo "<td></td>";
+                        echo "<td><img src=\"../".$dados['produtoImagemURL']."\"></td>";
                         echo "</tr>";
 
                     }
