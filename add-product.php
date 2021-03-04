@@ -14,7 +14,7 @@ top();
             </div>
         </div>
         <!-- Breadcrumb End -->
-        
+<form action="confirm-add-product.php" method="post" enctype="multipart/form-data">
         <!-- Checkout Start -->
         <div class="checkout">
             <div class="container-fluid"> 
@@ -23,19 +23,23 @@ top();
                         <div class="checkout-inner">
                             <div class="billing-address">
                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Nome do produto</label>
+                                        <input class="form-control" name="nomeProduto" type="text" placeholder="">
+                                    </div>
                                     <div class="col-md-6">
                                         <label>Categoria</label>
-                                        <select class="custom-select">
-                                            <option selected>Adulto</option>
-                                            <option>Criança</option>
+                                        <select class="custom-select" name="categoriaProduto">
+                                            <option value="1" selected>Adulto</option>
+                                            <option value="2">Criança</option>
                                             <option>Acessório</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Tipo</label>
-                                        <select class="custom-select">
-                                            <option selected>Calças</option>
-                                            <option>Saia</option>
+                                        <select class="custom-select" name="tipoProduto">
+                                            <option value="1" selected>Calças</option>
+                                            <option value="2">Saia</option>
                                             <option>Camisola</option>
                                             <option>Vestido</option>
                                             <option>Casaco</option>
@@ -60,7 +64,7 @@ top();
                                     </div>
                                     <div class="col-md-3">
                                         <label>Preço $</label>
-                                        <input class="form-control" type="text" placeholder="0.00">
+                                        <input class="form-control" name="precoProduto" type="text" placeholder="0.00">
                                     </div>
                                     <div class="col-md-3">
                                         <label>Desconto %</label>
@@ -68,15 +72,11 @@ top();
                                     </div>
                                     <div class="col-md-12">
                                         <label>Descrição do produto</label>
-                                        <input class="form-control" type="text" placeholder="">
+                                        <input class="form-control" name="descProduto" type="text" placeholder="">
                                     </div>
                                     <div class="col-md-12">
-                                        <label>Imagem</label>
-                                        <form>
-                                            <label for="img">Selecione a imagem:</label>
-                                            <input type="files" id="img" name="img" accept="image/*">
-                                            <input type="submit">
-                                        </form>
+                                            <label for="img">Selecione a imagem:</label><br>
+                                            <input type="file" id="img" name="imagemProduto" accept="image/*">
                                     </div>
                                     <!--div class="col-md-12">
                                         <div class="custom-control custom-checkbox">
@@ -227,6 +227,7 @@ top();
                 </div>
             </div>
         </div>
+</form>
         <!-- Checkout End -->
         
         <!-- Footer Start

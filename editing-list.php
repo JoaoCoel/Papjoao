@@ -1,6 +1,7 @@
 <?php
 include_once ("includes/body.inc.php");
 top();
+
 ?>
 <head>
     <!-- Required meta tags -->
@@ -46,12 +47,28 @@ top();
             <th colspan="4" width="20%">Opções</th>
         </tr>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <?php
+                $sql="Select * from produtos";
+                $result=mysqli_query($con,$sql);
 
+                echo "<table>";
+                    while($dados=mysqli_fetch_array($result)){
+                    echo "<tr>";
+                        echo "<td>".$dados['produtoId']."</td>";
+                        echo "<td>".$dados['produtoNome']."</td>";
+                        //echo "<td><img src=\"../".$dados['produtoImagemURL']."\"></td>";
+                        //echo "<td><a href=\"../edita/editaProduto.php?id=".$dados['produtoId']."\"> Editar</a></td>";
+                        //echo "<td><a href=\"#\" onclick=\"confirmaElimina(".$dados['produtoId'].");\">Eliminar</a></td>";
+                        echo "<td></td>";
+                        echo "<td></td>";
+                        echo "<td></td>";
+                        echo "<td></td>";
+                        echo "</tr>";
+
+                    }
+                    //*******************
+                    echo "</table>";
+                ?>
                 <td><a href="edit-product.php">Editar</a></td>
                 <td><a href="available-sizes.php">Listar tamanhos</a></td>
                 <td><a href="index.php">Eliminar</a></td>
