@@ -1,6 +1,11 @@
 <?php
 include_once ("includes/body.inc.php");
 top();
+$sql="Select * from tipos";
+$tipos=mysqli_query($con,$sql);
+$sql="Select * from categorias";
+$categorias=mysqli_query($con,$sql);
+
 ?>
         <!-- Bottom Bar End --> 
         
@@ -30,26 +35,22 @@ top();
                                     <div class="col-md-6">
                                         <label>Categoria</label>
                                         <select class="custom-select" name="categoriaProduto">
-                                            <option value="1" selected>Adulto</option>
-                                            <option value="2">Criança</option>
-                                            <option>Acessório</option>
+                                            <?php
+                                            while ($dados=mysqli_fetch_array($categorias)){
+                                                echo "<option value=\"".$dados['categoriaId']."\">".$dados['categoriaNome']."</option>";
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="col-md-6">
                                         <label>Tipo</label>
                                         <select class="custom-select" name="tipoProduto">
-                                            <option value="1" selected>Calças</option>
-                                            <option value="2">Saia</option>
-                                            <option>Camisola</option>
-                                            <option>Vestido</option>
-                                            <option>Casaco</option>
-                                            <option>Camisa</option>
-                                            <option>Mala</option>
-                                            <option>Carteira</option>
-                                            <option>Anel</option>
-                                            <option>Brincos</option>
-                                            <option>Cascol</option>
-                                            <option>Óculos</option>
+                                            <?php
+                                                while ($dados=mysqli_fetch_array($tipos)){
+                                                    echo "<option value=\"".$dados['tipoId']."\">".$dados['tipoNome']."</option>";
+                                                }
+                                            ?>
+
                                         </select>
                                     </div>
                                     <div class="col-md-6">
