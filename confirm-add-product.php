@@ -14,12 +14,12 @@ $imagem=$_FILES['imagemProduto']['name'];
 $imagemUrl="Papjoao/img/".$imagem;
 
 //copy($_FILES['img']['tmp_name'],$imagemUrl);
-$sql="insert into tipoCategorias(tipoCategoriaCategoriaId,tipoCategoriaTipoId) values ('".(int)$categoriaId."','".(int)$tipoId."')";
-mysqli_query($con,$sql);// or die(mysqli_error($con));
+//$sql="insert into tipoCategorias(tipoCategoriaCategoriaId,tipoCategoriaTipoId) values ('".(int)$categoriaId."','".(int)$tipoId."')";
+//mysqli_query($con,$sql);// or die(mysqli_error($con));
 
 $sql="insert into produtos(produtoNome,produtoPreco,produtoDestaque,produtoImagemURL,produtoTipoCategoriaCategoriaId,produtoTipoCategoriaTipoId)
  values('".$nome."','".$preco."','Nao','".$imagemUrl."','".(int)$categoriaId."','".(int)$tipoId."')";
-mysqli_query($con,$sql);// or die(mysqli_error($con));;
+mysqli_query($con,$sql);// or die(mysqli_error($con));
 header("location:../Papjoao/editing-list.php");
 
 /*

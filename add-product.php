@@ -34,7 +34,7 @@ $categorias=mysqli_query($con,$sql);
                                     </div>
                                     <div class="col-md-6">
                                         <label>Categoria</label>
-                                        <select class="custom-select" name="categoriaProduto">
+                                        <select class="custom-select" id="categoriaProduto" name="categoriaProduto">
                                             <?php
                                             while ($dados=mysqli_fetch_array($categorias)){
                                                 echo "<option value=\"".$dados['categoriaId']."\">".$dados['categoriaNome']."</option>";
@@ -44,7 +44,7 @@ $categorias=mysqli_query($con,$sql);
                                     </div>
                                     <div class="col-md-6">
                                         <label>Tipo</label>
-                                        <select class="custom-select" name="tipoProduto">
+                                        <select class="custom-select" id="tipoProduto" name="tipoProduto">
                                             <?php
                                                 while ($dados=mysqli_fetch_array($tipos)){
                                                     echo "<option value=\"".$dados['tipoId']."\">".$dados['tipoNome']."</option>";
@@ -308,4 +308,15 @@ $categorias=mysqli_query($con,$sql);
 <?php
 bottom();
 ?>
+<script>
+    let categoriaDropdown = document.getElementById('categoriaProduto');
+    let tipoDropdown = document.getElementById('tipoProduto');
+    /*while (currentYear >= earliestYear) {
+        let dateOption = document.createElement('option');
+        dateOption.text = currentYear;
+        dateOption.value = currentYear;
+        dateDropdown.add(dateOption);
+        currentYear -= 1;
+    }*/
+</script>
 

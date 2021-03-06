@@ -49,23 +49,22 @@ top();
         </tr>
             <tr>
                 <?php
-                $sql="Select * from produtos";
+                $sql="Select produtoId,produtoNome,produtoPreco,categorias.categoriaNome as categ,tipos.tipoNome as tipo, produtoImagemURL from produtos left join categorias on produtoTipoCategoriaCategoriaId=categoriaId 
+                      left join tipos on produtoTipoCategoriaTipoId=tipoId";
                 $result=mysqli_query($con,$sql);
 
                 echo "<table>";
                     while($dados=mysqli_fetch_array($result)){
-                    echo "<tr>";
 
-                        echo "<td>".$dados['produtoId']."</td>";
+                        echo "<tr>";
+                        echo "<td width='5%'>".$dados['produtoId']."</td>";
                         echo "<td width='25%'>".$dados['produtoNome']."</td>";
-
-                        //echo "<td width="12,5%"><a href=\"../edita/editaProduto.php?id=".$dados['produtoId']."\"> Editar</a></td>";
-                        //echo "<td width="12,5%"><a href=\"#\" onclick=\"confirmaElimina(".$dados['produtoId'].");\">Eliminar</a></td>";
-                        echo "<td></td>";
-                        echo "<td></td>";
-                        echo "<td></td>";
-                        echo "<td></td>";
+                        echo "<td width='10%'>".$dados['produtoPreco']."</td>";
+                        echo "<td width='20%'>".$dados['categ']."</td>";
+                        echo "<td width='20%'>".$dados['tipo']."</td>";
                         echo "<td><img src=\"../".$dados['produtoImagemURL']."\"></td>";
+                        echo "<td width='10%'><a href=\"edit-product.php?id=".$dados['produtoId']."\">Editar</a></td>";
+                        echo "<td width='10%'><a href=\"delete-product.php?id=".$dados['produtoId']."\">Eliminar</a></td>";
                         echo "</tr>";
 
                     }
