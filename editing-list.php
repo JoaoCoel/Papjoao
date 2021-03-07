@@ -63,17 +63,17 @@ top();
                         echo "<td width='20%'>".$dados['categ']."</td>";
                         echo "<td width='20%'>".$dados['tipo']."</td>";
                         echo "<td><img src=\"../".$dados['produtoImagemURL']."\"></td>";
-                        echo "<td width='10%'><a href=\"edit-product.php?id=".$dados['produtoId']."\">Editar</a></td>";
-                        echo "<td width='10%'><a href=\"delete-product.php?id=".$dados['produtoId']."\">Eliminar</a></td>";
+                        //echo "<td width='10%'><a href='edit-product.php?id=".$dados['produtoId']."'/a>Editar</td>";
+                        //echo "<td width='10%'><a href='delete-product.php?id=".$dados['produtoId']."' /a>Eliminar</td>";
+                        echo "<td width='10%'><button type='button' onclick=\"edit(".$dados['produtoId'].");\">Editar</button></td>";
+                        echo "<td width='10%'><button type='button' onclick=\"confirmDelete(".$dados['produtoId'].");\">Eliminar</button></td>";
                         echo "</tr>";
 
                     }
                     //*******************
                     echo "</table>";
                 ?>
-                <td><a href="edit-product.php">Editar</a></td>
                 <td><a href="available-sizes.php">Listar tamanhos</a></td>
-                <td><a href="index.php">Eliminar</a></td>
             </tr>
     </table>
 
@@ -87,3 +87,19 @@ top();
 <?php
 bottom();
 ?>
+<script>
+    function confirmDelete(prodId)
+    {
+        let r=confirm("Tem a certeza? ("+prodId+")");
+        if (r == true) {
+            window.location.href = "delete-product.php?id="+prodId;
+        }
+    }
+
+
+    function edit(prodId)
+    {
+        window.location.href = "edit-product.php?id="+prodId;
+    }
+
+</script>

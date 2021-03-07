@@ -21,7 +21,8 @@ $categorias=mysqli_query($con,$sql);
     <div class="container-fluid">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item active">Adicionar produto</li>
+            <li class="breadcrumb-item active"><a href="editing-list.php">Lista de edição</a></li>
+            <li class="breadcrumb-item active">Editar produto</li>
         </ul>
     </div>
 </div>
@@ -36,6 +37,7 @@ $categorias=mysqli_query($con,$sql);
                         <div class="billing-address">
                             <div class="row">
                                 <div class="col-md-12">
+                                    <input name="idProduto" hidden value="<?php echo $dadosProduto['produtoId']?>"/>
                                     <label>Nome do produto</label>
                                     <input class="form-control" name="nomeProduto" type="text" placeholder="" value="<?php echo $dadosProduto['produtoNome']?>">
                                 </div>
@@ -44,7 +46,7 @@ $categorias=mysqli_query($con,$sql);
                                     <select class="custom-select" id="categoriaProduto" name="categoriaProduto">
                                         <?php
                                         while ($dados=mysqli_fetch_array($categorias)){
-                                            if ($dados['categoriaId'] == $dadosProduto['categoriaId']) $status = "selected"; else $status = "";
+                                            if ($dados['categoriaId'] == $dadosProduto['produtoTipoCategoriaCategoriaId']) $status = "selected"; else $status = "";
 
                                             echo "<option value=\"".$dados['categoriaId']."\" ".$status.">".$dados['categoriaNome']."</option>";
                                         }
@@ -56,7 +58,7 @@ $categorias=mysqli_query($con,$sql);
                                     <select class="custom-select" id="tipoProduto" name="tipoProduto">
                                         <?php
                                         while ($dados=mysqli_fetch_array($tipos)){
-                                            if ($dados['tipoId'] == $dadosProduto['tipoId']) $status = "selected"; else $status = "";
+                                            if ($dados['tipoId'] == $dadosProduto['produtoTipoCategoriaTipoId']) $status = "selected"; else $status = "";
                                             echo "<option value=\"".$dados['tipoId']."\" ".$status.">".$dados['tipoNome']."</option>";
                                         }
                                         ?>

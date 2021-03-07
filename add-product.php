@@ -14,6 +14,7 @@ $categorias=mysqli_query($con,$sql);
             <div class="container-fluid">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                    <li class="breadcrumb-item active"><a href="editing-list.php">Lista de edição</a></li>
                     <li class="breadcrumb-item active">Adicionar produto</li>
                 </ul>
             </div>

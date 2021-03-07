@@ -1,6 +1,6 @@
 <?php
 include_once ("includes/body.inc.php");
-$id=intval($_GET['id']);
+$id=intval($_POST['idProduto']);
 $nome=addslashes($_POST['nomeProduto']);
 //$descr =addslashes($_POST['nomeProduto']);
 $preco =addslashes($_POST['precoProduto']);
@@ -16,10 +16,11 @@ if($imagem!=''){
 }
 
 $sql.="produtoTipoCategoriaCategoriaId='".(int)$categoriaId."',produtoTipoCategoriaTipoId='".(int)$tipoId."'";
-$sql.=" where produtoId=".$id;
+$sql.=" where produtoId=".$id.";";
 
-mysqli_query($con,$sql);// or die(mysqli_error($con));
+mysqli_query($con,$sql); //or die(mysqli_error($con))
 header("location:editing-list.php");
+
 ?>
 
 
