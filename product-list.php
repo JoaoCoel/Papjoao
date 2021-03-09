@@ -36,9 +36,9 @@ top();
                         <div class="product-view-top">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <form action="editing-list.php?search=$_POST['search']">
+                                    <form action="product-list.php?search=$_POST['search']">
                                         <div class="product-search">
-                                            <input type="search" id="search" name="search" value="" >
+                                            <input type="text" id="search" name="search" value="" >
                                             <button type="submit"><i class="fa fa-search"></i></button>
                                         </div>
                                     </form>
@@ -83,11 +83,25 @@ top();
 $sql="Select produtoId,produtoNome,produtoPreco,categorias.categoriaNome as categ,tipos.tipoNome as tipo, produtoImagemURL from produtos left join categorias 
       on produtoTipoCategoriaCategoriaId=categoriaId left join tipos on produtoTipoCategoriaTipoId=tipoId";
 
-if (isset($_GET['cat'])) {
-    $categ = $_GET['cat'];
-    $sql .= " where produtoTipoCategoriaCategoriaId=" . $categ;
+
+
+if (isset($_GET['search']) or (isset($_GET['cat']))){
+    $sql.=" where ";
+    if (isset($_GET['search'])){
+        $filtro = $_GET['search'];
+        $sql.=" produtoNome like \"".$filtro."%\"";
+        if (isset($_GET['cat'])) {
+            $sql .= " and ";
+        }
+    }
+    if (isset($_GET['cat'])) {
+        $categ = $_GET['cat'];
+        $sql .= " produtoTipoCategoriaCategoriaId=" . $categ;
+    }
 
 }
+
+
 $result=mysqli_query($con,$sql);
 
 while($dados=mysqli_fetch_array($result)){

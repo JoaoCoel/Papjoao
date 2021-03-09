@@ -51,10 +51,7 @@ top();
                 <?php
                 $sql="Select produtoId,produtoNome,produtoPreco,categorias.categoriaNome as categ,tipos.tipoNome as tipo, produtoImagemURL from produtos left join categorias on produtoTipoCategoriaCategoriaId=categoriaId 
                       left join tipos on produtoTipoCategoriaTipoId=tipoId";
-                if (isset($_GET['search'])){
-                    $filtro= $_GET['search'];
-                    $sql.=" where produtoNome like \"%".$filtro."%\"";
-                }
+
                 $result=mysqli_query($con,$sql);
 
                 echo "<table>";
