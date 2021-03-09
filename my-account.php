@@ -150,7 +150,7 @@ top();
                                     <div class="col-md-6">
                                         <p>123 Payment Street, Los Angeles, CA</p>
                                         <p>Telemóvel: 012-345-6789</p>
-                                        <a class="btn" href="edit-adress.php">Editar Endereço</a
+                                        <a class="btn" href="edit-adress.php">Editar Endereço</a>
                                     </div>
                                 </div>
                             </div>

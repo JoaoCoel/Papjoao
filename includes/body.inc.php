@@ -122,4 +122,20 @@ function bottom(){
     </html>
     <?php
 }
+
+function contaCoisas($cn, $filtro, $table="produtos", $field="produtoTipoCategoriaTipoId"){
+    $sql="Select COUNT(*) as nProdutos from ".$table." where ".$field."=".$filtro;
+
+    $result=mysqli_query($cn,$sql);
+    $dados=mysqli_fetch_array($result);
+    return $dados['nProdutos'];
+}
+
+function procuraCoisas($cn, $filtro, $table="produtos", $field="produtoNome"){
+    $sql="Select * from ".$table." where ".$field." like \"%".$filtro."%\"";
+
+    $result=mysqli_query($cn,$sql);
+    $dados=mysqli_fetch_array($result);
+    return $dados;
+}
 ?>
