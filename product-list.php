@@ -31,7 +31,7 @@ top();
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8">
-                <div class="row">~~
+                <div class="row">
                     <div class="col-md-12">
                         <div class="product-view-top">
                             <div class="row">
@@ -275,23 +275,28 @@ while($dados=mysqli_fetch_array($result)){
                         <div class="sidebar-widget brands">
                             <h2 class="title">Roupa</h2>
                             <ul>
-                                <li><a href="product-list.php?tip=1<?php if (isset($categ)) echo "&cat=".$categ; ?>">Calças </a><span><?php echo contaCoisas($con,1); ?></span></li>
-                                <li><a href="product-list.php?tip=2<?php if (isset($categ)) echo "&cat=".$categ; ?>">Saias </a><span><?php echo contaCoisas($con,2); ?></span></li>
-                                <li><a href="product-list.php?tip=3<?php if (isset($categ)) echo "&cat=".$categ; ?>">Camisolas </a><span><?php echo contaCoisas($con,3); ?></span></li>
-                                <li><a href="product-list.php?tip=4<?php if (isset($categ)) echo "&cat=".$categ; ?>">Vestidos</a><span><?php echo contaCoisas($con,4); ?></span></li>
-                                <li><a href="product-list.php?tip=5<?php if (isset($categ)) echo "&cat=".$categ; ?>">Casacos </a><span><?php echo contaCoisas($con,5); ?></span></li>
-                                <li><a href="product-list.php?tip=6<?php if (isset($categ)) echo "&cat=".$categ; ?>">Camisas</a><span><?php echo contaCoisas($con,6); ?></span></li>
+                                <li><a <?php if ($categ > 2)  echo " hidden ";?> href="product-list.php?tip=1<?php if (isset($categ)) echo "&cat=".$categ; ?>">Calças </a><span <?php if ($categ > 2)  echo " hidden ";?>><?php echo contaCoisas($con,1); ?></span></li>
+                                <li><a <?php if ($categ > 2)  echo " hidden ";?> href="product-list.php?tip=2<?php if (isset($categ)) echo "&cat=".$categ; ?>">Saias </a><span <?php if ($categ > 2)  echo " hidden ";?>><?php echo contaCoisas($con,2); ?></span></li>
+                                <li><a <?php if ($categ > 2)  echo " hidden ";?> href="product-list.php?tip=3<?php if (isset($categ)) echo "&cat=".$categ; ?>">Camisolas </a><span <?php if ($categ > 2)  echo " hidden ";?>><?php echo contaCoisas($con,3); ?></span></li>
+                                <li><a <?php if ($categ > 2)  echo " hidden ";?> href="product-list.php?tip=4<?php if (isset($categ)) echo "&cat=".$categ; ?>">Vestidos</a><span <?php if ($categ > 2)  echo " hidden ";?>><?php echo contaCoisas($con,4); ?></span></li>
+                                <li><a <?php if ($categ > 2)  echo " hidden ";?> href="product-list.php?tip=5<?php if (isset($categ)) echo "&cat=".$categ; ?>">Casacos </a><span <?php if ($categ > 2)  echo " hidden ";?>><?php echo contaCoisas($con,5); ?></span></li>
+                                <li><a <?php if ($categ > 2)  echo " hidden ";?> href="product-list.php?tip=6<?php if (isset($categ)) echo "&cat=".$categ; ?>">Camisas</a><span <?php if ($categ > 2)  echo " hidden ";?>><?php echo contaCoisas($con,6); ?></span></li>
+                                <li><a <?php if ($categ < 3)  echo " hidden ";?> href="product-list.php?tip=7<?php if (isset($categ)) echo "&cat=".$categ; ?>">Malas</a><span <?php if ($categ < 3)  echo " hidden ";?>><?php echo contaCoisas($con,7); ?></span></li>
+                                <li><a <?php if ($categ < 3)  echo " hidden ";?> href="product-list.php?tip=8<?php if (isset($categ)) echo "&cat=".$categ; ?>">Carteiras</a><span <?php if ($categ < 3)  echo " hidden ";?>><?php echo contaCoisas($con,8); ?></span></li>
+                                <li><a <?php if ($categ < 3)  echo " hidden ";?> href="product-list.php?tip=9<?php if (isset($categ)) echo "&cat=".$categ; ?>">Anéis</a><span <?php if ($categ < 3)  echo " hidden ";?>><?php echo contaCoisas($con,9); ?></span></li>
+                                <li><a <?php if ($categ < 3)  echo " hidden ";?> href="product-list.php?tip=10<?php if (isset($categ)) echo "&cat=".$categ; ?>">Brincos</a><span <?php if ($categ < 3)  echo " hidden ";?>><?php echo contaCoisas($con,10); ?></span></li>
+                                <li><a <?php if ($categ < 3)  echo " hidden ";?> href="product-list.php?tip=11<?php if (isset($categ)) echo "&cat=".$categ; ?>">Relógios</a><span <?php if ($categ < 3)  echo " hidden ";?>><?php echo contaCoisas($con,11); ?></span></li>
+                                <li><a <?php if ($categ < 3)  echo " hidden ";?> href="product-list.php?tip=12<?php if (isset($categ)) echo "&cat=".$categ; ?>">Cachecóis</a><span <?php if ($categ < 3)  echo " hidden ";?>><?php echo contaCoisas($con,12); ?></span></li>
+                                <li><a <?php if ($categ < 3)  echo " hidden ";?> href="product-list.php?tip=13<?php if (isset($categ)) echo "&cat=".$categ; ?>">Óculos</a><span <?php if ($categ < 3)  echo " hidden ";?>><?php echo contaCoisas($con,13); ?></span></li>
                             </ul>
                         </div>
                         <div class="sidebar-widget brands">
                             <h2 class="title">Tamanho</h2>
                             <ul>
-                                <li><a href="#">XS</a><span>(45)</span></li>
                                 <li><a href="#">S</a><span>(34)</span></li>
                                 <li><a href="#">M</a><span>(67)</span></li>
                                 <li><a href="#">L</a><span>(74)</span></li>
                                 <li><a href="#">XL</a><span>(89)</span></li>
-                                <li><a href="#">XXL</a><span>(28)</span></li>
                             </ul>
                         </div>
                         <div class="sidebar-widget brands">
