@@ -38,7 +38,7 @@ top();
                                 <div class="col-md-4">
                                     <form action="product-list.php?search=$_POST['search']">
                                         <div class="product-search">
-                                            <input type="text" id="search" name="search" value="" >
+                                            <input type="text" id="search" name="search" value="">
                                             <button type="submit"><i class="fa fa-search"></i></button>
                                         </div>
                                     </form>
@@ -83,9 +83,9 @@ top();
 $sql="Select produtoId,produtoNome,produtoPreco,categorias.categoriaNome as categ,tipos.tipoNome as tipo, produtoImagemURL from produtos left join categorias 
       on produtoTipoCategoriaCategoriaId=categoriaId left join tipos on produtoTipoCategoriaTipoId=tipoId";
 
-
-
-if (isset($_GET['search']) or (isset($_GET['cat']))){
+$categ=0;
+$tipo=0;
+if (isset($_GET['search']) or isset($_GET['cat'])  or isset($_GET['tip'])){
     $sql.=" where ";
     if (isset($_GET['search'])){
         $filtro = $_GET['search'];
@@ -99,14 +99,19 @@ if (isset($_GET['search']) or (isset($_GET['cat']))){
         $sql .= " produtoTipoCategoriaCategoriaId=" . $categ;
     }
 
-}
+    if (isset($_GET['tip'])) {
+        $tipo = $_GET['tip'];
+        $sql .= " produtoTipoCategoriaTipoId=" . $tipo;
+    }
 
+}
 
 $result=mysqli_query($con,$sql);
 
 while($dados=mysqli_fetch_array($result)){
 
 ?>
+
                     <div class="col-md-4">
                         <div class="product-item">
                             <div class="product-title">
@@ -130,14 +135,15 @@ while($dados=mysqli_fetch_array($result)){
                                 </div>
                             </div>
                             <div class="product-price">
-                                <h3><span>$</span>0.99</h3>
+                                <h3><span>$</span><?php echo $dados['produtoPreco'];?></h3>
                                 <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
                             </div>
                         </div>
                     </div>
-                </div>
+
                     <?php
                     }
+
                     ?>
 
 
@@ -167,7 +173,7 @@ while($dados=mysqli_fetch_array($result)){
                     <nav class="navbar bg-light">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="product-list.php?cat=2"><i class="fa fa-child"></i>Crianças & Bébés</a>
+                                <a class="nav-link" href="product-list.php?cat=2"><i class="fa fa-child"></i>Criança</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="product-list.php?cat=1"><i class="fa fa-tshirt"></i>Homem e Mulher</a>
@@ -265,12 +271,12 @@ while($dados=mysqli_fetch_array($result)){
                         <div class="sidebar-widget brands">
                             <h2 class="title">Roupa</h2>
                             <ul>
-                                <li><a href="#">Calças </a><span><?php echo contaCoisas($con,1); ?></span></li>
-                                <li><a href="#">Saias </a><span><?php echo contaCoisas($con,2); ?></span></li>
-                                <li><a href="#">Camisolas </a><span><?php echo contaCoisas($con,3); ?></span></li>
-                                <li><a href="#">Vestidos</a><span><?php echo contaCoisas($con,4); ?></span></li>
-                                <li><a href="#">Casacos </a><span><?php echo contaCoisas($con,5); ?></span></li>
-                                <li><a href="#">Camisas</a><span><?php echo contaCoisas($con,6); ?></span></li>
+                                <li><a href="product-list.php?tip=1<?php if (isset($categ)) echo "&cat=".$categ; ?>">Calças </a><span><?php echo contaCoisas($con,1); ?></span></li>
+                                <li><a href="product-list.php?tip=2<?php if (isset($categ)) echo "&cat=".$categ; ?>">Saias </a><span><?php echo contaCoisas($con,2); ?></span></li>
+                                <li><a href="product-list.php?tip=3<?php if (isset($categ)) echo "&cat=".$categ; ?>">Camisolas </a><span><?php echo contaCoisas($con,3); ?></span></li>
+                                <li><a href="product-list.php?tip=4<?php if (isset($categ)) echo "&cat=".$categ; ?>">Vestidos</a><span><?php echo contaCoisas($con,4); ?></span></li>
+                                <li><a href="product-list.php?tip=5<?php if (isset($categ)) echo "&cat=".$categ; ?>">Casacos </a><span><?php echo contaCoisas($con,5); ?></span></li>
+                                <li><a href="product-list.php?tip=6<?php if (isset($categ)) echo "&cat=".$categ; ?>">Camisas</a><span><?php echo contaCoisas($con,6); ?></span></li>
                             </ul>
                         </div>
                         <div class="sidebar-widget brands">

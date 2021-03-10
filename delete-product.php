@@ -5,6 +5,4 @@ $sql= "delete from produtos where produtoId=".$id;
 mysqli_query($con,$sql);
 header("location:editing-list.php");
 
-
-
 ?>
