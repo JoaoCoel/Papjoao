@@ -1,18 +1,7 @@
 <?php
 include_once ("includes/body.inc.php");
 top();
-
-
-
 ?>
-<script>
-    function searchName()
-    {
-        let sstr = document.getElementById("search").innerText;
-        alert(sstr);
-        if (sstr.length > 0) window.location.href = "editing-list.php?search="+sstr;
-    }
-</script>
 <!-- Bottom Bar End -->
 
 <!-- Breadcrumb Start -->
@@ -20,7 +9,7 @@ top();
     <div class="container-fluid">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php">Página Principal</a></li>
-            <li class="breadcrumb-item active">Lista de Produtos</li>
+            <li class="breadcrumb-item active">Lista de Produtos para Criança</li>
         </ul>
     </div>
 </div>
@@ -31,17 +20,15 @@ top();
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-8">
-                <div class="row">~~
+                <div class="row">
                     <div class="col-md-12">
                         <div class="product-view-top">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <form action="product-list.php?search=$_POST['search']">
-                                        <div class="product-search">
-                                            <input type="text" id="search" name="search" value="">
-                                            <button type="submit"><i class="fa fa-search"></i></button>
-                                        </div>
-                                    </form>
+                                    <div class="product-search">
+                                        <input type="email" value="Search">
+                                        <button><i class="fa fa-search"></i></button>
+                                    </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="product-short">
@@ -49,13 +36,13 @@ top();
                                             <div class="dropdown-toggle" data-toggle="dropdown">Ordenar produto por</div>
                                             <div class="dropdown-menu dropdown-menu-right">
                                                 <a href="#" class="dropdown-item">Novo</a>
+                                                <a href="#" class="dropdown-item">Mais Popular</a>
                                                 <a href="#" class="dropdown-item">Mais Vendido</a>
-                                                <a href="#" class="dropdown-item">Por Preço</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!--div-- class="col-md-4">
+                                <div class="col-md-4">
                                     <div class="product-price-range">
                                         <div class="dropdown">
                                             <div class="dropdown-toggle" data-toggle="dropdown">Preço dos produtos</div>
@@ -73,52 +60,15 @@ top();
                                             </div>
                                         </div>
                                     </div>
-                                </div-->
+                                </div>
                             </div>
                         </div>
                     </div>
 
-<?php
-
-$sql="Select produtoId,produtoNome,produtoPreco,categorias.categoriaNome as categ,tipos.tipoNome as tipo, produtoImagemURL from produtos left join categorias 
-      on produtoTipoCategoriaCategoriaId=categoriaId left join tipos on produtoTipoCategoriaTipoId=tipoId";
-
-$categ=0;
-$tipo=0;
-if (isset($_GET['search']) or isset($_GET['cat'])  or isset($_GET['tip'])){
-    $sql.=" where ";
-    if (isset($_GET['search'])){
-        $filtro = $_GET['search'];
-        $sql.=" produtoNome like \"".$filtro."%\"";
-        if (isset($_GET['cat'])) {
-            $sql .= " and ";
-        }
-    }
-    if (isset($_GET['cat'])) {
-        $categ = $_GET['cat'];
-        $sql .= " produtoTipoCategoriaCategoriaId=" . $categ;
-    }
-
-    if (isset($_GET['tip'])) {
-        if (isset($_GET['cat'])) {
-            $sql .= " and ";
-        }
-        $tipo = $_GET['tip'];
-        $sql .= " produtoTipoCategoriaTipoId=" . $tipo;
-    }
-
-}
-
-$result=mysqli_query($con,$sql);
-
-while($dados=mysqli_fetch_array($result)){
-
-?>
-
                     <div class="col-md-4">
                         <div class="product-item">
                             <div class="product-title">
-                                <?php echo "<a href='product-detail.php'>".$dados['produtoNome']."</a>";?>
+                                <a href="product-detail.php">Produto</a>
                                 <div class="ratting">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -129,7 +79,7 @@ while($dados=mysqli_fetch_array($result)){
                             </div>
                             <div class="product-image">
                                 <a href="product-detail.php">
-                                    <?php echo "<img src=\"../".$dados['produtoImagemURL']."\">";?>
+                                    <img src="img/product-1.jpg" alt="Product Image">
                                 </a>
                                 <div class="product-action">
                                     <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -138,17 +88,236 @@ while($dados=mysqli_fetch_array($result)){
                                 </div>
                             </div>
                             <div class="product-price">
-                                <h3><span>$</span><?php echo $dados['produtoPreco'];?></h3>
+                                <h3><span>$</span>0.99</h3>
                                 <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
                             </div>
                         </div>
                     </div>
-
-                    <?php
-                    }
-
-                    ?>
-
+                    <div class="col-md-4">
+                        <div class="product-item">
+                            <div class="product-title">
+                                <a href="product-detail.php">Produto</a>
+                                <div class="ratting">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="product-image">
+                                <a href="product-detail.php">
+                                    <img src="img/product-2.jpg" alt="Product Image">
+                                </a>
+                                <div class="product-action">
+                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                    <a href="product-detail.php"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                <h3><span>$</span>0.99</h3>
+                                <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="product-item">
+                            <div class="product-title">
+                                <a href="product-detail.php">Produto</a>
+                                <div class="ratting">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="product-image">
+                                <a href="product-detail.php">
+                                    <img src="img/product-3.jpg" alt="Product Image">
+                                </a>
+                                <div class="product-action">
+                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                    <a href="product-detail.php"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                <h3><span>$</span>0.99</h3>
+                                <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="product-item">
+                            <div class="product-title">
+                                <a href="#">Produto</a>
+                                <div class="ratting">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="product-image">
+                                <a href="product-detail.php">
+                                    <img src="img/product-4.jpg" alt="Product Image">
+                                </a>
+                                <div class="product-action">
+                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                    <a href="product-detail.php"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                <h3><span>$</span>0.99</h3>
+                                <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="product-item">
+                            <div class="product-title">
+                                <a href="product-detail.php">Produto</a>
+                                <div class="ratting">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="product-image">
+                                <a href="product-detail.php">
+                                    <img src="img/product-5.jpg" alt="Product Image">
+                                </a>
+                                <div class="product-action">
+                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                    <a href="product-detail.php"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                <h3><span>$</span>0.99</h3>
+                                <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="product-item">
+                            <div class="product-title">
+                                <a href="product-detail.php">Produto</a>
+                                <div class="ratting">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="product-image">
+                                <a href="product-detail.php">
+                                    <img src="img/product-6.jpg" alt="Product Image">
+                                </a>
+                                <div class="product-action">
+                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                    <a href="product-detail.php"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                <h3><span>$</span>0.99</h3>
+                                <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="product-item">
+                            <div class="product-title">
+                                <a href="product-detail.php">Produto</a>
+                                <div class="ratting">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="product-image">
+                                <a href="product-detail.php">
+                                    <img src="img/product-7.jpg" alt="Product Image">
+                                </a>
+                                <div class="product-action">
+                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                    <a href="product-detail.php"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                <h3><span>$</span>0.99</h3>
+                                <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="product-item">
+                            <div class="product-title">
+                                <a href="product-detail.php">Produto</a>
+                                <div class="ratting">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="product-image">
+                                <a href="product-detail.php">
+                                    <img src="img/product-8.jpg" alt="Product Image">
+                                </a>
+                                <div class="product-action">
+                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                    <a href="product-detail.php"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                <h3><span>$</span>0.99</h3>
+                                <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="product-item">
+                            <div class="product-title">
+                                <a href="product-detail.php">Produto</a>
+                                <div class="ratting">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="product-image">
+                                <a href="product-detail.php">
+                                    <img src="img/product-9.jpg" alt="Product Image">
+                                </a>
+                                <div class="product-action">
+                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="#"><i class="fa fa-heart"></i></a>
+                                    <a href="product-detail.php"><i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                <h3><span>$</span>0.99</h3>
+                                <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Pagination Start -->
                 <div class="col-md-12">
@@ -167,9 +336,8 @@ while($dados=mysqli_fetch_array($result)){
                     </nav>
                 </div>
                 <!-- Pagination Start -->
-
-                </div>
             </div>
+
             <!-- Side Bar Start -->
             <div class="col-lg-4 sidebar">
                 <div class="sidebar-widget category">
@@ -177,13 +345,13 @@ while($dados=mysqli_fetch_array($result)){
                     <nav class="navbar bg-light">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="product-list.php?cat=2"><i class="fa fa-child"></i>Criança</a>
+                                <a class="nav-link" href="product-list-crincas.php"><i class="fa fa-child"></i>Crianças & Bébés</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="product-list.php?cat=1"><i class="fa fa-tshirt"></i>Homem e Mulher</a>
+                                <a class="nav-link" href="product-list.php"><i class="fa fa-tshirt"></i>Homem e Mulher</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="product-list.php?cat=3"><i class="fa fa-mobile-alt"></i>Acessórios</a>
+                                <a class="nav-link" href="product-list-accessories.php"><i class="fa fa-mobile-alt"></i>Acessórios</a>
                             </li>
                         </ul>
                     </nav>
@@ -214,7 +382,7 @@ while($dados=mysqli_fetch_array($result)){
                                     </div>
                                     <div class="product-price">
                                         <h3><span>$</span>0.99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                                        <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Buy Now</a>
                                     </div>
                                 </div>
                                 <div class="product-item">
@@ -240,7 +408,7 @@ while($dados=mysqli_fetch_array($result)){
                                     </div>
                                     <div class="product-price">
                                         <h3><span>$</span>0.99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                                        <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Buy Now</a>
                                     </div>
                                 </div>
                                 <div class="product-item">
@@ -266,7 +434,7 @@ while($dados=mysqli_fetch_array($result)){
                                     </div>
                                     <div class="product-price">
                                         <h3><span>$</span>0.99</h3>
-                                        <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Buy Now</a>
+                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -275,42 +443,39 @@ while($dados=mysqli_fetch_array($result)){
                         <div class="sidebar-widget brands">
                             <h2 class="title">Roupa</h2>
                             <ul>
-                                <li><a href="product-list.php?tip=1<?php if (isset($categ)) echo "&cat=".$categ; ?>">Calças </a><span><?php echo contaCoisas($con,1); ?></span></li>
-                                <li><a href="product-list.php?tip=2<?php if (isset($categ)) echo "&cat=".$categ; ?>">Saias </a><span><?php echo contaCoisas($con,2); ?></span></li>
-                                <li><a href="product-list.php?tip=3<?php if (isset($categ)) echo "&cat=".$categ; ?>">Camisolas </a><span><?php echo contaCoisas($con,3); ?></span></li>
-                                <li><a href="product-list.php?tip=4<?php if (isset($categ)) echo "&cat=".$categ; ?>">Vestidos</a><span><?php echo contaCoisas($con,4); ?></span></li>
-                                <li><a href="product-list.php?tip=5<?php if (isset($categ)) echo "&cat=".$categ; ?>">Casacos </a><span><?php echo contaCoisas($con,5); ?></span></li>
-                                <li><a href="product-list.php?tip=6<?php if (isset($categ)) echo "&cat=".$categ; ?>">Camisas</a><span><?php echo contaCoisas($con,6); ?></span></li>
+                                <li><a href="#">Calças </a><span>(45)</span></li>
+                                <li><a href="#">Saias </a><span>(34)</span></li>
+                                <li><a href="#">Camisolas </a><span>(67)</span></li>
+                                <li><a href="#">Vestidos</a><span>(74)</span></li>
+                                <li><a href="#">Casacos </a><span>(89)</span></li>
+                                <li><a href="#">Camisas</a><span>(28)</span></li>
                             </ul>
                         </div>
                         <div class="sidebar-widget brands">
-                            <h2 class="title">Tamanho</h2>
+                            <h2 class="title">Idades</h2>
                             <ul>
-                                <li><a href="#">XS</a><span>(45)</span></li>
-                                <li><a href="#">S</a><span>(34)</span></li>
-                                <li><a href="#">M</a><span>(67)</span></li>
-                                <li><a href="#">L</a><span>(74)</span></li>
-                                <li><a href="#">XL</a><span>(89)</span></li>
-                                <li><a href="#">XXL</a><span>(28)</span></li>
+                                <li><a href="#">0-3</a><span>(45)</span></li>
+                                <li><a href="#">4-7</a><span>(34)</span></li>
+                                <li><a href="#">8-11</a><span>(67)</span></li>
+                                <li><a href="#">12-15</a><span>(74)</span></li>
                             </ul>
                         </div>
                         <div class="sidebar-widget brands">
                             <h2 class="title">Género</h2>
                             <ul>
-                                <li><a href="#">Homem</a><span>(45)</span></li>
-                                <li><a href="#">Mulher </a><span>(34)</span></li>
+                                <li><a href="#">Rapaz</a><span>(45)</span></li>
+                                <li><a href="#">Rapariga </a><span>(34)</span></li>
+                                <li><a href="#">Bebé </a><span>(37)</span></li>
                             </ul>
                         </div>
 
                     </div>
+                    <!-- Side Bar End -->
                 </div>
             </div>
         </div>
-        <!-- Side Bar End -->
-
-
         <!-- Product List End -->
-        
+
         <!-- Brand Start
         <div class="brand">
             <div class="container-fluid">
@@ -324,8 +489,8 @@ while($dados=mysqli_fetch_array($result)){
                 </div>
             </div>
         </div>
-         Brand End -->
-        
+        Brand End -->
+
         <!-- Footer Start
         <div class="footer">
             <div class="container-fluid">
@@ -340,7 +505,7 @@ while($dados=mysqli_fetch_array($result)){
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-widget">
                             <h2>Follow Us</h2>
@@ -378,7 +543,7 @@ while($dados=mysqli_fetch_array($result)){
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="row payment align-items-center">
                     <div class="col-md-6">
                         <div class="payment-method">
@@ -397,10 +562,10 @@ while($dados=mysqli_fetch_array($result)){
                 </div>
             </div>
         </div>
-        Footer End -->
-        
+         Footer End -->
+
         <!-- Footer Bottom Start -->
+
 <?php
 bottom();
 ?>
-
