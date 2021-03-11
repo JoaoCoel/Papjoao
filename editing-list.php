@@ -59,11 +59,11 @@ top();
 
                         echo "<tr>";
                         echo "<td width='5%'>".$dados['produtoId']."</td>";
-                        echo "<td width='25%'>".$dados['produtoNome']."</td>";
+                        echo "<td width='15%'>".$dados['produtoNome']."</td>";
                         echo "<td width='10%'>".$dados['produtoPreco']."</td>";
-                        echo "<td width='20%'>".$dados['categ']."</td>";
+                        echo "<td width='10%'>".$dados['categ']."</td>";
                         echo "<td width='20%'>".$dados['tipo']."</td>";
-                        echo "<td><img src=\"../".$dados['produtoImagemURL']."\"></td>";
+                        echo "<td width='20%'><img src=\"../".$dados['produtoImagemURL']."\"></td>";
                         //echo "<td width='10%'><a href='edit-product.php?id=".$dados['produtoId']."'/a>Editar</td>";
                         //echo "<td width='10%'><a href='delete-product.php?id=".$dados['produtoId']."' /a>Eliminar</td>";
                         echo "<td width='10%'><button type='button' onclick=\"edit(".$dados['produtoId'].");\">Editar</button></td>";

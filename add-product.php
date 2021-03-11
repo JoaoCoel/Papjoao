@@ -5,8 +5,61 @@ $sql="Select * from tipos";
 $tipos=mysqli_query($con,$sql);
 $sql="Select * from categorias";
 $categorias=mysqli_query($con,$sql);
+$sql="Select * from tipocategorias";
+$categ=1;
+$cattipo=mysqli_query($con,$sql);
+
 
 ?>
+
+<script>
+    let categoriaDropdown = document.getElementById('categoriaProduto');
+    let tipoDropdown = document.getElementById('tipoProduto');
+
+    function catChange()
+    {
+        let categoriaDropdown = document.getElementById('categoriaProduto').value;
+        let tipoDropdown = document.getElementById('tipoProduto');
+        alert(categoriaDropdown );
+
+        let i;
+        for (i = 0; i < tipoDropdown.length; i++) {
+            if (categoriaDropdown > 2 && i<7 ){
+                tipoDropdown.options[i].hidden = true;
+                tipoDropdown.options[i].selected = false;
+            }
+            else
+            {
+                if(categoriaDropdown<3 && i>6)
+                {
+                    tipoDropdown.options[i].hidden = true;
+                    tipoDropdown.options[i].selected = false;
+
+                }
+                else
+                {
+                    tipoDropdown.options[i].hidden = false;
+                }
+            }
+
+
+
+        }
+        alert(txt);
+
+
+
+    }
+
+
+    /*while (currentYear >= earliestYear) {
+        let dateOption = document.createElement('option');
+        dateOption.text = currentYear;
+        dateOption.value = currentYear;
+        dateDropdown.add(dateOption);
+        currentYear -= 1;
+    }*/
+</script>
         <!-- Bottom Bar End --> 
         
         <!-- Breadcrumb Start -->
@@ -35,7 +88,7 @@ $categorias=mysqli_query($con,$sql);
                                     </div>
                                     <div class="col-md-6">
                                         <label>Categoria</label>
-                                        <select class="custom-select" id="categoriaProduto" name="categoriaProduto">
+                                        <select onchange="catChange();" class="custom-select" id="categoriaProduto" name="categoriaProduto">
                                             <?php
                                             while ($dados=mysqli_fetch_array($categorias)){
                                                 echo "<option value=\"".$dados['categoriaId']."\">".$dados['categoriaNome']."</option>";
@@ -47,8 +100,15 @@ $categorias=mysqli_query($con,$sql);
                                         <label>Tipo</label>
                                         <select class="custom-select" id="tipoProduto" name="tipoProduto">
                                             <?php
-                                                while ($dados=mysqli_fetch_array($tipos)){
-                                                    echo "<option value=\"".$dados['tipoId']."\">".$dados['tipoNome']."</option>";
+                                                while ($dados=mysqli_fetch_array($tipos)) {
+                                                    if ($categ < 3 and $dados['tipoId'] > 6) {
+                                                        echo "<option hidden value=\"" . $dados['tipoId'] . "\">" . $dados['tipoNome'] . "</option>";
+
+                                                    }elseif ($categ > 2 and $dados['tipoId'] < 7) {
+                                                        echo "<option hidden value=\"" . $dados['tipoId'] . "\">" . $dados['tipoNome'] . "</option>";
+
+                                                    }else
+                                                        echo "<option value=\"" . $dados['tipoId'] . "\">" . $dados['tipoNome'] . "</option>";
                                                 }
                                             ?>
 
@@ -309,15 +369,5 @@ $categorias=mysqli_query($con,$sql);
 <?php
 bottom();
 ?>
-<script>
-    let categoriaDropdown = document.getElementById('categoriaProduto');
-    let tipoDropdown = document.getElementById('tipoProduto');
-    /*while (currentYear >= earliestYear) {
-        let dateOption = document.createElement('option');
-        dateOption.text = currentYear;
-        dateOption.value = currentYear;
-        dateDropdown.add(dateOption);
-        currentYear -= 1;
-    }*/
-</script>
+
 
