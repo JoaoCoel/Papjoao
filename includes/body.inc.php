@@ -59,7 +59,7 @@ function top(){
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto">
                         <a href="index.php" class="nav-item nav-link active">Pagina Principal</a>
-                        <a href="product-list.php" class="nav-item nav-link">Produtos</a>
+                        <a href="editing-list.php" class="nav-item nav-link">Edição de Produtos</a>
                         <a href="cart.php" class="nav-item nav-link">Carrinho</a>
                         <a href="my-account.php" class="nav-item nav-link">Minha Conta</a>
                         <div class="nav-item dropdown">
