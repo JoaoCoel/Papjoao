@@ -36,7 +36,7 @@ top();
 
 <div class="container">
     <a href="index.php">Voltar</a>
-    <a class="ml-5" href="add-product.php">Adicionar</a>
+    <a class="ml-5" href="backoffice/add-product.php">Adicionar</a>
     <table class="table table-striped">
         <tr>
             <th>Id</th>
@@ -74,7 +74,7 @@ top();
                     //*******************
                     echo "</table>";
                 ?>
-                <td><a href="available-sizes.php">Listar tamanhos</a></td>
+                <td><a href="backoffice/available-sizes.php">Listar tamanhos</a></td>
             </tr>
     </table>
 
@@ -93,14 +93,14 @@ bottom();
     {
         let r=confirm("Tem a certeza? ("+prodId+")");
         if (r == true) {
-            window.location.href = "delete-product.php?id="+prodId;
+            window.location.href = "backoffice/delete-product.php?id="+prodId;
         }
     }
 
 
     function edit(prodId)
     {
-        window.location.href = "edit-product.php?id="+prodId;
+        window.location.href = "backoffice/edit-product.php?id="+prodId;
     }
 
 </script>

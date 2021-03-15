@@ -19,7 +19,7 @@ $sql.="produtoTipoCategoriaCategoriaId='".(int)$categoriaId."',produtoTipoCatego
 $sql.=" where produtoId=".$id.";";
 
 mysqli_query($con,$sql); //or die(mysqli_error($con))
-header("location:editing-list.php");
+header("location:backoffice/editing-list.php");
 
 ?>
 
