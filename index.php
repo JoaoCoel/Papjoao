@@ -2,7 +2,7 @@
 include_once ("includes/body.inc.php");
 top();
 
-$sql = "Select produtoId,produtoNome,produtoPreco, produtoImagemURL from produtos order by produtoId DESC LIMIT 3";
+$sql = "Select produtoId,produtoNome,produtoPreco, produtoImagemURL from produtos order by produtoId DESC LIMIT 6";
 
 $result = mysqli_query($con, $sql);
 
@@ -62,13 +62,13 @@ $result = mysqli_query($con, $sql);
                                     <a class="nav-link" href="#"><i class="fa fa-plus-square"></i>Novos Produtos</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="product-list-crincas.php"><i class="fa fa-child"></i>Crianças & Bébés</a>
+                                    <a class="nav-link" href="product-list.php?cat=2"><i class="fa fa-child"></i>Crianças</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="product-list.php"><i class="fa fa-tshirt"></i>Homem e Mulher</a>
+                                    <a class="nav-link" href="product-list.php?cat=1"><i class="fa fa-tshirt"></i>Homem e Mulher</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="product-list-accessories.php"><i class="fa fa-mobile-alt"></i>Acessórios</a>
+                                    <a class="nav-link" href="product-list.php?cat=3"><i class="fa fa-mobile-alt"></i>Acessórios</a>
                                 </li>
                             </ul>
                         </nav>
@@ -407,18 +407,16 @@ $result = mysqli_query($con, $sql);
 
 
 
-
         <div class="recent-product product">
             <div class="container-fluid">
                 <div class="section-header">
-                    <h1> Produtos Recentes</h1>
+                    <h1>Produtos Recentes</h1>
                 </div>
                 <div class="row align-items-center product-slider product-slider-4">
+                    <?php
+                    while ($dados = mysqli_fetch_array($result)){
+                    ?>
                     <div class="col-lg-3">
-                        <?php
-                        while ($dados = mysqli_fetch_array($result)){
-
-                        ?>
                         <div class="product-item">
                             <div class="product-title">
                                 <?php echo "<a href='product-detail.php'>".$dados['produtoNome']."</a>";?>
