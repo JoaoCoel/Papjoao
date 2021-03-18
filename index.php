@@ -4,7 +4,11 @@ top();
 
 $sql = "Select produtoId,produtoNome,produtoPreco, produtoImagemURL from produtos order by produtoId DESC LIMIT 6";
 
+$sql2 = "Select produtoId,produtoNome,produtoPreco, produtoImagemURL from produtos where produtoDestaque = 'Sim'";
+
 $result = mysqli_query($con, $sql);
+
+$result2 = mysqli_query($con, $sql2);
 
 ?>
 
@@ -145,7 +149,7 @@ $result = mysqli_query($con, $sql);
                     <div class="col-lg-3 col-md-6 feature-col">
                         <div class="feature-content">
                             <i class="fa fa-truck"></i>
-                            <h2>Entrega por todo o mundo</h2>
+                            <h2>Entrega por
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 feature-col">
@@ -234,155 +238,49 @@ $result = mysqli_query($con, $sql);
         Call to Action End -->
         
         <!-- Featured Product Start -->
-        <div class="featured-product product">
-            <div class="container-fluid">
-                <div class="section-header">
-                    <h1>Produtos em Destaque</h1>
-                </div>
-                <div class="row align-items-center product-slider product-slider-4">
-                    <div class="col-lg-3">
-                        <div class="product-item">
-                            <div class="product-title">
-                                <a href="product-detail.php">Produto</a>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="product-image">
-                                <a href="product-detail.php">
-                                    <img src="img/product-1.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="product-detail.php"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h3><span>$</span>0.99</h3>
-                                <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="product-item">
-                            <div class="product-title">
-                                <a href="product-detail.php">Produto</a>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="product-image">
-                                <a href="product-detail.php">
-                                    <img src="img/product-2.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="product-detail.php"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h3><span>$</span>0.99</h3>
-                                <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="product-item">
-                            <div class="product-title">
-                                <a href="product-detail.php">Produto</a>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="product-image">
-                                <a href="product-detail.php">
-                                    <img src="img/product-3.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="product-detail.php"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h3><span>$</span>0.99</h3>
-                                <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="product-item">
-                            <div class="product-title">
-                                <a href="product-detail.php">Produto</a>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="product-image">
-                                <a href="product-detail.php">
-                                    <img src="img/product-4.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="product-detail.php"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h3><span>$</span>0.99</h3>
-                                <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="product-item">
-                            <div class="product-title">
-                                <a href="#">Produto</a>
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="product-image">
-                                <a href="product-detail.php">
-                                    <img src="img/product-5.jpg" alt="Product Image">
-                                </a>
-                                <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="product-detail.php"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                <h3><span>$</span>0.99</h3>
-                                <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="featured-product product">
+    <div class="container-fluid">
+        <div class="section-header">
+            <h1>Produtos Em Destaque</h1>
         </div>
+        <div class="row align-items-center product-slider product-slider-4">
+            <?php
+            while ($dados = mysqli_fetch_array($result2)){
+                ?>
+                <div class="col-lg-3">
+                    <div class="product-item">
+                        <div class="product-title">
+                            <?php echo "<a href='product-detail.php'>".$dados['produtoNome']."</a>";?>
+                            <div class="ratting">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="product-image">
+                            <a href="product-detail.php">
+                                <?php echo "<img src=\"../".$dados['produtoImagemURL']."\">";?>
+                            </a>
+                            <div class="product-action">
+                                <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                <a href="#"><i class="fa fa-heart"></i></a>
+                                <a href="product-detail.php"><i class="fa fa-search"></i></a>
+                            </div>
+                        </div>
+                        <div class="product-price">
+                            <h3><span>$</span><?php echo $dados['produtoPreco'];?></h3>
+                            <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
+        </div>
+    </div>
+</div>
         <!-- Featured Product End -->       
         
         <!-- Newsletter Start
