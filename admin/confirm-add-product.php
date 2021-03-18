@@ -26,7 +26,7 @@ if($_FILES['imagemProduto']['name']!=""){
 echo $sql="insert into produtos(produtoNome,produtoPreco,produtoDestaque,produtoImagemURL,produtoTipoCategoriaCategoriaId,produtoTipoCategoriaTipoId)
  values('".$nome."',".$preco.",'Nao','".$imagemUrl."',".$categoriaId.",".$tipoId.")";
 mysqli_query($con,$sql);// or die(mysqli_error($con));
-//header("location:editing-list.php");
+header("location:editing-list.php");
 
 /*
 $sql="select * from tipoCategorias";

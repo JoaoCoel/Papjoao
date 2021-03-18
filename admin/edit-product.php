@@ -87,7 +87,21 @@ $categorias=mysqli_query($con,$sql);
                                     <label>Descrição do produto</label>
                                     <input class="form-control" name="descProduto" type="text" placeholder="">
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-2">
+                                    <label>Em Destaque</label>
+                                    <select class="custom-select" id="produtoDestaque" name="produtoDestaque">
+                                        <?php
+                                        if ($dadosProduto['produtoDestaque']=='Sim') {
+                                            echo "<option selected value='Sim'>Sim</option>";
+                                            echo "<option value='Nao'>Não</option>";
+                                        }else{
+                                            echo "<option  value='Sim'>Sim</option>";
+                                            echo "<option selected value='Nao'>Não</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="col-md-10">
                                     <label for="img">Selecione a imagem:</label><br>
                                     <img width="15%" src="<?php echo "../".$dadosProduto['produtoImagemURL']?>"><br>
                                     <input type="file" id="img" name="imagemProduto" accept="image/*">

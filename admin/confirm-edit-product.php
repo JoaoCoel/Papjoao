@@ -6,8 +6,9 @@ $nome=addslashes($_POST['nomeProduto']);
 $preco =addslashes($_POST['precoProduto']);
 $categoriaId=intval($_POST['categoriaProduto']);
 $tipoId=intval($_POST['tipoProduto']);
+$destaque=($_POST['produtoDestaque']);
 $imagem=$_FILES['imagemProduto']['name'];
-$imagemUrl="Papjoao/img/".$imagem;
+$imagemUrl="Papjoao/images/".$imagem;
 $sql="Update produtos set produtoNome='".$nome."',produtoPreco='".$preco."',produtoDestaque='Nao',";
 
 if($imagem!=''){
@@ -15,7 +16,14 @@ if($imagem!=''){
     //copy($_FILES['imagemProduto']['tmp_name'],$novoNome);
 }
 
+
+if($_FILES['imagemProduto']['name']!=""){
+    if(copy($_FILES['imagemProduto']['tmp_name'],'../'.$imagemUrl))
+        echo "siiiimmmmm";
+}
+
 $sql.="produtoTipoCategoriaCategoriaId='".(int)$categoriaId."',produtoTipoCategoriaTipoId='".(int)$tipoId."'";
+$sql.=" , produtoDestaque='".$destaque."'";
 $sql.=" where produtoId=".$id.";";
 
 mysqli_query($con,$sql); //or die(mysqli_error($con))
