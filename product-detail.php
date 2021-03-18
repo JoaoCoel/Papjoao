@@ -50,6 +50,15 @@ top();
         <!-- Breadcrumb End -->
         
         <!-- Product Detail Start -->
+<?php
+$sql="Select produtoId,produtoNome,produtoPreco,categorias.categoriaNome as categ,tipos.tipoNome as tipo, produtoImagemURL from produtos left join categorias 
+      on produtoTipoCategoriaCategoriaId=categoriaId left join tipos on produtoTipoCategoriaTipoId=tipoId";
+
+$result=mysqli_query($con,$sql);
+
+while($dados=mysqli_fetch_array($result)){
+
+?>
         <div class="product-detail">
             <div class="container-fluid">
                 <div class="row">
@@ -76,7 +85,7 @@ top();
                                 </div>
                                 <div class="col-md-7">
                                     <div class="product-content">
-                                        <div class="title"><h2>Produto</h2></div>
+                                        <div class="title"><h2><?php echo "".$dados['produtoNome']."";?></h2></div>
                                         <div class="ratting">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -86,7 +95,7 @@ top();
                                         </div>
                                         <div class="price">
                                             <h4>Preço:</h4>
-                                            <p>$0.99 <span>$1.49</span></p>
+                                            <p><span><?php echo "".$dados['produtoPreco']."";?></span></p>
                                         </div>
                                        <!-- <div class="quantity">
                                             <h4>Quantidade:</h4>
@@ -121,6 +130,9 @@ top();
                                 </div>
                             </div>
                         </div>
+<?php
+}
+?>
 
                         <div class="row product-detail-bottom">
                             <div class="col-lg-12">
