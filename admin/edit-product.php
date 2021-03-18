@@ -14,6 +14,55 @@ $categorias=mysqli_query($con,$sql);
 
 
 ?>
+
+<script>
+
+    function catChange()
+    {
+        let categoriaDropdown = document.getElementById('categoriaProduto').value;
+        let tipoDropdown = document.getElementById('tipoProduto');
+        alert(categoriaDropdown );
+
+        let i;
+
+        if (categoriaDropdown > 2){
+
+            for (i = 0; i < tipoDropdown.length ; i++) {
+                if (i<6) {
+                    tipoDropdown.options[i].hidden = true;
+                    tipoDropdown.options[i].selected = false;
+                } else {
+                    tipoDropdown.options[i].hidden = false;
+                }
+
+            }
+            tipoDropdown.options[6].selected = true;
+        } else {
+            for (i = 0; i < tipoDropdown.length ; i++) {
+                if (i>5) {
+                    tipoDropdown.options[i].hidden = true;
+                    tipoDropdown.options[i].selected = false;
+                } else {
+                    tipoDropdown.options[i].hidden = false;
+                }
+
+            }
+            tipoDropdown.options[0].selected = true;
+        }
+
+
+
+    }
+
+
+    /*while (currentYear >= earliestYear) {
+        let dateOption = document.createElement('option');
+        dateOption.text = currentYear;
+        dateOption.value = currentYear;
+        dateDropdown.add(dateOption);
+        currentYear -= 1;
+    }*/
+</script>
 <!-- Bottom Bar End -->
 
 <!-- Breadcrumb Start -->
@@ -29,6 +78,11 @@ $categorias=mysqli_query($con,$sql);
 <!-- Breadcrumb End -->
 <form action="confirm-edit-product.php" method="post" enctype="multipart/form-data">
     <!-- Checkout Start -->
+
+
+
+
+
     <div class="checkout">
         <div class="container-fluid">
             <div class="row">
@@ -43,7 +97,7 @@ $categorias=mysqli_query($con,$sql);
                                 </div>
                                 <div class="col-md-6">
                                     <label>Categoria</label>
-                                    <select class="custom-select" id="categoriaProduto" name="categoriaProduto">
+                                    <select onchange="catChange();" class="custom-select" id="categoriaProduto" name="categoriaProduto">
                                         <?php
                                         while ($dados=mysqli_fetch_array($categorias)){
                                             if ($dados['categoriaId'] == $dadosProduto['produtoTipoCategoriaCategoriaId']) $status = "selected"; else $status = "";

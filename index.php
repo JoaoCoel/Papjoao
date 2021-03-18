@@ -261,7 +261,7 @@ $result2 = mysqli_query($con, $sql2);
                         </div>
                         <div class="product-image">
                             <a href="product-detail.php">
-                                <?php echo "<img src=\"../".$dados['produtoImagemURL']."\">";?>
+                                <?php echo "<img src=\"".$dados['produtoImagemURL']."\">";?>
                             </a>
                             <div class="product-action">
                                 <a href="#"><i class="fa fa-cart-plus"></i></a>
@@ -328,7 +328,7 @@ $result2 = mysqli_query($con, $sql2);
                             </div>
                             <div class="product-image">
                                 <a href="product-detail.php">
-                                    <?php echo "<img src=\"../".$dados['produtoImagemURL']."\">";?>
+                                    <?php echo "<img src=\"".$dados['produtoImagemURL']."\">";?>
                                 </a>
                                 <div class="product-action">
                                     <a href="#"><i class="fa fa-cart-plus"></i></a>

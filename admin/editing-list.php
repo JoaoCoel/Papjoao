@@ -65,7 +65,7 @@ top();
                         echo "<td width='3%' align='center'>".$dados['categ']."</td>";
                         echo "<td width='3%' align='center'>".$dados['tipo']."</td>";
                         echo "<td width='3%' align='center'>".$dados['produtoDestaque']."</td>";
-                        echo "<td width='20%' align='center'><img width=100px src=\"../../".$dados['produtoImagemURL']."\"></td>";
+                        echo "<td width='20%' align='center'><img width=100px src=\"../".$dados['produtoImagemURL']."\"></td>";
                         //echo "<td width='10%'><a href='edit-product.php?id=".$dados['produtoId']."'/a>Editar</td>";
                         //echo "<td width='10%'><a href='delete-product.php?id=".$dados['produtoId']."' /a>Eliminar</td>";
                         echo "<td width='10%' align='center'><button type='button' onclick=\"edit(".$dados['produtoId'].");\">Editar</button></td>";

@@ -13,8 +13,6 @@ $cattipo=mysqli_query($con,$sql);
 ?>
 
 <script>
-    let categoriaDropdown = document.getElementById('categoriaProduto');
-    let tipoDropdown = document.getElementById('tipoProduto');
 
     function catChange()
     {
@@ -23,29 +21,31 @@ $cattipo=mysqli_query($con,$sql);
         alert(categoriaDropdown );
 
         let i;
-        for (i = 0; i < tipoDropdown.length; i++) {
-            if (categoriaDropdown > 2 && i<7 ){
-                tipoDropdown.options[i].hidden = true;
-                tipoDropdown.options[i].selected = false;
-            }
-            else
-            {
-                if(categoriaDropdown<3 && i>6)
-                {
+
+        if (categoriaDropdown > 2){
+
+            for (i = 0; i < tipoDropdown.length ; i++) {
+                if (i<6) {
                     tipoDropdown.options[i].hidden = true;
                     tipoDropdown.options[i].selected = false;
-
-                }
-                else
-                {
+                } else {
                     tipoDropdown.options[i].hidden = false;
                 }
+
             }
+            tipoDropdown.options[6].selected = true;
+        } else {
+            for (i = 0; i < tipoDropdown.length ; i++) {
+                if (i>5) {
+                    tipoDropdown.options[i].hidden = true;
+                    tipoDropdown.options[i].selected = false;
+                } else {
+                    tipoDropdown.options[i].hidden = false;
+                }
 
-
-
+            }
+            tipoDropdown.options[0].selected = true;
         }
-        alert(txt);
 
 
 
