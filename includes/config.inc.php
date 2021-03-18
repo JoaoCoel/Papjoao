@@ -2,5 +2,5 @@
     define("HOST","localhost");
     define("USER","root");
     define("PWD","");
-    define("DATABASE","papjoao2021");
+    define("DATABASE","pap2021drk");
 ?>
