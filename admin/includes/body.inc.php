@@ -60,6 +60,8 @@ function top(){
                     <div class="navbar-nav mr-auto">
                         <a href="index.php" class="nav-item nav-link active">Pagina Principal</a>
                         <a href="editing-list.php" class="nav-item nav-link">Editar Produtos</a>
+                        <a href="category-list.php" class="nav-item nav-link">Editar Categorias</a>
+                        <a href="type-list.php" class="nav-item nav-link">Editar Tipos</a>
 
 
                     </div>

@@ -1,6 +1,18 @@
 <?php
 include_once ("includes/body.inc.php");
 top();
+
+$id=intval($_GET['id']);
+
+$sql="select * from produtos where produtoId=$id";
+$result=mysqli_query($con,$sql);
+$dadosProduto=mysqli_fetch_array($result);
+
+$sql="Select * from tipos";
+$tipos=mysqli_query($con,$sql);
+$sql="Select * from categorias";
+$categorias=mysqli_query($con,$sql);
+
 ?>
 
 <!-- Bottom Bar Start -->
@@ -56,8 +68,6 @@ $sql="Select produtoId,produtoNome,produtoPreco,categorias.categoriaNome as cate
 
 $result=mysqli_query($con,$sql);
 
-while($dados=mysqli_fetch_array($result)){
-
 ?>
         <div class="product-detail">
             <div class="container-fluid">
@@ -67,20 +77,10 @@ while($dados=mysqli_fetch_array($result)){
                             <div class="row align-items-center">
                                 <div class="col-md-5">
                                     <div class="product-slider-single normal-slider">
-                                        <img src="img/product-1.jpg" alt="Product Image">
-                                        <img src="img/product-3.jpg" alt="Product Image">
-                                        <img src="img/product-5.jpg" alt="Product Image">
-                                        <img src="img/product-7.jpg" alt="Product Image">
-                                        <img src="img/product-9.jpg" alt="Product Image">
-                                        <img src="img/product-10.jpg" alt="Product Image">
+                                        <img src="<?php echo "../".$dadosProduto['produtoImagemURL']?>" alt="Product Image">
                                     </div>
                                     <div class="product-slider-single-nav normal-slider">
-                                        <div class="slider-nav-img"><img src="img/product-1.jpg" alt="Product Image"></div>
-                                        <div class="slider-nav-img"><img src="img/product-3.jpg" alt="Product Image"></div>
-                                        <div class="slider-nav-img"><img src="img/product-5.jpg" alt="Product Image"></div>
-                                        <div class="slider-nav-img"><img src="img/product-7.jpg" alt="Product Image"></div>
-                                        <div class="slider-nav-img"><img src="img/product-9.jpg" alt="Product Image"></div>
-                                        <div class="slider-nav-img"><img src="img/product-10.jpg" alt="Product Image"></div>
+                                        <div class="slider-nav-img"><img src="<?php echo "../".$dadosProduto['produtoImagemURL']?>" alt="Product Image"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-7">
@@ -130,9 +130,7 @@ while($dados=mysqli_fetch_array($result)){
                                 </div>
                             </div>
                         </div>
-<?php
-}
-?>
+
 
                         <div class="row product-detail-bottom">
                             <div class="col-lg-12">
