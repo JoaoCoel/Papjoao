@@ -77,15 +77,15 @@ $result=mysqli_query($con,$sql);
                             <div class="row align-items-center">
                                 <div class="col-md-5">
                                     <div class="product-slider-single normal-slider">
-                                        <img src="<?php echo "../".$dadosProduto['produtoImagemURL']?>" alt="Product Image">
+                                        <img src="<?php echo $dadosProduto['produtoImagemURL'];?>" alt="Product Image">
                                     </div>
-                                    <div class="product-slider-single-nav normal-slider">
-                                        <div class="slider-nav-img"><img src="<?php echo "../".$dadosProduto['produtoImagemURL']?>" alt="Product Image"></div>
-                                    </div>
+                                    <!--div class="product-slider-single-nav normal-slider">
+                                        <div class="slider-nav-img"><img src="<?php// echo $dadosProduto['produtoImagemURL'];?>" alt="Product Image"></div>
+                                    </div-->
                                 </div>
                                 <div class="col-md-7">
                                     <div class="product-content">
-                                        <div class="title"><h2><?php echo "".$dados['produtoNome']."";?></h2></div>
+                                        <div class="title"><h2><?php echo $dadosProduto['produtoNome'];?></h2></div>
                                         <div class="ratting">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -93,9 +93,10 @@ $result=mysqli_query($con,$sql);
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                         </div>
-                                        <div class="price">
-                                            <h4>Preço:</h4>
-                                            <p><span><?php echo "".$dados['produtoPreco']."";?></span></p>
+                                        <div class="quantity">
+                                            <h3><b>Preço:</b>
+                                            <span><?php echo "".$dadosProduto['produtoPreco']."";?>€</span>
+                                            </h3>
                                         </div>
                                        <!-- <div class="quantity">
                                             <h4>Quantidade:</h4>

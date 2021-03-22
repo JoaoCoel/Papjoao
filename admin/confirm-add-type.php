@@ -16,18 +16,18 @@ mysqli_query($con,$sql);
 //or die(mysqli_error($con));
 //header("location:type-list.php");
 
-/*
-$sql="select * from tipoCategorias";
+
+
+
+$sql="select * from categorias";
 $result=mysqli_query($con,$sql);
 while ($dados=mysqli_fetch_array($result)){
-    echo "<br>IDCAt=".$dados['tipoCategoriaCategoriaId']." IDTipo=".$dados['tipoCategoriaTipoId'];
+    $field="categ".$dados['categoriaId'];
+    if (isset($_POST[$field])){
+        $sql="insert into tipoCategorias ";
+    }
 }
 
-$sql="select * from produtos";
-$result=mysqli_query($con,$sql);
-while ($dados=mysqli_fetch_array($result)){
-    echo "<br>ID=".$dados['produtoId']." Nome=".$dados['produtoNome'];
-}
-*/
+
 
 ?>
