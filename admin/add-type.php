@@ -6,18 +6,6 @@ $tipos=mysqli_query($con,$sql);
 $sql="Select * from categorias";
 $categorias=mysqli_query($con,$sql);
 
-if (isset($_POST['addType'])){
-    $tipo=$_POST['nomeTipo'];
-    $existe = false;
-    while ($dados=mysqli_fetch_array($tipos)){
-        if ($dados['tipoNome'] == $tipo) {
-            $existe = true;
-            break;
-        }
-    }
-    if ($existe==false) header("location:confirm-add-type.php");
-}
-
 ?>
 <script>
 function validateForm()
@@ -58,7 +46,7 @@ function validateForm()
             </div>
         </div>
         <!-- Breadcrumb End -->
-<form  action="add-type.php" method="post" enctype="multipart/form-data">
+<form  action="confirm-add-type.php" method="post" enctype="multipart/form-data">
         <!-- Checkout Start -->
         <div class="checkout">
             <div class="container-fluid"> 
