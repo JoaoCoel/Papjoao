@@ -7,9 +7,34 @@ $sql="Select * from categorias";
 $categorias=mysqli_query($con,$sql);
 
 ?>
+<script>
+function validateForm()
+{
+    //alert("cheguei");
+    let ncateg = document.getElementById("ncateg").value;
+    let nselect=0;
+    let i;
+    let desctipo = document.getElementById("nomeTipo").value;
+    //alert("categ = " + nselect + " descTipo = " + desctipo);
+    for (i=1;i<=parseInt(ncateg);i++){
+        if (document.getElementById("id"+i).checked) nselect++;
+    }
+
+    if (nselect>0 && desctipo.length>0){
+        document.getElementById("but").disabled = false;
+    }else {
+        document.getElementById("erro").hidden = false;
+
+    }
+
+}
+
+
+
+</script>
 
         <!-- Bottom Bar End --> 
-        
+
         <!-- Breadcrumb Start -->
         <div class="breadcrumb-wrap">
             <div class="container-fluid">
@@ -21,7 +46,7 @@ $categorias=mysqli_query($con,$sql);
             </div>
         </div>
         <!-- Breadcrumb End -->
-<form action="confirm-add-type.php" method="post" enctype="multipart/form-data">
+<form  action="confirm-add-type.php" method="post" enctype="multipart/form-data">
         <!-- Checkout Start -->
         <div class="checkout">
             <div class="container-fluid"> 
@@ -30,25 +55,29 @@ $categorias=mysqli_query($con,$sql);
                         <div class="checkout-inner">
                             <div class="billing-address">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
+                                        <label>Categorias a que se aplica:</label><br>
+
+                                        <?php
+                                        $i=0;
+                                        while ($dados=mysqli_fetch_array($categorias)){
+                                            $i++;
+                                            echo  "<input onchange='validateForm();' type='checkbox' id=\"id".$i."\" name=\"categ".$i."\" value=\"".$dados['categoriaId']."\">".$dados['categoriaNome']."</option>&nbsp&nbsp";
+                                        }
+                                        echo  "<input hidden type='text' value=\"".$i."\" id='ncateg'>";
+                                        ?>
+                                        <br>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-12">
                                         <label>Nome do tipo</label>
-                                        <input class="form-control" name="nomeTipo" type="text" placeholder="">
+                                        <input class="form-control" onchange="validateForm();" name="nomeTipo" id="nomeTipo" type="text" placeholder="">
+                                        <label hidden id="erro">Selecione pelo menos uma categoria e preencha o nome do tipo</label>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label>Categoria</label>
-                                        <select class="custom-select" id="categoriaProduto" name="categoriaProduto" multiple>
-                                            <?php
-                                            $i=0;
-                                            while ($dados=mysqli_fetch_array($categorias)){
-                                                $i++;
-                                                echo  "<option name=\"opt".$i."\">".$dados['categoriaNome']." value=\"".$dados['categoriaId']."\">".$dados['categoriaNome']."</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
+
                                     <div class="checkout-payment">
-                                        <div class="checkout-btn">
-                                            <button input type="submit">Adicionar</button>
+                                        <div class="checkout-btn" >
+                                            <button input disabled name="addType" id="but" type="submit">Adicionar</button>
                                         </div>
                                     </div>
 
