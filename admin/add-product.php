@@ -7,79 +7,48 @@ $sql="Select * from categorias";
 $categorias=mysqli_query($con,$sql);
 $sql="Select * from tipocategorias";
 $categ=1;
-$cattipo=mysqli_query($con,$sql);
+$cattipo=mysqli_query($con,$sql) or die;
+$cattipoarr=array();
 
+
+while ($dados=mysqli_fetch_array($cattipo)){
+    array_push($cattipoarr,$dados);
+
+}
 
 ?>
 
-<script>
-    function showUser(str) {
-        if (str == "") {
-            document.getElementById("txtHint").innerHTML = "";
-            return;
-        } else {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("txtHint").innerHTML = this.responseText;
-                }
-            };
-            xmlhttp.open("GET","getuser.php?q="+str,true);
-            xmlhttp.send();
-        }
-    }
-</script>
 
 <script>
-
-
-
-
     function catChange()
     {
+        let catT = document.getElementById('cattipo').value;
         let categoriaDropdown = document.getElementById('categoriaProduto').value;
         let tipoDropdown = document.getElementById('tipoProduto');
-        alert(categoriaDropdown );
-
+        let lol=JSON.parse(catT);
+        let tipos = [];
         let i;
-
-        if (categoriaDropdown > 2){
-
-            for (i = 0; i < tipoDropdown.length ; i++) {
-                if (i<6) {
-                    tipoDropdown.options[i].hidden = true;
-                    tipoDropdown.options[i].selected = false;
-                } else {
-                    tipoDropdown.options[i].hidden = false;
-                }
+        for (i=0;i<lol.length;i++){
+            if (lol[i][0] == categoriaDropdown)
+            {
+                tipos.push(lol[i][1]);
 
             }
-            tipoDropdown.options[6].selected = true;
-        } else {
-            for (i = 0; i < tipoDropdown.length ; i++) {
-                if (i>5) {
-                    tipoDropdown.options[i].hidden = true;
-                    tipoDropdown.options[i].selected = false;
-                } else {
-                    tipoDropdown.options[i].hidden = false;
-                }
-
-            }
-            tipoDropdown.options[0].selected = true;
         }
+        for (i = 0; i < tipoDropdown.length ; i++) {
+            tipoDropdown.options[i].hidden = true;
+            let k;
+            for (k=0;k<tipos.length;k++){
+                //tipoDropdown.options[i].selected = true;
+                if (tipos[k]==tipoDropdown.value){
+                    tipoDropdown.options[i].hidden = false;
+                    break;
+                }
 
-
-
+            }
+        }
     }
 
-
-    /*while (currentYear >= earliestYear) {
-        let dateOption = document.createElement('option');
-        dateOption.text = currentYear;
-        dateOption.value = currentYear;
-        dateDropdown.add(dateOption);
-        currentYear -= 1;
-    }*/
 </script>
         <!-- Bottom Bar End --> 
         
@@ -106,7 +75,10 @@ $cattipo=mysqli_query($con,$sql);
                                     <div class="col-md-12">
                                         <label>Nome do produto</label>
                                         <input class="form-control" name="nomeProduto" type="text" placeholder="">
+
                                     </div>
+
+                                    <input class="form-control" name="cattipo" id="cattipo" hidden value='<?php echo json_encode($cattipoarr);?>' type="text" placeholder="">
                                     <div class="col-md-6">
                                         <label>Categoria</label>
                                         <select onchange="catChange();" class="custom-select" id="categoriaProduto" name="categoriaProduto">
@@ -121,16 +93,9 @@ $cattipo=mysqli_query($con,$sql);
                                         <label>Tipo</label>
                                         <select class="custom-select" id="tipoProduto" name="tipoProduto">
                                             <?php
-                                                while ($dados=mysqli_fetch_array($tipos)) {
-                                                    if ($categ < 3 and $dados['tipoId'] > 6) {
-                                                        echo "<option hidden value=\"" . $dados['tipoId'] . "\">" . $dados['tipoNome'] . "</option>";
-
-                                                    }elseif ($categ > 2 and $dados['tipoId'] < 7) {
-                                                        echo "<option hidden value=\"" . $dados['tipoId'] . "\">" . $dados['tipoNome'] . "</option>";
-
-                                                    }else
-                                                        echo "<option value=\"" . $dados['tipoId'] . "\">" . $dados['tipoNome'] . "</option>";
-                                                }
+                                            while ($dados=mysqli_fetch_array($tipos)){
+                                                echo "<option value=\"".$dados['tipoId']."\">".$dados['tipoNome']."</option>";
+                                            }
                                             ?>
 
                                         </select>
