@@ -13,6 +13,7 @@ $result2 = mysqli_query($con, $sql2);
 ?>
 
 
+
 <!-- Nav Bar End -->
 
 <!-- Bottom Bar Start -->
@@ -60,10 +61,10 @@ $result2 = mysqli_query($con, $sql2);
                                     <a class="nav-link" href="#"><i class="fa fa-home"></i>Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-shopping-bag"></i>Em Destaque</a>
+                                    <a class="nav-link" href="#destaques"><i class="fa fa-shopping-bag"></i>Em Destaque</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="fa fa-plus-square"></i>Novos Produtos</a>
+                                    <a class="nav-link" href="#recentes"><i class="fa fa-plus-square"></i>Novos Produtos</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="product-list.php?cat=2"><i class="fa fa-child"></i>Crianças</a>
@@ -82,19 +83,19 @@ $result2 = mysqli_query($con, $sql2);
                             <div class="header-slider-item">
                                 <img style="width: 100%" src="img/slider-1.jpg" alt="Slider Image"/>
                                 <div class="header-slider-caption">
-                                    <a class="btn" href="product-list.php"><i class="fa fa-shopping-cart"></i>Veja as nossas roupas</a>
+                                    <a class="btn" href="product-list.php?cat=1"><i class="fa fa-shopping-cart"></i>Veja as nossas roupas</a>
                                 </div>
                             </div>
                             <div class="header-slider-item">
                                 <img style="width: 100%" src="img/slider-2.jpg" alt="Slider Image" />
                                 <div class="header-slider-caption">
-                                    <a class="btn" href="product-list.php"><i class="fa fa-shopping-cart"></i>Para Homem</a>
+                                    <a class="btn" href="product-list.php?cat=1"><i class="fa fa-shopping-cart"></i>Para Homem</a>
                                 </div>
                             </div>
                             <div class="header-slider-item">
                                 <img style="width:100%" src="img/slider-3.jpg" alt="Slider Image"/>
                                 <div class="header-slider-caption">
-                                    <a class="btn" href="product-list.php"><i class="fa fa-shopping-cart"></i>Para Mulher</a>
+                                    <a class="btn" href="product-list.php?cat=1"><i class="fa fa-shopping-cart"></i>Para Mulher</a>
                                 </div>
                             </div>
                         </div>
@@ -103,13 +104,13 @@ $result2 = mysqli_query($con, $sql2);
                         <div class="header-img">
                             <div class="img-item">
                                 <img style="height:100%" src="img/category-1.jpg" />
-                                <a class="img-text" href="product-list-accessories.php">
+                                <a class="img-text" href="product-list.php?cat=3">
                                     <p>Veja os nossos acessórios</p>
                                 </a>
                             </div>
                             <div class="img-item">
                                 <img style="height:100%" src="img/category-2.jpg" />
-                                <a class="img-text" href="product-list-crincas.php">
+                                <a class="img-text" href="product-list.php?cat=2">
                                     <p>Veja os nossas roupas para criança</p>
                                 </a>
                             </div>
@@ -240,7 +241,7 @@ $result2 = mysqli_query($con, $sql2);
         <!-- Featured Product Start -->
 <div class="featured-product product">
     <div class="container-fluid">
-        <div class="section-header">
+        <div class="section-header" id="destaques">
             <h1>Produtos Em Destaque</h1>
         </div>
         <div class="row align-items-center product-slider product-slider-4">
@@ -307,7 +308,7 @@ $result2 = mysqli_query($con, $sql2);
 
         <div class="recent-product product">
             <div class="container-fluid">
-                <div class="section-header">
+                <div class="section-header" id="recentes">
                     <h1>Produtos Recentes</h1>
                 </div>
                 <div class="row align-items-center product-slider product-slider-4">
