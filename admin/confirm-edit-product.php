@@ -6,6 +6,7 @@ $nome=addslashes($_POST['nomeProduto']);
 $preco =floatval($_POST['precoProduto']);
 $categoriaId=intval($_POST['categoriaProduto']);
 $tipoId=intval($_POST['tipoProduto']);
+$genero=addslashes($_POST['generoProduto']);
 $destaque=($_POST['produtoDestaque']);
 $imagem=$_FILES['imagemProduto']['name'];
 $imagemUrl="images/".$imagem;
@@ -17,10 +18,10 @@ if($imagem!=''){
 }
 
 $sql.="produtoTipoCategoriaCategoriaId='".(int)$categoriaId."',produtoTipoCategoriaTipoId='".(int)$tipoId."'";
-$sql.=" , produtoDestaque='".$destaque."'";
+$sql.=" , produtoDestaque='".$destaque."', produtoGenero='".$genero."'";
 $sql.=" where produtoId=".$id.";";
 
-mysqli_query($con,$sql); //or die(mysqli_error($con))
+mysqli_query($con,$sql); //or die(mysqli_error($con));
 header("location:editing-list.php");
 
 ?>

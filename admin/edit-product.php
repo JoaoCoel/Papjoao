@@ -121,12 +121,22 @@ $categorias=mysqli_query($con,$sql);
                                 </div>
                                 <div class="col-md-6">
                                     <label>Género</label>
-                                    <select class="custom-select">
-                                        <option selected>Homem</option>
-                                        <option>Mulher</option>
-                                        <option>Rapaz</option>
-                                        <option>Rapariga</option>
-                                        <option>Bébé</option>
+                                    <select class="custom-select" id="generoProduto" name="generoProduto">
+                                        <?php
+                                        if ($dadosProduto['produtoGenero']=='M') {
+                                            echo "<option value='M' selected>Homem</option>";
+                                            echo "<option value='F' >Mulher</option>";
+                                            echo "<option value='U' >Unissexo</option>";
+                                        }else if ($dadosProduto['produtoGenero']=='F') {
+                                            echo "<option value='M' >Homem</option>";
+                                            echo "<option value='F' selected>Mulher</option>";
+                                            echo "<option value='U' >Unissexo</option>";
+                                        }else {
+                                            echo "<option value='M' >Homem</option>";
+                                            echo "<option value='F' >Mulher</option>";
+                                            echo "<option value='U' selected>Unissexo</option>";
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                                 <div class="col-md-3">

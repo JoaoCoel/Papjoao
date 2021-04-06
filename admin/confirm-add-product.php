@@ -10,6 +10,7 @@ $nome=addslashes($_POST['nomeProduto']);
 $preco =floatval($_POST['precoProduto']);
 $categoriaId=intval($_POST['categoriaProduto']);
 $tipoId=intval($_POST['tipoProduto']);
+$genero=addslashes($_POST['generoProduto']);
 $imagem=$_FILES['imagemProduto']['name'];
 $imagemUrl="images/".$imagem;
 
@@ -20,9 +21,9 @@ if($imagem!=''){
 //$sql="insert into tipoCategorias(tipoCategoriaCategoriaId,tipoCategoriaTipoId) values ('".(int)$categoriaId."','".(int)$tipoId."')";
 //mysqli_query($con,$sql);// or die(mysqli_error($con));
 
-$sql="insert into produtos (produtoNome,produtoPreco,produtoDestaque,produtoImagemURL,produtoTipoCategoriaCategoriaId,produtoTipoCategoriaTipoId)";
-$sql .= " values('".$nome."',".$preco.",'Nao','".$imagemUrl."',".$categoriaId.",".$tipoId.");";
-mysqli_query($con,$sql);// or die(mysqli_error($con));
+$sql="insert into produtos (produtoNome,produtoPreco,produtoDestaque,produtoImagemURL,produtoTipoCategoriaCategoriaId,produtoTipoCategoriaTipoId,produtoGenero)";
+$sql .= " values('".$nome."',".$preco.",'Nao','".$imagemUrl."',".$categoriaId.",".$tipoId.",'".$genero."');";
+mysqli_query($con,$sql); //or die(mysqli_error($con));
 header("location:editing-list.php");
 
 /*

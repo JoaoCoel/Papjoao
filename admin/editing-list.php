@@ -44,13 +44,14 @@ top();
             <th width="3%" align='center'>Preço</th>
             <th width="3%" align='center'>Categoria</th>
             <th width="3%" align='center'>Tipo</th>
+            <th width="3%" align='center'>Género</th>
             <th width="3%" align='center'>Destaque</th>
             <th width="20%"></th>
             <th colspan="4" width="20%">Opções</th>
         </tr>
             <tr>
                 <?php
-                $sql="Select produtoId,produtoNome,produtoPreco,produtoDestaque,categorias.categoriaNome as categ,tipos.tipoNome as tipo, produtoImagemURL from produtos 
+                $sql="Select produtoId,produtoNome,produtoPreco,produtoDestaque,produtoGenero,categorias.categoriaNome as categ,tipos.tipoNome as tipo, produtoImagemURL from produtos 
                 left join categorias on produtoTipoCategoriaCategoriaId=categoriaId left join tipos on produtoTipoCategoriaTipoId=tipoId";
 
                 $result=mysqli_query($con,$sql);
@@ -64,6 +65,7 @@ top();
                         echo "<td width='3%' align='center'>".$dados['produtoPreco']."</td>";
                         echo "<td width='3%' align='center'>".$dados['categ']."</td>";
                         echo "<td width='3%' align='center'>".$dados['tipo']."</td>";
+                        echo "<td width='3%' align='center'>".$dados['produtoGenero']."</td>";
                         echo "<td width='3%' align='center'>".$dados['produtoDestaque']."</td>";
                         echo "<td width='20%' align='center'><img width=100px src=\"../".$dados['produtoImagemURL']."\"></td>";
                         //echo "<td width='10%'><a href='edit-product.php?id=".$dados['produtoId']."'/a>Editar</td>";

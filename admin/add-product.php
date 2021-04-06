@@ -102,12 +102,10 @@ while ($dados=mysqli_fetch_array($cattipo)){
                                     </div>
                                     <div class="col-md-6">
                                         <label>Género</label>
-                                        <select class="custom-select">
-                                            <option selected>Homem</option>
-                                            <option>Mulher</option>
-                                            <option>Rapaz</option>
-                                            <option>Rapariga</option>
-                                            <option>Bébé</option>
+                                        <select class="custom-select" id="generoProduto" name="generoProduto">
+                                            <option value="M" selected>Homem</option>
+                                            <option value="F">Mulher</option>
+                                            <option value="U">Unissexo</option>
                                         </select>
                                     </div>
                                     <div class="col-md-3">

@@ -267,12 +267,12 @@ $result2 = mysqli_query($con, $sql2);
                             <div class="product-action">
                                 <a href="#"><i class="fa fa-cart-plus"></i></a>
                                 <a href="#"><i class="fa fa-heart"></i></a>
-                                <a href="product-detail.php"><i class="fa fa-search"></i></a>
+                                <a href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-search"></i></a>
                             </div>
                         </div>
                         <div class="product-price">
                             <h3><span>$</span><?php echo $dados['produtoPreco'];?></h3>
-                            <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                            <a class="btn" href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Comprar</a>
                         </div>
                     </div>
                 </div>
@@ -334,12 +334,12 @@ $result2 = mysqli_query($con, $sql2);
                                 <div class="product-action">
                                     <a href="#"><i class="fa fa-cart-plus"></i></a>
                                     <a href="#"><i class="fa fa-heart"></i></a>
-                                    <a href="product-detail.php"><i class="fa fa-search"></i></a>
+                                    <a href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-search"></i></a>
                                 </div>
                             </div>
                             <div class="product-price">
                                 <h3><span>$</span><?php echo $dados['produtoPreco'];?></h3>
-                                <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                <a class="btn" href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Comprar</a>
                             </div>
                         </div>
                     </div>
