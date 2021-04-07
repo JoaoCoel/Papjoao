@@ -198,69 +198,18 @@ while ($dados=mysqli_fetch_array($cattipo)){
                                     <h1>Tamanhos disponiveis</h1>
                                     <div class="payment-method">
                                         <div class="custom-control custom-radio">
-                                            <input type="checkbox" class="custom-control-input" id="payment-1" name="payment">
+                                            <?php
+                                            $i=0;
+                                            while ($dados=mysqli_fetch_array($categorias)){
+                                                $i++;
+                                                echo  "<input onchange='validateForm();' type='checkbox' id=\"id".$i."\" name=\"size".$i."\" value=\"".$dados['tamanhoId']."\">".$dados['tamanhoNome']."</option>&nbsp&nbsp";
+                                            }
+                                            echo  "<input hidden type='text' value=\"".$i."\" id='ncateg'>";
+                                            ?>
+                                            <input type="checkbox" class="custom-control-input" id="size" name="payment">
                                             <label class="custom-control-label" for="payment-1">S </label>
                                         </div>
                                         <div class="payment-content" id="payment-1-show">
-                                        </div>
-                                    </div>
-                                    <div class="payment-method">
-                                        <div class="custom-control custom-radio">
-                                            <input type="checkbox" class="custom-control-input" id="payment-2" name="payment">
-                                            <label class="custom-control-label" for="payment-2">M </label>
-                                        </div>
-                                        <div class="payment-content" id="payment-2-show">
-                                        </div>
-                                    </div>
-                                    <div class="payment-method">
-                                        <div class="custom-control custom-radio">
-                                            <input type="checkbox" class="custom-control-input" id="payment-3" name="payment">
-                                            <label class="custom-control-label" for="payment-3">L </label>
-                                        </div>
-                                        <div class="payment-content" id="payment-3-show">
-                                        </div>
-                                    </div>
-                                    <div class="payment-method">
-                                        <div class="custom-control custom-radio">
-                                            <input type="checkbox" class="custom-control-input" id="payment-4" name="payment">
-                                            <label class="custom-control-label" for="payment-4">XL </label>
-                                        </div>
-                                        <div class="payment-content" id="payment-4-show">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="payment-methods">
-                                    <h1>Idades disponiveis</h1>
-                                    <div class="payment-method">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="payment-5" name="payment">
-                                            <label class="custom-control-label" for="payment-1">0-3 </label>
-                                        </div>
-                                        <div class="payment-content" id="payment-5-show">
-                                        </div>
-                                    </div>
-                                    <div class="payment-method">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="payment-6" name="payment">
-                                            <label class="custom-control-label" for="payment-2">4-7 </label>
-                                        </div>
-                                        <div class="payment-content" id="payment-6-show">
-                                        </div>
-                                    </div>
-                                    <div class="payment-method">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="payment-7" name="payment">
-                                            <label class="custom-control-label" for="payment-3">8-11 </label>
-                                        </div>
-                                        <div class="payment-content" id="payment-7-show">
-                                        </div>
-                                    </div>
-                                    <div class="payment-method">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="payment-8" name="payment">
-                                            <label class="custom-control-label" for="payment-4">12-15 </label>
-                                        </div>
-                                        <div class="payment-content" id="payment-8-show">
                                         </div>
                                     </div>
                                 </div>
