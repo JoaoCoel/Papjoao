@@ -58,8 +58,9 @@ top();
                             <table class="table table-bordered">
                                 <tr>
                                     <thead class="thead-dark">
-                                        <th width="3%" align='left'>Id</th>
-                                        <th width="3%" align='left'>Categoria</th>
+                                        <th align='center'>Id</th>
+                                        <th align='center'>Categoria</th>
+                                        <th colspan="4" align='center'>Opções</th>
                                     </thead>
                                 </tr>
                                         <tr>
@@ -72,16 +73,15 @@ top();
                                                 while($dados=mysqli_fetch_array($result)){
 
                                                     echo "<tr>";
-                                                    echo "<td width='3%' align='left'>".$dados['categoriaId']."</td>";
-                                                    echo "<td width='3%' align='left'>".$dados['categoriaNome']."</td>";
-                                                    echo "<td align='left'><button type='button' class='btn-cart' onclick=\"confirmDelete(".$dados['categoriaId'].");\">Eliminar</button></td>";
+                                                    echo "<td align='center'>".$dados['categoriaId']."</td>";
+                                                    echo "<td align='center'>".$dados['categoriaNome']."</td>";
+                                                    echo "<td align='center'><button type='button' class='btn-cart' onclick=\"confirmDelete(".$dados['categoriaId'].");\">Eliminar</button></td>";
                                                     echo "</tr>";
 
                                                 }
                                                 //*******************
 
                                             ?>
-                                            <td><a href="available-sizes.php">Listar tamanhos</a></td>
                                         </tr>
                             </table>
                         </div>

@@ -58,8 +58,9 @@ top();
                             <table class="table table-bordered">
                                 <tr>
                                     <thead class="thead-dark">
-                                        <th width="3%" align='left'>Id</th>
-                                        <th width="3%" align='left'>Tipo</th>
+                                        <th align='center'>Id</th>
+                                        <th align='center'>Tipo</th>
+                                        <th align='center'>Opções</th>
                                     </thead>
                                     </tr>
                                         <tr>
@@ -71,9 +72,9 @@ top();
                                                 while($dados=mysqli_fetch_array($result)){
 
                                                     echo "<tr>";
-                                                    echo "<td width='3%' align='left'>".$dados['tipoId']."</td>";
-                                                    echo "<td width='3%' align='left'>".$dados['tipoNome']."</td>";
-                                                    echo "<td align='left'><button type='button' class='btn-cart' onclick=\"confirmDelete(".$dados['tipoId'].");\">Eliminar</button></td>";
+                                                    echo "<td align='center'>".$dados['tipoId']."</td>";
+                                                    echo "<td align='center'>".$dados['tipoNome']."</td>";
+                                                    echo "<td align='center'><button type='button' class='btn-cart' onclick=\"confirmDelete(".$dados['tipoId'].");\">Eliminar</button></td>";
                                                     echo "</tr>";
 
                                                 }

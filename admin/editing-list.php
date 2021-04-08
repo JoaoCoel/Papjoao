@@ -53,7 +53,7 @@ top();
                                         <th align='center'>Género</th>
                                         <th align='center'>Destaque</th>
                                         <th width="20%" align='center'>Imagem</th>
-                                        <th colspan="4" width="20%">Opções</th>
+                                        <th colspan="4" width="25%">Opções</th>
                                     </thead>
                                 </tr>
                                     <tr>
@@ -77,6 +77,7 @@ top();
                                                 echo "<td width='20%' align='center'><img width=100px src=\"../".$dados['produtoImagemURL']."\"></td>";
                                                 //echo "<td width='10%'><a href='edit-product.php?id=".$dados['produtoId']."'/a>Editar</td>";
                                                 //echo "<td width='10%'><a href='delete-product.php?id=".$dados['produtoId']."' /a>Eliminar</td>";
+                                                echo "<td align='center'><button type='button' class='btn-cart' onclick=\"slist(".$dados['produtoId'].");\">Tamanhos</button></td>";
                                                 echo "<td align='center'><button type='button' class='btn-cart' onclick=\"edit(".$dados['produtoId'].");\">Editar</button></td>";
                                                 echo "<td align='center'><button type='button' class='btn-cart' onclick=\"confirmDelete(".$dados['produtoId'].");\">Eliminar</button></td>";
                                                 echo "</tr>";
@@ -85,7 +86,6 @@ top();
                                             //*******************
                                             //echo "</table>";
                                         ?>
-                                        <td><a href="available-sizes.php">Listar tamanhos</a></td>
                                     </tr>
                             </table>
 
@@ -117,6 +117,11 @@ bottom();
     function edit(prodId)
     {
         window.location.href = "edit-product.php?id="+prodId;
+    }
+
+    function slist(prodId)
+    {
+        window.location.href = "size-list.php";
     }
 
 </script>
