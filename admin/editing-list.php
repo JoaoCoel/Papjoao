@@ -34,56 +34,68 @@ top();
 </head>
 <body>
 
-<div class="container">
-    <a href="index.php">Voltar</a>
-    <a class="ml-5" href="add-product.php">Adicionar</a>
-    <table class="table table-striped">
-        <tr>
-            <th width="3%" align='center'>Id</th>
-            <th width="3%" align='center'>Nome</th>
-            <th width="3%" align='center'>Preço</th>
-            <th width="3%" align='center'>Categoria</th>
-            <th width="3%" align='center'>Tipo</th>
-            <th width="3%" align='center'>Género</th>
-            <th width="3%" align='center'>Destaque</th>
-            <th width="20%"></th>
-            <th colspan="4" width="20%">Opções</th>
-        </tr>
-            <tr>
-                <?php
-                $sql="Select produtoId,produtoNome,produtoPreco,produtoDestaque,produtoGenero,categorias.categoriaNome as categ,tipos.tipoNome as tipo, produtoImagemURL from produtos 
-                left join categorias on produtoTipoCategoriaCategoriaId=categoriaId left join tipos on produtoTipoCategoriaTipoId=tipoId";
+<div class="wishlist-page">
+    <div class="container-fluid">
+        <div class="wishlist-page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <div class="container">
+                            <a class="ml-5" href="add-product.php">Adicionar</a>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <thead class="thead-dark">
+                                        <th align='center'>Id</th>
+                                        <th align='center'>Nome</th>
+                                        <th align='center'>Preço</th>
+                                        <th align='center'>Categoria</th>
+                                        <th align='center'>Tipo</th>
+                                        <th align='center'>Género</th>
+                                        <th align='center'>Destaque</th>
+                                        <th width="20%" align='center'>Imagem</th>
+                                        <th colspan="4" width="20%">Opções</th>
+                                    </thead>
+                                </tr>
+                                    <tr>
+                                        <?php
+                                        $sql="Select produtoId,produtoNome,produtoPreco,produtoDestaque,produtoGenero,categorias.categoriaNome as categ,tipos.tipoNome as tipo, produtoImagemURL from produtos 
+                                        left join categorias on produtoTipoCategoriaCategoriaId=categoriaId left join tipos on produtoTipoCategoriaTipoId=tipoId";
 
-                $result=mysqli_query($con,$sql);
+                                        $result=mysqli_query($con,$sql);
 
-                echo "<table>";
-                    while($dados=mysqli_fetch_array($result)){
+                                        //echo "<table class='table table-striped'>";
+                                            while($dados=mysqli_fetch_array($result)){
 
-                        echo "<tr>";
-                        echo "<td width='3%' align='center'>".$dados['produtoId']."</td>";
-                        echo "<td width='3%' align='center'>".$dados['produtoNome']."</td>";
-                        echo "<td width='3%' align='center'>".$dados['produtoPreco']."</td>";
-                        echo "<td width='3%' align='center'>".$dados['categ']."</td>";
-                        echo "<td width='3%' align='center'>".$dados['tipo']."</td>";
-                        echo "<td width='3%' align='center'>".$dados['produtoGenero']."</td>";
-                        echo "<td width='3%' align='center'>".$dados['produtoDestaque']."</td>";
-                        echo "<td width='20%' align='center'><img width=100px src=\"../".$dados['produtoImagemURL']."\"></td>";
-                        //echo "<td width='10%'><a href='edit-product.php?id=".$dados['produtoId']."'/a>Editar</td>";
-                        //echo "<td width='10%'><a href='delete-product.php?id=".$dados['produtoId']."' /a>Eliminar</td>";
-                        echo "<td width='10%' align='center'><button type='button' onclick=\"edit(".$dados['produtoId'].");\">Editar</button></td>";
-                        echo "<td width='10%' align='center'><button type='button' onclick=\"confirmDelete(".$dados['produtoId'].");\">Eliminar</button></td>";
-                        echo "</tr>";
+                                                echo "<tr>";
+                                                echo "<td align='center'>".$dados['produtoId']."</td>";
+                                                echo "<td align='center'>".$dados['produtoNome']."</td>";
+                                                echo "<td align='center'>".$dados['produtoPreco']."</td>";
+                                                echo "<td align='center'>".$dados['categ']."</td>";
+                                                echo "<td align='center'>".$dados['tipo']."</td>";
+                                                echo "<td align='center'>".$dados['produtoGenero']."</td>";
+                                                echo "<td align='center'>".$dados['produtoDestaque']."</td>";
+                                                echo "<td width='20%' align='center'><img width=100px src=\"../".$dados['produtoImagemURL']."\"></td>";
+                                                //echo "<td width='10%'><a href='edit-product.php?id=".$dados['produtoId']."'/a>Editar</td>";
+                                                //echo "<td width='10%'><a href='delete-product.php?id=".$dados['produtoId']."' /a>Eliminar</td>";
+                                                echo "<td align='center'><button type='button' class='btn-cart' onclick=\"edit(".$dados['produtoId'].");\">Editar</button></td>";
+                                                echo "<td align='center'><button type='button' class='btn-cart' onclick=\"confirmDelete(".$dados['produtoId'].");\">Eliminar</button></td>";
+                                                echo "</tr>";
 
-                    }
-                    //*******************
-                    echo "</table>";
-                ?>
-                <td><a href="available-sizes.php">Listar tamanhos</a></td>
-            </tr>
-    </table>
+                                            }
+                                            //*******************
+                                            //echo "</table>";
+                                        ?>
+                                        <td><a href="available-sizes.php">Listar tamanhos</a></td>
+                                    </tr>
+                            </table>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
 
 
 <!-- Optional JavaScript -->

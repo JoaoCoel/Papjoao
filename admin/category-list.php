@@ -47,37 +47,49 @@ top();
 </head>
 <body>
 
-<div class="container">
-    <a href="index.php">Voltar</a>
-    <a class="ml-5" href="add-category.php">Adicionar</a>
-    <table class="table table-striped">
-        <tr>
-            <th width="3%" align='left'>Id</th>
-            <th width="3%" align='left'>Categoria</th>
-        </tr>
-            <tr>
-                <?php
-                $sql="Select categoriaId,categoriaNome from categorias";
+<div class="wishlist-page">
+    <div class="container-fluid">
+        <div class="wishlist-page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <div class="container">
+                            <a class="ml-5" href="add-product.php">Adicionar</a>
+                            <table class="table table-bordered">
+                                <tr>
+                                    <thead class="thead-dark">
+                                        <th width="3%" align='left'>Id</th>
+                                        <th width="3%" align='left'>Categoria</th>
+                                    </thead>
+                                </tr>
+                                        <tr>
+                                            <?php
+                                            $sql="Select categoriaId,categoriaNome from categorias";
 
-                $result=mysqli_query($con,$sql);
+                                            $result=mysqli_query($con,$sql);
 
-                echo "<table>";
-                    while($dados=mysqli_fetch_array($result)){
 
-                        echo "<tr>";
-                        echo "<td width='3%' align='left'>".$dados['categoriaId']."</td>";
-                        echo "<td width='3%' align='left'>".$dados['categoriaNome']."</td>";
-                        echo "<td align='left'><button type='button' onclick=\"confirmDelete(".$dados['categoriaId'].");\">Eliminar</button></td>";
-                        echo "</tr>";
+                                                while($dados=mysqli_fetch_array($result)){
 
-                    }
-                    //*******************
-                    echo "</table>";
-                ?>
-                <td><a href="available-sizes.php">Listar tamanhos</a></td>
-            </tr>
-    </table>
+                                                    echo "<tr>";
+                                                    echo "<td width='3%' align='left'>".$dados['categoriaId']."</td>";
+                                                    echo "<td width='3%' align='left'>".$dados['categoriaNome']."</td>";
+                                                    echo "<td align='left'><button type='button' class='btn-cart' onclick=\"confirmDelete(".$dados['categoriaId'].");\">Eliminar</button></td>";
+                                                    echo "</tr>";
 
+                                                }
+                                                //*******************
+
+                                            ?>
+                                            <td><a href="available-sizes.php">Listar tamanhos</a></td>
+                                        </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
