@@ -110,9 +110,6 @@ $result=mysqli_query($con,$sql);
                                             <h4>Tamanho:</h4>
                                             <div class="btn-group btn-group-sm">
                                                 <button type="button" class="btn">S</button>
-                                                <button type="button" class="btn">M</button>
-                                                <button type="button" class="btn">L</button>
-                                                <button type="button" class="btn">XL</button>
                                             </div> 
                                         </div>
                                         <!-- <div class="p-color">
@@ -144,9 +141,8 @@ $result=mysqli_query($con,$sql);
 
                                 <div class="tab-content">
                                     <div id="description" class="container">
-                                        <h4>Descrição</h4>
                                         <p>
-                                            You thought it was a description but it was me a jojo reference
+                                            <?php echo $dadosProduto['produtoDescricao'];?>
                                         </p>
                                     </div>
                                 </div>

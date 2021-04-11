@@ -149,7 +149,7 @@ $categorias=mysqli_query($con,$sql);
                                 </div>
                                 <div class="col-md-12">
                                     <label>Descrição do produto</label>
-                                    <input class="form-control" name="descProduto" type="text" placeholder="">
+                                    <input class="form-control" name="descProduto" type="text" placeholder="" value="<?php echo $dadosProduto['produtoDescricao']?>">
                                 </div>
                                 <div class="col-md-2">
                                     <label>Em Destaque</label>

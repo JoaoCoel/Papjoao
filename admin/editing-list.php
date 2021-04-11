@@ -77,7 +77,6 @@ top();
                                                 echo "<td width='20%' align='center'><img width=100px src=\"../".$dados['produtoImagemURL']."\"></td>";
                                                 //echo "<td width='10%'><a href='edit-product.php?id=".$dados['produtoId']."'/a>Editar</td>";
                                                 //echo "<td width='10%'><a href='delete-product.php?id=".$dados['produtoId']."' /a>Eliminar</td>";
-                                                echo "<td align='center'><button type='button' class='btn-cart' onclick=\"slist(".$dados['produtoId'].");\">Tamanhos</button></td>";
                                                 echo "<td align='center'><button type='button' class='btn-cart' onclick=\"edit(".$dados['produtoId'].");\">Editar</button></td>";
                                                 echo "<td align='center'><button type='button' class='btn-cart' onclick=\"confirmDelete(".$dados['produtoId'].");\">Eliminar</button></td>";
                                                 echo "</tr>";
@@ -119,9 +118,5 @@ bottom();
         window.location.href = "edit-product.php?id="+prodId;
     }
 
-    function slist(prodId)
-    {
-        window.location.href = "size-list.php";
-    }
 
 </script>

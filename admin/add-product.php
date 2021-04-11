@@ -10,6 +10,9 @@ $categ=1;
 $cattipo=mysqli_query($con,$sql) or die;
 $cattipoarr=array();
 
+$sql="Select * from tamanhos";
+$tamanhos=mysqli_query($con,$sql) or die;
+
 
 while ($dados=mysqli_fetch_array($cattipo)){
     array_push($cattipoarr,$dados);
@@ -197,17 +200,22 @@ while ($dados=mysqli_fetch_array($cattipo)){
                                 <div class="payment-methods">
                                     <h1>Tamanhos disponiveis</h1>
                                     <div class="payment-method">
-                                        <div class="custom-control custom-radio">
+                                        <div class="custom-control custom-checkbox">
                                             <?php
                                             $i=0;
-                                            while ($dados=mysqli_fetch_array($categorias)){
+                                            while ($dados=mysqli_fetch_array($tamanhos)){
                                                 $i++;
-                                                echo  "<input onchange='validateForm();' type='checkbox' id=\"id".$i."\" name=\"size".$i."\" value=\"".$dados['tamanhoId']."\">".$dados['tamanhoNome']."</option>&nbsp&nbsp";
+                                               // echo  "<input type='checkbox' class='custom-control-input' id=\"size'.$i.'\" name=\"size'.$i.'\" value=\"".$dados['tamanhoId']."\">".$dados['tamanhoNome']."</option>&nbsp&nbsp";
+                                                echo "<div class=\"custom-control custom-radio\">";
+
+                                                echo "<input class=\"custom-control-input\" type=\"checkbox\" id=\"size".$i."\" name=\"size".$i."\" value=\"".$dados['tamanhoId']."\"/>";
+                                                echo "<label class=\"custom-control-label\" for=\"size".$i."\">".$dados['tamanhoNome']."</label><br>";
+                                                echo "</div>";
+                                                //<input type="checkbox" class="custom-control-input" id="size" name="payment">
+                                                // <label class="custom-control-label" for="payment-1">S </label>
                                             }
-                                            echo  "<input hidden type='text' value=\"".$i."\" id='ncateg'>";
                                             ?>
-                                            <input type="checkbox" class="custom-control-input" id="size" name="payment">
-                                            <label class="custom-control-label" for="payment-1">S </label>
+
                                         </div>
                                         <div class="payment-content" id="payment-1-show">
                                         </div>

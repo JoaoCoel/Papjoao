@@ -54,13 +54,13 @@ top();
                 <div class="col-md-12">
                     <div class="table-responsive">
                         <div class="container">
-                            <a class="ml-5" href="add-product.php">Adicionar</a>
+                            <a class="ml-5" href="add-type.php">Adicionar</a>
                             <table class="table table-bordered">
                                 <tr>
                                     <thead class="thead-dark">
                                         <th align='center'>Id</th>
                                         <th align='center'>Tipo</th>
-                                        <th align='center'>Opções</th>
+                                        <th align='center'>OpÃ§Ãµes</th>
                                     </thead>
                                     </tr>
                                         <tr>
