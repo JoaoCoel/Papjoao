@@ -48,6 +48,7 @@ top();
                                         <th align='center'>Id</th>
                                         <th align='center'>Nome</th>
                                         <th align='center'>Preço</th>
+                                        <th align='center'>Desconto</th>
                                         <th align='center'>Categoria</th>
                                         <th align='center'>Tipo</th>
                                         <th align='center'>Género</th>
@@ -58,7 +59,7 @@ top();
                                 </tr>
                                     <tr>
                                         <?php
-                                        $sql="Select produtoId,produtoNome,produtoPreco,produtoDestaque,produtoGenero,categorias.categoriaNome as categ,tipos.tipoNome as tipo, produtoImagemURL from produtos 
+                                        $sql="Select produtoId,produtoNome,produtoPreco,produtoDesconto,produtoDestaque,produtoGenero,categorias.categoriaNome as categ,tipos.tipoNome as tipo, produtoImagemURL from produtos 
                                         left join categorias on produtoTipoCategoriaCategoriaId=categoriaId left join tipos on produtoTipoCategoriaTipoId=tipoId";
 
                                         $result=mysqli_query($con,$sql);
@@ -69,7 +70,8 @@ top();
                                                 echo "<tr>";
                                                 echo "<td align='center'>".$dados['produtoId']."</td>";
                                                 echo "<td align='center'>".$dados['produtoNome']."</td>";
-                                                echo "<td align='center'>".$dados['produtoPreco']."</td>";
+                                                echo "<td align='center'>".$dados['produtoPreco']."€</td>";
+                                                echo "<td align='center'>".$dados['produtoDesconto']."%</td>";
                                                 echo "<td align='center'>".$dados['categ']."</td>";
                                                 echo "<td align='center'>".$dados['tipo']."</td>";
                                                 echo "<td align='center'>".$dados['produtoGenero']."</td>";

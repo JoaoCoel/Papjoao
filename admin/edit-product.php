@@ -12,6 +12,12 @@ $tipos=mysqli_query($con,$sql);
 $sql="Select * from categorias";
 $categorias=mysqli_query($con,$sql);
 
+$sql="Select * from tamanhos";
+$tamanhos=mysqli_query($con,$sql) or die;
+
+$sql="Select * from produtotamanhos where produtoTamanhoProdutoId=$id";;
+$ptamanhos=mysqli_query($con,$sql) or die;
+
 
 ?>
 
@@ -140,12 +146,12 @@ $categorias=mysqli_query($con,$sql);
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                    <label>Preço $</label>
+                                    <label>Preço €</label>
                                     <input class="form-control" name="precoProduto" type="text" placeholder="0.00" value="<?php echo $dadosProduto['produtoPreco']?>">
                                 </div>
                                 <div class="col-md-3">
                                     <label>Desconto %</label>
-                                    <input class="form-control" type="text" placeholder="0">
+                                    <input class="form-control" name="descontoProduto" type="text" placeholder="0" value="<?php echo $dadosProduto['produtoDesconto']?>">
                                 </div>
                                 <div class="col-md-12">
                                     <label>Descrição do produto</label>
@@ -243,70 +249,40 @@ $categorias=mysqli_query($con,$sql);
                             <div class="payment-methods">
                                 <h1>Tamanhos disponiveis</h1>
                                 <div class="payment-method">
-                                    <div class="custom-control custom-radio">
-                                        <input type="checkbox" class="custom-control-input" id="payment-1" name="payment">
-                                        <label class="custom-control-label" for="payment-1">S </label>
+                                    <div class="custom-control custom-checkbox">
+                                        <?php
+
+                                        while ($dados=mysqli_fetch_array($tamanhos)){
+                                            $i=$dados['tamanhoId'];
+                                            $x=0;
+                                            while ($dt=mysqli_fetch_array($ptamanhos)){
+                                                if ($dt['produtoTamanhoTamanhoId']==$i ){
+                                                    $x=1;
+                                                    break;
+                                                }
+
+                                            }
+
+                                            echo "<div class=\"custom-control custom-radio\">";
+                                            if ($x == 1) {
+                                                echo "<input class=\"custom-control-input\" checked type=\"checkbox\" id=\"size".$i."\" name=\"size".$i."\" value=\"".$dados['tamanhoId']."\"/>";
+                                            } else {
+
+                                                echo "<input class=\"custom-control-input\" type=\"checkbox\" id=\"size".$i."\" name=\"size".$i."\" value=\"".$dados['tamanhoId']."\"/>";
+                                            }
+                                            // echo  "<input type='checkbox' class='custom-control-input' id=\"size'.$i.'\" name=\"size'.$i.'\" value=\"".$dados['tamanhoId']."\">".$dados['tamanhoNome']."</option>&nbsp&nbsp";
+
+
+
+                                            echo "<label class=\"custom-control-label\" for=\"size".$i."\">".$dados['tamanhoNome']."</label><br>";
+                                            echo "</div>";
+                                            //<input type="checkbox" class="custom-control-input" id="size" name="payment">
+                                            // <label class="custom-control-label" for="payment-1">S </label>
+                                        }
+                                        ?>
+
                                     </div>
                                     <div class="payment-content" id="payment-1-show">
-                                    </div>
-                                </div>
-                                <div class="payment-method">
-                                    <div class="custom-control custom-radio">
-                                        <input type="checkbox" class="custom-control-input" id="payment-2" name="payment">
-                                        <label class="custom-control-label" for="payment-2">M </label>
-                                    </div>
-                                    <div class="payment-content" id="payment-2-show">
-                                    </div>
-                                </div>
-                                <div class="payment-method">
-                                    <div class="custom-control custom-radio">
-                                        <input type="checkbox" class="custom-control-input" id="payment-3" name="payment">
-                                        <label class="custom-control-label" for="payment-3">L </label>
-                                    </div>
-                                    <div class="payment-content" id="payment-3-show">
-                                    </div>
-                                </div>
-                                <div class="payment-method">
-                                    <div class="custom-control custom-radio">
-                                        <input type="checkbox" class="custom-control-input" id="payment-4" name="payment">
-                                        <label class="custom-control-label" for="payment-4">XL </label>
-                                    </div>
-                                    <div class="payment-content" id="payment-4-show">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="payment-methods">
-                                <h1>Idades disponiveis</h1>
-                                <div class="payment-method">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" id="payment-5" name="payment">
-                                        <label class="custom-control-label" for="payment-1">0-3 </label>
-                                    </div>
-                                    <div class="payment-content" id="payment-5-show">
-                                    </div>
-                                </div>
-                                <div class="payment-method">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" id="payment-6" name="payment">
-                                        <label class="custom-control-label" for="payment-2">4-7 </label>
-                                    </div>
-                                    <div class="payment-content" id="payment-6-show">
-                                    </div>
-                                </div>
-                                <div class="payment-method">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" id="payment-7" name="payment">
-                                        <label class="custom-control-label" for="payment-3">8-11 </label>
-                                    </div>
-                                    <div class="payment-content" id="payment-7-show">
-                                    </div>
-                                </div>
-                                <div class="payment-method">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" class="custom-control-input" id="payment-8" name="payment">
-                                        <label class="custom-control-label" for="payment-4">12-15 </label>
-                                    </div>
-                                    <div class="payment-content" id="payment-8-show">
                                     </div>
                                 </div>
                             </div>

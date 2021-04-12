@@ -807,7 +807,7 @@ h2 {
     background: #FF6F61;
 }
 
-.product-item .product-price h3 {
+.product-item .product-price h3 h4 {
     display: inline-block;
     color: #ffffff;
     margin: 0;

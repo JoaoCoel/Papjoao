@@ -7,6 +7,7 @@ include_once ("includes/body.inc.php");
 
 $nome=addslashes($_POST['nomeProduto']);
 $desc=addslashes($_POST['descProduto']);
+$disc=floatval($_POST['descontoProduto']);
 //$descr =addslashes($_POST['nomeProduto']);
 $preco =floatval($_POST['precoProduto']);
 $categoriaId=intval($_POST['categoriaProduto']);
@@ -22,11 +23,35 @@ if($imagem!=''){
 //$sql="insert into tipoCategorias(tipoCategoriaCategoriaId,tipoCategoriaTipoId) values ('".(int)$categoriaId."','".(int)$tipoId."')";
 //mysqli_query($con,$sql);// or die(mysqli_error($con));
 
-$sql="insert into produtos (produtoNome,produtoPreco,produtoDestaque,produtoImagemURL,produtoTipoCategoriaCategoriaId,produtoTipoCategoriaTipoId,produtoGenero,produtoDescricao)";
-$sql .= " values('".$nome."',".$preco.",'Nao','".$imagemUrl."',".$categoriaId.",".$tipoId.",'".$genero."','".$desc."');";
+$sql="insert into produtos (produtoNome,produtoPreco,produtoDesconto,produtoDestaque,produtoImagemURL,produtoTipoCategoriaCategoriaId,produtoTipoCategoriaTipoId,produtoGenero,produtoDescricao)";
+$sql .= " values('".$nome."',".$preco.",".$disc.",'Nao','".$imagemUrl."',".$categoriaId.",".$tipoId.",'".$genero."','".$desc."');";
 mysqli_query($con,$sql) or die(mysqli_error($con));
-header("location:editing-list.php");
 
+
+
+$sql = "Select * from produtos order by produtoId DESC LIMIT 1";
+$result=mysqli_query($con,$sql) or die(mysqli_error($con));
+$dados=mysqli_fetch_array($result);
+$idProduto=$dados['produtoId'];
+
+
+
+
+$sql="select * from tamanhos";
+$result=mysqli_query($con,$sql);
+while ($dados=mysqli_fetch_array($result)){
+    $field="size".$dados['tamanhoId'];
+    if (isset($_POST[$field])){
+        $sql="insert into produtotamanhos (produtoTamanhoTamanhoId, produtoTamanhoProdutoId)";
+        $sql .= " values(".$dados['tamanhoId'].",".$idProduto.");";
+        mysqli_query($con,$sql) or die(mysqli_error($con));
+
+
+
+    }
+
+}
+header("location:editing-list.php");
 /*
 $sql="select * from tipoCategorias";
 $result=mysqli_query($con,$sql);

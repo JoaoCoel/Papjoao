@@ -68,10 +68,30 @@ function top(){
                     </div>
                     <div class="navbar-nav ml-auto">
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Conta do utilizador</a>
+                            <?php
+                            session_start();
+                            if (!isset($_SESSION['id'])){
+
+                                ?>
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><?php //echo $_SESSION['nome']?></a>
+                                <div class="dropdown-menu">
+                                    <a href="logout.php" class="dropdown-item">Logout</a>
+                                </div>
+
+                                <?php
+                            }else{
+                            ?>
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Conta do utilizador</a>
+                                <div class="dropdown-menu">
+                                    <a href="login.php" class="dropdown-item">Login & Registar</a>
+                                </div>
+                                <?php
+                            }
+                            ?>
+                            <!--a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Conta do utilizador</a>
                             <div class="dropdown-menu">
                                 <a href="login.php" class="dropdown-item">Login & Registar</a>
-                            </div>
+                            </div-->
                         </div>
                     </div>
                 </div>

@@ -80,7 +80,7 @@ top();
 
 <?php
 
-$sql="Select produtoId,produtoNome,produtoPreco,categorias.categoriaNome as categ,tipos.tipoNome as tipo, produtoImagemURL from produtos left join categorias 
+$sql="Select produtoId,produtoNome,produtoPreco,produtoDesconto,categorias.categoriaNome as categ,tipos.tipoNome as tipo, produtoImagemURL from produtos left join categorias 
       on produtoTipoCategoriaCategoriaId=categoriaId left join tipos on produtoTipoCategoriaTipoId=tipoId";
 
 $categ=0;
@@ -138,8 +138,36 @@ while($dados=mysqli_fetch_array($result)){
                                 </div>
                             </div>
                             <div class="product-price">
-                                <h3><span>$</span><?php echo $dados['produtoPreco'];?></h3>
+                                <?php
+                                if ($dados['produtoDesconto']>0){
+                                ?>
+                                <h3>
+                                    <span>
+                                    <strike>
+                                    <?php
+                                        echo $dados['produtoPreco'];
+                                    ?>
+                                        <span>€ </span>
+                                    </strike>
+                                        &nbsp
+                                    </span>
+                                    <?php
+                                    $preco = $dados['produtoPreco'] - $dados['produtoPreco'] * $dados['produtoDesconto'] / 100;
+                                    echo number_format($preco, 2, '.', ' ');
+
+                                    ?>
+                                    <span>€</span>
+                                </h3>
+
                                 <a class="btn" href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                <?php
+                                } else {
+                                ?>
+                                <h3><?php echo $dados['produtoPreco'];?><span>€</span></h3>
+                                <a class="btn" href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                <?php
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>

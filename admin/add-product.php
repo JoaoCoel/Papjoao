@@ -112,12 +112,12 @@ while ($dados=mysqli_fetch_array($cattipo)){
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                        <label>Preço $</label>
+                                        <label>Preço €</label>
                                         <input class="form-control" name="precoProduto" type="text" placeholder="0.00">
                                     </div>
                                     <div class="col-md-3">
                                         <label>Desconto %</label>
-                                        <input class="form-control" type="text" placeholder="0">
+                                        <input class="form-control" name="descontoProduto" type="text" placeholder="0">
                                     </div>
                                     <div class="col-md-12">
                                         <label>Descrição do produto</label>
@@ -202,9 +202,9 @@ while ($dados=mysqli_fetch_array($cattipo)){
                                     <div class="payment-method">
                                         <div class="custom-control custom-checkbox">
                                             <?php
-                                            $i=0;
+
                                             while ($dados=mysqli_fetch_array($tamanhos)){
-                                                $i++;
+                                                $i=$dados['tamanhoId'];
                                                // echo  "<input type='checkbox' class='custom-control-input' id=\"size'.$i.'\" name=\"size'.$i.'\" value=\"".$dados['tamanhoId']."\">".$dados['tamanhoNome']."</option>&nbsp&nbsp";
                                                 echo "<div class=\"custom-control custom-radio\">";
 

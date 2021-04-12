@@ -1,6 +1,11 @@
 <?php
 include_once ("includes/body.inc.php");
 top();
+
+$con = mysqli_connect("localhost", "root", "", "users");
+$sql = "Select * from users";
+$res = mysqli_query($con, $sql);
+
 ?>
 <!-- Nav Bar End -->
 
@@ -43,7 +48,6 @@ top();
             <div class="container-fluid">
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.php">Página Principal</a></li>
-                    <li class="breadcrumb-item"><a href="product-list.php">Produtos</a></li>
                     <li class="breadcrumb-item active">Login & Registar</li>
                 </ul>
             </div>
@@ -58,6 +62,7 @@ top();
                         <div class="register-form">
                             <div class="row">
                                 <div class="col-md-6">
+
                                     <label>Primeiro Nome</label>
                                     <input class="form-control" type="text" placeholder="First Name">
                                 </div>
@@ -138,6 +143,19 @@ top();
                 </div>
             </div>
         </div>
+
+<form action="confirm-login.php" method="post">
+    <select name="utilizador">
+    <?php
+    while ($dados=mysqli_fetch_array($res)){
+    ?>
+        <option value="<?php echo $dados['userId']?>"><?php echo $dados['userName']?></option>
+    <?php
+    }
+    ?>
+    </select>
+    <input type="submit">
+</form>
         <!-- Login End -->
         
         <!-- Footer Start
