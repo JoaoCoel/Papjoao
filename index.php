@@ -2,9 +2,9 @@
 include_once ("includes/body.inc.php");
 top();
 
-$sql = "Select produtoId,produtoNome,produtoPreco, produtoImagemURL from produtos order by produtoId DESC LIMIT 6";
+$sql = "Select produtoId,produtoNome,produtoPreco,produtoDesconto, produtoImagemURL from produtos order by produtoId DESC LIMIT 6";
 
-$sql2 = "Select produtoId,produtoNome,produtoPreco, produtoImagemURL from produtos where produtoDestaque = 'Sim'";
+$sql2 = "Select produtoId,produtoNome,produtoPreco,produtoDesconto, produtoImagemURL from produtos where produtoDestaque = 'Sim'";
 
 $result = mysqli_query($con, $sql);
 
@@ -271,8 +271,36 @@ $result2 = mysqli_query($con, $sql2);
                             </div>
                         </div>
                         <div class="product-price">
-                            <h3><span>$</span><?php echo $dados['produtoPreco'];?></h3>
-                            <a class="btn" href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                            <?php
+                            if ($dados['produtoDesconto']>0){
+                                ?>
+                                <h3>
+                                    <span>
+                                    <strike>
+                                    <?php
+                                    echo $dados['produtoPreco'];
+                                    ?>
+                                        <span>€ </span>
+                                    </strike>
+                                        &nbsp
+                                    </span>
+                                    <?php
+                                    $preco = $dados['produtoPreco'] - $dados['produtoPreco'] * $dados['produtoDesconto'] / 100;
+                                    echo number_format($preco, 2, '.', ' ');
+
+                                    ?>
+                                    <span>€</span>
+                                </h3>
+
+                                <a class="btn" href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                <?php
+                            } else {
+                                ?>
+                                <h3><?php echo $dados['produtoPreco'];?><span>€</span></h3>
+                                <a class="btn" href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -338,8 +366,36 @@ $result2 = mysqli_query($con, $sql2);
                                 </div>
                             </div>
                             <div class="product-price">
-                                <h3><span>$</span><?php echo $dados['produtoPreco'];?></h3>
-                                <a class="btn" href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                <?php
+                                if ($dados['produtoDesconto']>0){
+                                    ?>
+                                    <h3>
+                                    <span>
+                                    <strike>
+                                    <?php
+                                    echo $dados['produtoPreco'];
+                                    ?>
+                                        <span>€ </span>
+                                    </strike>
+                                        &nbsp
+                                    </span>
+                                        <?php
+                                        $preco = $dados['produtoPreco'] - $dados['produtoPreco'] * $dados['produtoDesconto'] / 100;
+                                        echo number_format($preco, 2, '.', ' ');
+
+                                        ?>
+                                        <span>€</span>
+                                    </h3>
+
+                                    <a class="btn" href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <h3><?php echo $dados['produtoPreco'];?><span>€</span></h3>
+                                    <a class="btn" href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                    <?php
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>

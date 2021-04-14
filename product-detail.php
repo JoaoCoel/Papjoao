@@ -94,9 +94,38 @@ $result=mysqli_query($con,$sql);
                                             <i class="fa fa-star"></i>
                                         </div>
                                         <div class="quantity">
-                                            <h3><b>Preço:</b>
-                                            <span><?php echo "".$dadosProduto['produtoPreco']."";?>€</span>
-                                            </h3>
+                                            <h3><b>Preço:</b></h3>
+                                            <?php
+                                            if ($dadosProduto['produtoDesconto']>0){
+                                                ?>
+                                                <h3>
+                                    <span>
+                                    <strike>
+                                    <?php
+                                    echo $dadosProduto['produtoPreco'];
+                                    ?>
+                                        <span>€ </span>
+                                    </strike>
+                                        &nbsp
+                                    </span>
+                                                    <?php
+                                                    $preco = $dadosProduto['produtoPreco'] - $dadosProduto['produtoPreco'] * $dadosProduto['produtoDesconto'] / 100;
+                                                    echo number_format($preco, 2, '.', ' ');
+
+                                                    ?>
+                                                    <span>€</span>
+                                                </h3>
+
+                                                <a class="btn" href="product-detail.php?id=<?php echo $dadosProduto['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <h3><?php echo $dadosProduto['produtoPreco'];?><span>€</span></h3>
+                                                <a class="btn" href="product-detail.php?id=<?php echo $dadosProduto['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                                <?php
+                                            }
+                                            ?>
+
                                         </div>
                                        <!-- <div class="quantity">
                                             <h4>Quantidade:</h4>
@@ -110,6 +139,38 @@ $result=mysqli_query($con,$sql);
                                             <h4>Tamanho:</h4>
                                             <div class="btn-group btn-group-sm">
                                                 <button type="button" class="btn">S</button>
+
+                                                <?php
+
+                                                while ($dadosProduto=mysqli_fetch_array($tamanhos)){
+                                                    $i=$dadosProduto['tamanhoId'];
+                                                    $x=0;
+                                                    while ($dt=mysqli_fetch_array($ptamanhos)){
+                                                        if ($dt['produtoTamanhoTamanhoId']==$i ){
+                                                            $x=1;
+                                                            break;
+                                                        }
+
+                                                    }
+
+                                                    echo "<div class=\"custom-control custom-radio\">";
+                                                    if ($x == 1) {
+                                                        echo "<input class=\"custom-control-input\" checked type=\"checkbox\" id=\"size".$i."\" name=\"size".$i."\" value=\"".$dadosProduto['tamanhoId']."\"/>";
+                                                    } else {
+
+                                                        echo "<input class=\"custom-control-input\" type=\"checkbox\" id=\"size".$i."\" name=\"size".$i."\" value=\"".$dadosProduto['tamanhoId']."\"/>";
+                                                    }
+                                                    // echo  "<input type='checkbox' class='custom-control-input' id=\"size'.$i.'\" name=\"size'.$i.'\" value=\"".$dados['tamanhoId']."\">".$dados['tamanhoNome']."</option>&nbsp&nbsp";
+
+
+
+                                                    echo "<label class=\"custom-control-label\" for=\"size".$i."\">".$dadosProduto['tamanhoNome']."</label><br>";
+                                                    echo "</div>";
+                                                    //<input type="checkbox" class="custom-control-input" id="size" name="payment">
+                                                    // <label class="custom-control-label" for="payment-1">S </label>
+                                                }
+                                                ?>
+
                                             </div> 
                                         </div>
                                         <!-- <div class="p-color">
