@@ -123,12 +123,17 @@ function bottom(){
     <?php
 }
 
-function contaCoisas($cn, $filtro, $table="produtos", $field="produtoTipoCategoriaTipoId"){
-    $sql="Select COUNT(*) as nProdutos from ".$table." where ".$field."=".$filtro;
+function contaCoisas($cn, $filtro, $table="produtos", $field=array("produtoTipoCategoriaTipoId")){
+    $sql="Select COUNT(*) as nProdutos from ".$table." where ";
+
+    for ($i=0;$i<count($field);$i++){
+        $sql.=$field[$i]."='".$filtro[$i]."' and ";
+    }
+    $sql = substr($sql,0, strlen($sql)-5);
 
     $result=mysqli_query($cn,$sql);
-    $dados=mysqli_fetch_array($result);
-    return $dados['nProdutos'];
+    $dados=mysqli_fetch_array($result) or die (mysqli_error($cn));
+    return $dados['nProdutos'] ;
 }
 
 function procuraCoisas($cn, $filtro, $table="produtos", $field="produtoNome"){
