@@ -28,10 +28,12 @@ $result2 = mysqli_query($con, $sql2);
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="search">
-                    <input type="text" placeholder="Search">
-                    <button><i class="fa fa-search"></i></button>
-                </div>
+                <form action="product-list.php?search=$_POST['search']">
+                    <div class="search">
+                        <input type="text" id="search" name="search" value="">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </form>
             </div>
             <div class="col-md-3">
                 <div class="user">

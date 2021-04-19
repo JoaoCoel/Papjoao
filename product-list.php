@@ -161,7 +161,6 @@ while($dados=mysqli_fetch_array($result)){
                                     ?>
                                     <span>€</span>
                                 </h3>
-
                                 <a class="btn" href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Comprar</a>
                                 <?php
                                 } else {
@@ -210,7 +209,7 @@ while($dados=mysqli_fetch_array($result)){
                                 <a class="nav-link" href="product-list.php?cat=2"><i class="fa fa-child"></i>Criança</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="product-list.php?cat=1"><i class="fa fa-tshirt"></i>Homem e Mulher</a>
+                                <a class="nav-link" href="product-list.php?cat=1"><i class="fa fa-tshirt"></i>Adulto</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="product-list.php?cat=3"><i class="fa fa-mobile-alt"></i>Acessórios</a>
@@ -358,10 +357,11 @@ while($dados=mysqli_fetch_array($result)){
                         </div>
 
 
-                    </div>
-                </div>
+
             </div>
         </div>
+    </div>
+</div>
         <!-- Side Bar End -->
 
 
