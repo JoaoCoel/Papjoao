@@ -16,7 +16,7 @@ $result2 = mysqli_query($con, $sql2);
 
 <!-- Nav Bar End -->
 
-<!-- Bottom Bar Start -->
+<!-- Bottom Bar Start1 -->
 <div class="bottom-bar">
     <div class="container-fluid">
         <div class="row align-items-center">
@@ -37,7 +37,7 @@ $result2 = mysqli_query($con, $sql2);
                 <div class="user">
                     <a href="wishlist.php" class="btn wishlist">
                         <i class="fa fa-heart"></i>
-                        <span>(0)</span>
+                        <span>(0)2</span>
                     </a>
                     <a href="cart.php" class="btn cart">
                         <i class="fa fa-shopping-cart"></i>
