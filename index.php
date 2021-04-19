@@ -72,7 +72,7 @@ $result2 = mysqli_query($con, $sql2);
                                     <a class="nav-link" href="product-list.php?cat=2"><i class="fa fa-child"></i>Crianças</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="product-list.php?cat=1"><i class="fa fa-tshirt"></i>Homem e Mulher</a>
+                                    <a class="nav-link" href="product-list.php?cat=1"><i class="fa fa-tshirt"></i>Adultos</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="product-list.php?cat=3"><i class="fa fa-mobile-alt"></i>Acessórios</a>
@@ -91,13 +91,13 @@ $result2 = mysqli_query($con, $sql2);
                             <div class="header-slider-item">
                                 <img style="width: 100%" src="img/slider-2.jpg" alt="Slider Image" />
                                 <div class="header-slider-caption">
-                                    <a class="btn" href="product-list.php?cat=1"><i class="fa fa-shopping-cart"></i>Para Homem</a>
+                                    <a class="btn" href="product-list.php?cat=1&gen=M"><i class="fa fa-shopping-cart"></i>Para Homem</a>
                                 </div>
                             </div>
                             <div class="header-slider-item">
                                 <img style="width:100%" src="img/slider-3.jpg" alt="Slider Image"/>
                                 <div class="header-slider-caption">
-                                    <a class="btn" href="product-list.php?cat=1"><i class="fa fa-shopping-cart"></i>Para Mulher</a>
+                                    <a class="btn" href="product-list.php?cat=1&gen=F"><i class="fa fa-shopping-cart"></i>Para Mulher</a>
                                 </div>
                             </div>
                         </div>
