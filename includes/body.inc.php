@@ -1,7 +1,13 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors',1);
+error_reporting(E_ALL);
+
+
 include_once("config.inc.php");
 $con=mysqli_connect(HOST,USER,PWD,DATABASE);
 $con->set_charset("utf8");
+session_start();
 function top(){
     ?>
     <!DOCTYPE html>
@@ -61,7 +67,7 @@ function top(){
                         <a href="index.php" class="nav-item nav-link active">Pagina Principal</a>
                         <a href="admin/editing-list.php" class="nav-item nav-link">Editar Produtos</a>
                         <a href="cart.php" class="nav-item nav-link">Carrinho</a>
-                        <a href="my-account.php" class="nav-item nav-link">Minha Conta</a>
+                        <!--a href="my-account.php" class="nav-item nav-link">Minha Conta</a-->
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mais Paginas</a>
                             <div class="dropdown-menu">
@@ -70,14 +76,42 @@ function top(){
                             </div>
                         </div>
                     </div>
-                    <div class="navbar-nav ml-auto">
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Conta do utilizador</a>
-                            <div class="dropdown-menu">
-                                <a href="login.php" class="dropdown-item">Login & Registar</a>
+
+                    <?php
+                    $con=mysqli_connect("localhost", "root","","pap2021drk");
+                    $sql="select * from utilizadores inner join perfis on utilizadorId=perfilUserId where utilizadorId=".$_SESSION['id'];
+                    $res = mysqli_query($con, $sql);
+                    $dados=mysqli_fetch_array($res);
+                    if(isset($_SESSION['id'])){
+                    ?>
+                        <div class="navbar-nav ml-auto">
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><span><?php echo $dados['perfilNome']?></span>
+                                    <img src="<?php echo $dados['perfilAvatarURL'] ?>" style="width: 30px; height: 30px"></a>
+                                <div class="dropdown-menu">
+                                    <a href="logout.php" class="dropdown-item">Logout</a>
+                                    <a href="my-account.php" class="dropdown-item">Perfil</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+    <?php
+                    }else{
+    ?>
+
+                        <div class="navbar-nav ml-auto">
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Conta do utilizador</a>
+                                <div class="dropdown-menu">
+                                    <a href="login.php" class="dropdown-item">Login & Registar</a>
+                                </div>
+                            </div>
+                        </div>
+    <?php
+                    }
+    ?>
+
+
+
                 </div>
             </nav>
         </div>

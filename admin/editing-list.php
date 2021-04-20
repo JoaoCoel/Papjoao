@@ -42,6 +42,9 @@ top();
                     <div class="table-responsive">
                         <div class="container">
                             <a class="ml-5" href="add-product.php">Adicionar</a>
+                            <?php
+                            echo "<button type='button' class='btn-cart' onclick=\"add();\">Adicionar</button>";
+                            ?>
                             <table class="table table-bordered">
                                 <tr>
                                     <thead class="thead-dark">
@@ -118,6 +121,11 @@ bottom();
     function edit(prodId)
     {
         window.location.href = "edit-product.php?id="+prodId;
+    }
+
+    function add()
+    {
+        window.location.href = "add-product.php";
     }
 
 

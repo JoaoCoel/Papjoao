@@ -2,8 +2,8 @@
 include_once ("includes/body.inc.php");
 top();
 
-$con = mysqli_connect("localhost", "root", "", "users");
-$sql = "Select * from users";
+$con = mysqli_connect("localhost", "root", "", "pap2021drk");
+$sql = "Select * from utilizadores";
 $res = mysqli_query($con, $sql);
 
 ?>
@@ -149,7 +149,7 @@ $res = mysqli_query($con, $sql);
     <?php
     while ($dados=mysqli_fetch_array($res)){
     ?>
-        <option value="<?php echo $dados['userId']?>"><?php echo $dados['userName']?></option>
+        <option value="<?php echo $dados['utilizadorId']?>"><?php echo $dados['utilizadorNome']?></option>
     <?php
     }
     ?>
