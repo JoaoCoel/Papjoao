@@ -54,7 +54,7 @@ function top(){
     <!-- Top bar End -->
 
     <!-- Nav Bar Start -->
-    <div class="nav">
+    <div class="nav" >
         <div class="container-fluid">
             <nav class="navbar navbar-expand-md bg-dark navbar-dark">
                 <a href="#" class="navbar-brand">MENU</a>
@@ -62,8 +62,8 @@ function top(){
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                    <div class="navbar-nav mr-auto">
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse" >
+                    <div class="navbar-nav mr-auto" >
                         <a href="index.php" class="nav-item nav-link active">Pagina Principal</a>
                         <a href="admin/editing-list.php" class="nav-item nav-link">Editar Produtos</a>
                         <a href="cart.php" class="nav-item nav-link">Carrinho</a>
@@ -86,8 +86,8 @@ function top(){
                     ?>
                         <div class="navbar-nav ml-auto">
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><span><?php echo $dados['perfilNome']?></span>
-                                    <img src="<?php echo $dados['perfilAvatarURL'] ?>" style="width: 30px; height: 30px"></a>
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><span><?php echo $dados['perfilNome']?></span>&nbsp;
+                                    <img src="<?php echo $dados['perfilAvatarURL'] ?>" style="width: 40px; height: 40px"></a>
                                 <div class="dropdown-menu">
                                     <a href="logout.php" class="dropdown-item">Logout</a>
                                     <a href="my-account.php" class="dropdown-item">Perfil</a>

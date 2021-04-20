@@ -41,9 +41,8 @@ top();
                 <div class="col-md-12">
                     <div class="table-responsive">
                         <div class="container">
-                            <a class="ml-5" href="add-product.php">Adicionar</a>
                             <?php
-                            echo "<button type='button' class='btn-cart' onclick=\"add();\">Adicionar</button>";
+                            echo "<button type='button' class='btn btn-light' onclick=\"add();\" style='background: #FF6F61; color: #FFF'>Adicionar</button>";
                             ?>
                             <table class="table table-bordered">
                                 <tr>
