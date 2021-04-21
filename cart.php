@@ -7,6 +7,27 @@ $sql="select"
 
 
         <!-- Bottom Bar End -->
+<?php
+$id=intval($_POST['idPrd']);
+session_start();
+array_push($_SESSION['carrinho'],$id);
+print_r($_SESSION);
+return true;
+?>
+
+    function adicionaCarrinho(id){
+    alert(id);
+    $.ajax({
+    url:"admin/AJAX/AJAXNovoProdutoCarrinho.php",
+    type:"post",
+    data: {
+    idPrd:id
+    },
+    success:function(result){
+    alert(result);
+    }
+    });
+    }
         
         <!-- Breadcrumb Start -->
         <div class="breadcrumb-wrap">
