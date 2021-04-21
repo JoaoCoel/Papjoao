@@ -4,8 +4,7 @@ top();
 
 $con = mysqli_connect("localhost", "root", "", "pap2021drk");
 $sql = "Select * from utilizadores";
-$res = mysqli_query($con, $sql);
-
+$res = mysqli_query($con, $sql) ;
 ?>
 <!-- Nav Bar End -->
 

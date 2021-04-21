@@ -84,8 +84,9 @@ top();
 $sql="Select produtoId,produtoNome,produtoPreco,produtoDesconto,produtoGenero,categorias.categoriaNome as categ,tipos.tipoNome as tipo, produtoImagemURL from produtos left join categorias 
       on produtoTipoCategoriaCategoriaId=categoriaId left join tipos on produtoTipoCategoriaTipoId=tipoId";
 
-$categ=0;
-$tipo=0;
+$categ=null;
+$tipo=null;
+$genero=null;
 if (isset($_GET['search']) or isset($_GET['cat'])  or isset($_GET['tip']) or isset($_GET['gen'])){
     $sql.=" where ";
     if (isset($_GET['search'])){
@@ -323,7 +324,7 @@ while($dados=mysqli_fetch_array($result)){
 
                             ?>
 
-                            <li><a <?php echo $visivel;?> href="product-list.php?tip=<?php echo $dados['tipoId']?><?php if (isset($categ)) echo "&cat=".$categ; ?>"><?php echo $dados['tipoNome']?>
+                            <li><a <?php echo $visivel;?> href="product-list.php?tip=<?php echo $dados['tipoId']?><?php if (isset($categ)) echo "&cat=".$categ; if (isset($genero)) echo "&gen=".$genero;?>"><?php echo $dados['tipoNome']?>
                                 </a><span <?php echo $visivel;?> ><?php echo contaCoisas($con,array($dados['tipoId'])); ?></span></li>
 
                             <?php
@@ -339,11 +340,11 @@ while($dados=mysqli_fetch_array($result)){
                 <div class="sidebar-widget brands">
                     <h2 class="title">Género</h2>
                     <ul>
-                        <li><a  href="product-list.php?gen=M&tip=<?php echo $tipo?><?php if (isset($categ)) echo "&cat=".$categ; ?>">Homem
+                        <li><a  href="product-list.php?gen=M&tip=<?php if (isset($tipo)) echo $tipo?><?php if (isset($categ)) echo "&cat=".$categ; ?>">Homem
                             </a><span><?php echo contaCoisas($con,array("M"),"produtos",array("produtoGenero")); ?></span></li>
-                        <li><a  href="product-list.php?gen=F&tip=<?php echo $tipo?><?php if (isset($categ)) echo "&cat=".$categ; ?>">Mulher
+                        <li><a  href="product-list.php?gen=F&tip=<?php if (isset($tipo)) echo $tipo?><?php if (isset($categ)) echo "&cat=".$categ; ?>">Mulher
                             </a><span><?php echo contaCoisas($con,array("F"),"produtos",array("produtoGenero")); ?></span></li>
-                        <li><a  href="product-list.php?gen=U&tip=<?php echo $tipo?><?php if (isset($categ)) echo "&cat=".$categ; ?>">Unissexo
+                        <li><a  href="product-list.php?gen=U&tip=<?php if (isset($tipo)) echo $tipo?><?php if (isset($categ)) echo "&cat=".$categ; ?>">Unissexo
                             </a><span><?php echo contaCoisas($con,array("U"),"produtos",array("produtoGenero")); ?></span></li>
                     </ul>
                 </div>
