@@ -48,9 +48,10 @@ top();
                                         <div class="dropdown">
                                             <div class="dropdown-toggle" data-toggle="dropdown">Ordenar produto por</div>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">Novo</a>
-                                                <a href="#" class="dropdown-item">Mais Vendido</a>
-                                                <a href="#" class="dropdown-item">Por Preço</a>
+                                                <a href="#" class="dropdown-item">A-Z</a>
+                                                <a href="#" class="dropdown-item">Mais recentes</a>
+                                                <a href="#" class="dropdown-item">Preço +</a>
+                                                <a href="#" class="dropdown-item">Preço -</a>
                                             </div>
                                         </div>
                                     </div>

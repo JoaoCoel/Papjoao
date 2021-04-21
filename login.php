@@ -53,7 +53,18 @@ $res = mysqli_query($con, $sql);
             </div>
         </div>
         <!-- Breadcrumb End -->
-        
+    <form action="confirm-login.php" method="post" style="margin-left: 20%">
+        <select name="utilizador">
+            <?php
+            while ($dados=mysqli_fetch_array($res)){
+                ?>
+                <option value="<?php echo $dados['utilizadorId']?>"><?php echo $dados['utilizadorNome']?></option>
+                <?php
+            }
+            ?>
+        </select>
+        <input type="submit">
+    </form>
         <!-- Login Start -->
         <div class="login">
             <div class="container-fluid">
@@ -144,18 +155,7 @@ $res = mysqli_query($con, $sql);
             </div>
         </div>
 
-<form action="confirm-login.php" method="post">
-    <select name="utilizador">
-    <?php
-    while ($dados=mysqli_fetch_array($res)){
-    ?>
-        <option value="<?php echo $dados['utilizadorId']?>"><?php echo $dados['utilizadorNome']?></option>
-    <?php
-    }
-    ?>
-    </select>
-    <input type="submit">
-</form>
+
         <!-- Login End -->
         
         <!-- Footer Start

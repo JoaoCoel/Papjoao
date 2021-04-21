@@ -89,8 +89,9 @@ function top(){
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><span><?php echo $dados['perfilNome']?></span>&nbsp;
                                     <img src="<?php echo $dados['perfilAvatarURL'] ?>" style="width: 40px; height: 40px"></a>
                                 <div class="dropdown-menu">
-                                    <a href="logout.php" class="dropdown-item">Logout</a>
                                     <a href="my-account.php" class="dropdown-item">Perfil</a>
+                                    <a href="logout.php" class="dropdown-item">Logout</a>
+
                                 </div>
                             </div>
                         </div>
