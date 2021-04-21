@@ -1,7 +1,10 @@
 <?php
 include_once ("includes/body.inc.php");
 top();
+//ver pap do filipe e ver https://drakelings.bluedrake42.com/index.php?%2Ffile%2F28-stalker-anomaly%2F
+$sql="select"
 ?>
+
 
         <!-- Bottom Bar End -->
         
@@ -36,6 +39,10 @@ top();
                                     </thead>
                                     <tbody class="align-middle">
                                         <tr>
+                                            <?php
+                                            while ($dados=mysqli_fetch_array($result)){
+                                            }
+                                            ?>
                                             <td>
                                                 <div class="img">
                                                     <a href="product-detail.php"><img src="img/product-1.jpg" alt="Image"></a>
