@@ -17,8 +17,6 @@ $tamanhos=mysqli_query($con,$sql) or die;
 
 $sql="Select * from produtotamanhos where produtoTamanhoProdutoId=$id";;
 $ptamanhos=mysqli_query($con,$sql) or die;
-
-
 ?>
 
 <script>
@@ -254,28 +252,20 @@ $ptamanhos=mysqli_query($con,$sql) or die;
 
                                         while ($dados=mysqli_fetch_array($tamanhos)){
                                             $i=$dados['tamanhoId'];
-                                            $x=0;
-                                            while ($dt=mysqli_fetch_array($ptamanhos)){
-                                                if ($dt['produtoTamanhoTamanhoId']==$i ){
-                                                    $x=1;
-                                                    break;
+                                            $chk = "";
+
+                                            while ($dt=mysqli_fetch_array($ptamanhos)) {
+                                                if ($dt['produtoTamanhoTamanhoId']==$i){
+                                                    $chk="checked";
                                                 }
 
                                             }
-
                                             echo "<div class=\"custom-control custom-radio\">";
-                                            if ($x == 1) {
-                                                echo "<input class=\"custom-control-input\" checked type=\"checkbox\" id=\"size".$i."\" name=\"size".$i."\" value=\"".$dados['tamanhoId']."\"/>";
-                                            } else {
-
-                                                echo "<input class=\"custom-control-input\" type=\"checkbox\" id=\"size".$i."\" name=\"size".$i."\" value=\"".$dados['tamanhoId']."\"/>";
-                                            }
-                                            // echo  "<input type='checkbox' class='custom-control-input' id=\"size'.$i.'\" name=\"size'.$i.'\" value=\"".$dados['tamanhoId']."\">".$dados['tamanhoNome']."</option>&nbsp&nbsp";
-
-
-
+                                            echo "<input class=\"custom-control-input\" ".$chk." type=\"checkbox\" id=\"size".$i."\" name=\"size".$i."\" value=\"".$dados['tamanhoId']."\"/>";
                                             echo "<label class=\"custom-control-label\" for=\"size".$i."\">".$dados['tamanhoNome']."</label><br>";
                                             echo "</div>";
+                                            mysqli_data_seek($ptamanhos, 0);
+
                                             //<input type="checkbox" class="custom-control-input" id="size" name="payment">
                                             // <label class="custom-control-label" for="payment-1">S </label>
                                         }

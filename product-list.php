@@ -86,7 +86,7 @@ $sql="Select produtoId,produtoNome,produtoPreco,produtoDesconto,produtoGenero,ca
 
 $categ=0;
 $tipo=0;
-$genero=0;
+$genero="";
 if (isset($_GET['search']) or isset($_GET['cat'])  or isset($_GET['tip']) or isset($_GET['gen'])){
     $sql.=" where ";
     if (isset($_GET['search'])){
@@ -121,50 +121,7 @@ while($dados=mysqli_fetch_array($result)){
 /*
 https://phpdelusions.net/mysqli_examples/search_filter
 
-
-    $categ=0;
-    $tipo=0;
-    $genero=0;
-    if (isset($_GET['search']) or isset($_GET['cat'])  or isset($_GET['tip']) or isset($_GET['gen'])){
-        $sql.=" where ";
-        if (isset($_GET['search'])){
-            $filtro = $_GET['search'];
-            $sql.=" produtoNome like \"".$filtro."%\"";
-            $sql .= " and ";
-        }
-        if (($_GET['cat'])==0) {
-
-        } else {
-            $categ = $_GET['cat'];
-            $sql .= " produtoTipoCategoriaCategoriaId=". $categ;
-            $sql .= " and ";
-        }
-
-        if (($_GET['tip'])==0) {
-
-        } else {
-            $tipo = $_GET['tip'];
-            $sql .= " and produtoTipoCategoriaTipoId=". $tipo;
-        }
-
-        if (($_GET['gen'])==0) {
-
-        } else{
-            $genero = $_GET['gen'];
-            $sql .= " and produtoGenero like \"%".$genero."%\"";
-        }
-
-
-        if (substr($sql, -5) == " and ") $sql = substr($sql,0, strlen($sql)-5);
-
-    }
-
-    $result=mysqli_query($con,$sql) or die (mysqli_error($con));
-
-    while($dados=mysqli_fetch_array($result)){
-
-<a  href="product-list.php?gen=M<?php if ($tipo>0) ?>&tip=<?php echo $tipo?><?php if (isset($categ)) echo "&cat=".$categ; ?>
-        */
+*/
 
 ?>
 
@@ -290,11 +247,36 @@ https://phpdelusions.net/mysqli_examples/search_filter
             <!-- Side Bar Start -->
 
             <div class="col-lg-4 sidebar">
-                <div class="sidebar-widget category">
+                <div class="sidebar-widget brands">
                     <h2 class="title">Categoria</h2>
                     <nav class="navbar bg-light">
                         <ul class="navbar-nav">
-                            <li class="nav-item">
+                            <?php
+
+                            $sql="Select categoriaId,categoriaNome from categorias";
+                            $result=mysqli_query($con,$sql);
+
+                            while($dados=mysqli_fetch_array($result)){
+                                $visivel="";
+                                if ($categ == $dados['categoriaId'])
+                                    $visivel = "style='font-weight: bold;'";
+
+                                ?>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" <?php echo $visivel; ?>  href="product-list.php?cat=<?php echo $dados['categoriaId']?><?php if ($tipo!=0) echo "&tip=".$tipo; if (strlen($genero)>0) echo "&gen=".$genero;?>">
+                                        <?php echo $dados['categoriaNome']?>
+                                    </a>
+                                </li>
+
+                                <?php
+
+
+                            }
+                            //*******************
+
+                            ?>
+                            <!--li class="nav-item">
                                 <a class="nav-link" href="product-list.php?cat=2"><i class="fa fa-child"></i>Criança</a>
                             </li>
                             <li class="nav-item">
@@ -302,94 +284,10 @@ https://phpdelusions.net/mysqli_examples/search_filter
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="product-list.php?cat=3"><i class="fa fa-mobile-alt"></i>Acessórios</a>
-                            </li>
+                            </li-->
                         </ul>
                     </nav>
                 </div>
-                        <!--
-                        <div class="sidebar-widget widget-slider">
-                            <div class="sidebar-slider normal-slider">
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="product-detail.php">Product Name</a>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.php">
-                                            <img src="img/product-10.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="product-detail.php"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>0.99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                    </div>
-                                </div>
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="product-detail.php">Product Name</a>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.php">
-                                            <img src="img/product-9.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="product-detail.php"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>0.99</h3>
-                                        <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                    </div>
-                                </div>
-                                <div class="product-item">
-                                    <div class="product-title">
-                                        <a href="product-detail.php">Product Name</a>
-                                        <div class="ratting">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="product-image">
-                                        <a href="product-detail.php">
-                                            <img src="img/product-8.jpg" alt="Product Image">
-                                        </a>
-                                        <div class="product-action">
-                                            <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
-                                            <a href="product-detail.php"><i class="fa fa-search"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="product-price">
-                                        <h3><span>$</span>0.99</h3>
-                                        <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        -->
 
                 <div class="sidebar-widget brands">
                     <h2 class="title">Roupa</h2>
@@ -412,8 +310,11 @@ https://phpdelusions.net/mysqli_examples/search_filter
 
                             ?>
 
-                            <li><a <?php echo $visivel;?> href="product-list.php?tip=<?php echo $dados['tipoId']?><?php if (isset($categ)) echo "&cat=".$categ; if (isset($genero)) echo "&gen=".$genero;?>"><?php echo $dados['tipoNome']?>
-                                </a><span <?php echo $visivel;?> ><?php echo contaCoisas($con,array($dados['tipoId'])); ?></span></li>
+                            <li>
+                                <a <?php echo $visivel;?> href="product-list.php?tip=<?php echo $dados['tipoId']?>
+                                <?php if ($categ>0) echo "&cat=".$categ; if (strlen($genero)>0) echo "&gen=".$genero;?>"><?php echo $dados['tipoNome']?>
+                                </a><span <?php echo $visivel;?> ><?php echo contaCoisas($con,array($dados['tipoId'])); ?></span>
+                            </li>
 
                             <?php
 
@@ -427,11 +328,12 @@ https://phpdelusions.net/mysqli_examples/search_filter
                 <div class="sidebar-widget brands">
                     <h2 class="title">Género</h2>
                     <ul>
-                        <li><a  href="product-list.php?gen=M&tip=<?php if (isset($tipo)) echo $tipo?><?php if (isset($categ)) echo "&cat=".$categ; ?>">Homem
+
+                        <li><a  href="product-list.php?gen=M<?php if ($tipo !=0) echo "&tip=".$tipo?><?php if ($categ!=0) echo "&cat=".$categ; ?>">Homem
                             </a><span><?php echo contaCoisas($con,array("M"),"produtos",array("produtoGenero")); ?></span></li>
-                        <li><a  href="product-list.php?gen=F&tip=<?php if (isset($tipo)) echo $tipo?><?php if (isset($categ)) echo "&cat=".$categ; ?>">Mulher
+                        <li><a  href="product-list.php?gen=F<?php if ($tipo !=0) echo "&tip=".$tipo?><?php if ($categ!=0) echo "&cat=".$categ; ?>">Mulher
                             </a><span><?php echo contaCoisas($con,array("F"),"produtos",array("produtoGenero")); ?></span></li>
-                        <li><a  href="product-list.php?gen=U&tip=<?php if (isset($tipo)) echo $tipo?><?php if (isset($categ)) echo "&cat=".$categ; ?>">Unissexo
+                        <li><a  href="product-list.php?gen=U<?php if ($tipo !=0) echo "&tip=".$tipo?><?php if ($categ!=0) echo "&cat=".$categ; ?>">Unissexo
                             </a><span><?php echo contaCoisas($con,array("U"),"produtos",array("produtoGenero")); ?></span></li>
                     </ul>
                 </div>

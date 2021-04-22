@@ -15,12 +15,14 @@ $tipos=mysqli_query($con,$sql);
 $sql="Select * from categorias";
 $categorias=mysqli_query($con,$sql);
 
+$sql="Select * from tamanhos";
+$tamanhos=mysqli_query($con,$sql);
 
-$sql2 = "Select produtoId,produtoNome,produtoPreco,produtoDesconto,produtoImagemURL from produtos where produtoDestaque ='Sim'";
-$result2 = mysqli_query($con, $sql2);
+$sql="Select * from produtotamanhos where produtoTamanhoProdutoId=".$id;
+$ptamanhos=mysqli_query($con,$sql);
 
-//$sql3="select * from produtos inner join tipoCategorias on produtosTipoCategoriaTipoId=tipoCategoriaTipoId where produtosTipoCategoriaTipoId=$idTipo";
-//$res=mysqli_query($con,$sql3);
+$sql2="select * from produtos where produtoTipoCategoriaTipoId=".$dadosProduto['produtoTipoCategoriaTipoId'];
+$result2=mysqli_query($con,$sql2);
 
 ?>
 
@@ -149,39 +151,24 @@ $result=mysqli_query($con,$sql);
                                     <div class="p-size">
                                         <h4>Tamanho:</h4>
                                         <div class="btn-group btn-group-sm">
-                                            <button type="button" class="btn">S</button>
 
                                             <?php
-                                            /*
 
-                                            while ($dadosProduto=mysqli_fetch_array($tamanhos)){
-                                                $i=$dadosProduto['tamanhoId'];
+
+                                            while ($dados=mysqli_fetch_array($tamanhos)){
+                                                $i=$dados['tamanhoId'];
                                                 $x=0;
-                                                while ($dt=mysqli_fetch_array($ptamanhos)){
-                                                    if ($dt['produtoTamanhoTamanhoId']==$i ){
-                                                        $x=1;
+                                                while ($dt=mysqli_fetch_array($ptamanhos)) {
+                                                    if ($dt['produtoTamanhoTamanhoId']==$i){
+                                                        echo "<div class=\"btn-group btn-group-sm\">";
+                                                        echo "<button class=\"btn\" type=\"button\" id=\"size".$i."\" name=\"size".$i."\" value=\"".$dados['tamanhoId']."\"/>".$dados['tamanhoNome']."</button>";
+                                                        echo "</div>";
                                                         break;
                                                     }
-
                                                 }
-
-                                                echo "<div class=\"custom-control custom-radio\">";
-                                                if ($x == 1) {
-                                                    echo "<input class=\"custom-control-input\" checked type=\"checkbox\" id=\"size".$i."\" name=\"size".$i."\" value=\"".$dadosProduto['tamanhoId']."\"/>";
-                                                } else {
-
-                                                    echo "<input class=\"custom-control-input\" type=\"checkbox\" id=\"size".$i."\" name=\"size".$i."\" value=\"".$dadosProduto['tamanhoId']."\"/>";
-                                                }
-                                                // echo  "<input type='checkbox' class='custom-control-input' id=\"size'.$i.'\" name=\"size'.$i.'\" value=\"".$dados['tamanhoId']."\">".$dados['tamanhoNome']."</option>&nbsp&nbsp";
-
-
-
-                                                echo "<label class=\"custom-control-label\" for=\"size".$i."\">".$dadosProduto['tamanhoNome']."</label><br>";
-                                                echo "</div>";
-                                                //<input type="checkbox" class="custom-control-input" id="size" name="payment">
-                                                // <label class="custom-control-label" for="payment-1">S </label>
+                                                mysqli_data_seek($ptamanhos, 0);
                                             }
-                                            */?>
+                                           ?>
 
                                         </div>
                                     </div>
@@ -234,6 +221,7 @@ $result=mysqli_query($con,$sql);
 
                             $categ=0;
                             $tipo=0;
+                            $genero="";
                             if (isset($_GET['search']) or isset($_GET['cat'])  or isset($_GET['tip']) or isset($_GET['gen'])){
                                 $sql.=" where ";
                                 if (isset($_GET['search'])){
@@ -303,163 +291,38 @@ $result=mysqli_query($con,$sql);
 
                 <!-- Side Bar Start -->
                 <div class="col-lg-4 sidebar">
-                    <div class="sidebar-widget category">
+                    <div class="sidebar-widget brands">
                         <h2 class="title">Categoria</h2>
                         <nav class="navbar bg-light">
                             <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="product-list.php?cat=2"><i class="fa fa-child"></i>Criança</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="product-list.php?cat=1"><i class="fa fa-tshirt"></i>Adulto</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="product-list.php?cat=3"><i class="fa fa-mobile-alt"></i>Acessórios</a>
-                                </li>
+                                <?php
+
+                                $sql="Select categoriaId,categoriaNome from categorias";
+                                $result=mysqli_query($con,$sql);
+
+                                while($dados=mysqli_fetch_array($result)){
+                                    $visivel="";
+                                    if ($categ == $dados['categoriaId'])
+                                        $visivel = "style='font-weight: bold;'";
+
+                                    ?>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" <?php echo $visivel; ?>  href="product-list.php?cat=<?php echo $dados['categoriaId']?><?php if ($tipo!=0) echo "&tip=".$tipo; if (strlen($genero)>0) echo "&gen=".$genero;?>">
+                                            <?php echo $dados['categoriaNome']?>
+                                        </a>
+                                    </li>
+
+                                    <?php
+
+
+                                }
+                                //*******************
+
+                                ?>
                             </ul>
                         </nav>
                     </div>
-                    <!--
-                    <div class="sidebar-widget widget-slider">
-                        <div class="sidebar-slider normal-slider">
-                            <div class="product-item">
-                                <div class="product-title">
-                                    <a href="product-detail.php">Product Name</a>
-                                    <div class="ratting">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                </div>
-                                <div class="product-image">
-                                    <a href="product-detail.php">
-                                        <img src="img/product-10.jpg" alt="Product Image">
-                                    </a>
-                                    <div class="product-action">
-                                        <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                        <a href="#"><i class="fa fa-heart"></i></a>
-                                        <a href="product-detail.php"><i class="fa fa-search"></i></a>
-                                    </div>
-                                </div>
-                                <div class="product-price">
-                                    <h3><span>$</span>0.99</h3>
-                                    <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                </div>
-                            </div>
-                            <div class="product-item">
-                                <div class="product-title">
-                                    <a href="product-detail.php">Product Name</a>
-                                    <div class="ratting">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                </div>
-                                <div class="product-image">
-                                    <a href="product-detail.php">
-                                        <img src="img/product-9.jpg" alt="Product Image">
-                                    </a>
-                                    <div class="product-action">
-                                        <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                        <a href="#"><i class="fa fa-heart"></i></a>
-                                        <a href="product-detail.php"><i class="fa fa-search"></i></a>
-                                    </div>
-                                </div>
-                                <div class="product-price">
-                                    <h3><span>$</span>0.99</h3>
-                                    <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                </div>
-                            </div>
-                            <div class="product-item">
-                                <div class="product-title">
-                                    <a href="product-detail.php">Product Name</a>
-                                    <div class="ratting">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                </div>
-                                <div class="product-image">
-                                    <a href="product-detail.php">
-                                        <img src="img/product-8.jpg" alt="Product Image">
-                                    </a>
-                                    <div class="product-action">
-                                        <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                        <a href="#"><i class="fa fa-heart"></i></a>
-                                        <a href="product-detail.php"><i class="fa fa-search"></i></a>
-                                    </div>
-                                </div>
-                                <div class="product-price">
-                                    <h3><span>$</span>0.99</h3>
-                                    <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    -->
-
-                    <div class="sidebar-widget brands">
-                        <h2 class="title">Roupa</h2>
-                        <ul>
-                            <?php
-
-                            $sql="Select tipoId,tipoNome from tipos";
-                            $result=mysqli_query($con,$sql);
-
-                            while($dados=mysqli_fetch_array($result)){
-                                $visivel = "";
-                                if ($categ != 0) {
-                                    $sql="Select * from tipocategorias where tipoCategoriaCategoriaId=".$categ." and tipoCategoriaTipoId=".$dados['tipoId'];
-
-                                    $tc=mysqli_query($con,$sql);
-                                    if (mysqli_num_rows($tc)==0) $visivel=" hidden ";
-                                }
-
-
-                                ?>
-
-                                <li><a <?php echo $visivel;?> href="product-list.php?tip=<?php echo $dados['tipoId']?><?php if (isset($categ)) echo "&cat=".$categ; ?>"><?php echo $dados['tipoNome']?>
-                                    </a><span <?php echo $visivel;?> ><?php echo contaCoisas($con,array($dados['tipoId'])); ?></span></li>
-
-                                <?php
-
-
-                            }
-                            //*******************
-
-                            ?>
-
-                    </div>
-
-                    <!--div class="sidebar-widget brands">
-                        <h2 class="title">Género</h2>
-                        <ul>
-                            <li><a  href="product-list.php?gen=M&tip=<?php echo $tipo?><?php if (isset($categ)) echo "&cat=".$categ; ?>">Homem
-                                </a><span><?php echo contaCoisas($con,array("M"),"produtos",array("produtoGenero")); ?></span></li>
-                            <li><a  href="product-list.php?gen=F&tip=<?php echo $tipo?><?php if (isset($categ)) echo "&cat=".$categ; ?>">Mulher
-                                </a><span><?php echo contaCoisas($con,array("F"),"produtos",array("produtoGenero")); ?></span></li>
-                            <li><a  href="product-list.php?gen=U&tip=<?php echo $tipo?><?php if (isset($categ)) echo "&cat=".$categ; ?>">Unissexo
-                                </a><span><?php echo contaCoisas($con,array("U"),"produtos",array("produtoGenero")); ?></span></li>
-                        </ul>
-                    </div>
-                    <div class="sidebar-widget brands">
-                        <h2 class="title">Tamanho</h2>
-                        <ul>
-                            <li><a href="#">S</a><span>(34)</span></li>
-                            <li><a href="#">M</a><span>(67)</span></li>
-                            <li><a href="#">L</a><span>(74)</span></li>
-                            <li><a href="#">XL</a><span>(89)</span></li>
-                        </ul>
-                    </div-->
-
-
-
                 </div>
             </div>
         </div>

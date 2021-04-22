@@ -43,6 +43,7 @@ while ($dados=mysqli_fetch_array($result)){
     }
 
 }
+//var_dump($_POST);
 
  //or die(mysqli_error($con));
 header("location:editing-list.php");
