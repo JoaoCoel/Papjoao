@@ -84,9 +84,9 @@ top();
 $sql="Select produtoId,produtoNome,produtoPreco,produtoDesconto,produtoGenero,categorias.categoriaNome as categ,tipos.tipoNome as tipo, produtoImagemURL from produtos left join categorias 
       on produtoTipoCategoriaCategoriaId=categoriaId left join tipos on produtoTipoCategoriaTipoId=tipoId";
 
-$categ=null;
-$tipo=null;
-$genero=null;
+$categ=0;
+$tipo=0;
+$genero=0;
 if (isset($_GET['search']) or isset($_GET['cat'])  or isset($_GET['tip']) or isset($_GET['gen'])){
     $sql.=" where ";
     if (isset($_GET['search'])){
