@@ -3,6 +3,22 @@ include_once ("includes/body.inc.php");
 top();
 //ver pap do filipe e ver https://drakelings.bluedrake42.com/index.php?%2Ffile%2F28-stalker-anomaly%2F
 $sql="select"
+
+$lista="(0";
+if(isset($_SESSION['carrinho'])){
+    foreach ($_SESSION['carrinho'] as $produto){
+        $lista.=",".$produto;
+    }
+}
+
+$lista.=")";
+
+$sql="select * from produtos inner join imagens on produtoId = imagemProdutoId
+                where produtoId in $lista and imagemDestaque='sim'";
+$result=mysqli_query($con,$sql);
+
+
+
 ?>
 
 
@@ -59,31 +75,42 @@ return true;
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">
+                                    <?php
+                                    $i=1;
+                                    while ($dados=mysqli_fetch_array($result)){
+                                        ?>
                                         <tr>
-                                            <?php
-                                            while ($dados=mysqli_fetch_array($result)){
-                                            }
-                                            ?>
-                                            <td>
-                                                <div class="img">
-                                                    <a href="product-detail.php"><img src="img/product-1.jpg" alt="Image"></a>
-                                                    <p>Produto</p>
-                                                </div>
-                                            </td>
-                                            <td>$0.99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
-                                            <td>$0.99</td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
+                                            <th width="3%"><?php echo $i++?></th>
+                                            <th width="50%"><?php echo $dados['produtoNome']?></th>
+                                            <th width="22%"><img width="80" src="<?php echo $dados['imagemURL']?>"</th>
+                                            <th ><?php echo $dados['produtoPreco']?></th>
+                                            <th >3</th>
+                                            <th width="5%">&nbsp;</th>
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="img">
+                                        <?php
+                                    }
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <div class="img">
+                                                <a href="product-detail.php"><img src="img/product-1.jpg" alt="Image"></a>
+                                                <p>Produto</p>
+                                            </div>
+                                        </td>
+                                        <td>$0.99</td>
+                                        <td>
+                                            <div class="qty">
+                                                <button class="btn-minus"><i class="fa fa-minus"></i></button>
+                                                <input type="text" value="1">
+                                                <button class="btn-plus"><i class="fa fa-plus"></i></button>
+                                            </div>
+                                        </td>
+                                        <td>$0.99</td>
+                                        <td><button><i class="fa fa-trash"></i></button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="img">
                                                     <a href="product-detail.php"><img src="img/product-2.jpg" alt="Image"></a>
                                                     <p>Produto</p>
                                                 </div>

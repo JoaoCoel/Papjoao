@@ -8,6 +8,7 @@ include_once("config.inc.php");
 $con=mysqli_connect(HOST,USER,PWD,DATABASE);
 $con->set_charset("utf8");
 session_start();
+
 function top(){
     ?>
     <!DOCTYPE html>
@@ -81,7 +82,7 @@ function top(){
 
                     if(isset($_SESSION['id'])){
                         $con=mysqli_connect("localhost", "root","","pap2021drk");
-                        $sql="select * from utilizadores inner join perfis on utilizadorId=perfilUserId where utilizadorId=".$_SESSION['id'];
+                        $sql="select * from utilizadores inner join perfis on utilizadorId=perfilUtilizadorId where utilizadorId=".$_SESSION['id'];
                         $res = mysqli_query($con, $sql);
                         $dados=mysqli_fetch_array($res);
                     ?>

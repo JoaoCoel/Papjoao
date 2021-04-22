@@ -118,6 +118,54 @@ $result=mysqli_query($con,$sql) or die (mysqli_error($con));
 
 while($dados=mysqli_fetch_array($result)){
 
+/*
+https://phpdelusions.net/mysqli_examples/search_filter
+
+
+    $categ=0;
+    $tipo=0;
+    $genero=0;
+    if (isset($_GET['search']) or isset($_GET['cat'])  or isset($_GET['tip']) or isset($_GET['gen'])){
+        $sql.=" where ";
+        if (isset($_GET['search'])){
+            $filtro = $_GET['search'];
+            $sql.=" produtoNome like \"".$filtro."%\"";
+            $sql .= " and ";
+        }
+        if (($_GET['cat'])==0) {
+
+        } else {
+            $categ = $_GET['cat'];
+            $sql .= " produtoTipoCategoriaCategoriaId=". $categ;
+            $sql .= " and ";
+        }
+
+        if (($_GET['tip'])==0) {
+
+        } else {
+            $tipo = $_GET['tip'];
+            $sql .= " and produtoTipoCategoriaTipoId=". $tipo;
+        }
+
+        if (($_GET['gen'])==0) {
+
+        } else{
+            $genero = $_GET['gen'];
+            $sql .= " and produtoGenero like \"%".$genero."%\"";
+        }
+
+
+        if (substr($sql, -5) == " and ") $sql = substr($sql,0, strlen($sql)-5);
+
+    }
+
+    $result=mysqli_query($con,$sql) or die (mysqli_error($con));
+
+    while($dados=mysqli_fetch_array($result)){
+
+<a  href="product-list.php?gen=M<?php if ($tipo>0) ?>&tip=<?php echo $tipo?><?php if (isset($categ)) echo "&cat=".$categ; ?>
+        */
+
 ?>
 
                     <div class="col-md-4">
@@ -182,26 +230,65 @@ while($dados=mysqli_fetch_array($result)){
 
 
                 <!-- Pagination Start -->
-                <div class="col-md-12">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Anterior</a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Próximo</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <!-- Pagination Start -->
-
+                    <div class="col-md-12">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Próximo</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
+            <!-- Pagination Start -->
+
+            <!--div class="payment-method">
+                <div class="custom-control custom-checkbox">
+                    <?php
+/*
+                    while ($dados=mysqli_fetch_array($tamanhos)){
+                        $i=$dados['tamanhoId'];
+                        $x=0;
+                        while ($dt=mysqli_fetch_array($ptamanhos)){
+                            if ($dt['produtoTamanhoTamanhoId']==$i ){
+                                $x=1;
+                                break;
+                            }
+
+                        }
+
+                        echo "<div class=\"custom-control custom-radio\">";
+                        if ($x == 1) {
+                            echo "<input class=\"custom-control-input\" checked type=\"checkbox\" id=\"size".$i."\" name=\"size".$i."\" value=\"".$dados['tamanhoId']."\"/>";
+                        } else {
+
+                            echo "<input class=\"custom-control-input\" type=\"checkbox\" id=\"size".$i."\" name=\"size".$i."\" value=\"".$dados['tamanhoId']."\"/>";
+                        }
+                        // echo  "<input type='checkbox' class='custom-control-input' id=\"size'.$i.'\" name=\"size'.$i.'\" value=\"".$dados['tamanhoId']."\">".$dados['tamanhoNome']."</option>&nbsp&nbsp";
+
+
+
+                        echo "<label class=\"custom-control-label\" for=\"size".$i."\">".$dados['tamanhoNome']."</label><br>";
+                        echo "</div>";
+                        //<input type="checkbox" class="custom-control-input" id="size" name="payment">
+                        // <label class="custom-control-label" for="payment-1">S </label>
+                    }*/
+                    ?>
+
+                </div>
+                <div class="payment-content" id="payment-1-show">
+                </div>
+            </div-->
+
             <!-- Side Bar Start -->
+
             <div class="col-lg-4 sidebar">
                 <div class="sidebar-widget category">
                     <h2 class="title">Categoria</h2>
@@ -307,6 +394,7 @@ while($dados=mysqli_fetch_array($result)){
                 <div class="sidebar-widget brands">
                     <h2 class="title">Roupa</h2>
                     <ul>
+
                         <?php
 
                         $sql="Select tipoId,tipoNome from tipos";
@@ -334,7 +422,6 @@ while($dados=mysqli_fetch_array($result)){
                                 //*******************
 
                         ?>
-
                 </div>
 
                 <div class="sidebar-widget brands">

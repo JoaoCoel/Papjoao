@@ -6,7 +6,7 @@ $con=mysqli_connect(HOST,USER,PWD,DATABASE);
 $sql="Select * from marcas";
 $result=mysqli_query($con,$sql);
 ?>
-<a href="../admin/admin.php"
+<a href="admin.php"
 <button type="button" class="btn btn-light">Voltar</button></a>
 
 <script>

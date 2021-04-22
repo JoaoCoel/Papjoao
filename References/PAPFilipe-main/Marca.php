@@ -25,7 +25,7 @@ $result=mysqli_query($con,$sql);
                         <div class="col-lg-4">
 
 
-                            <a href="ListaProduto.php?id=<?php echo $dados["produtoId"] ?>">
+                            <a href="ListaProduto.php?id=<?php echo $dados[">
                                 <img class="d-block w-100" src="<?php echo $dados["imagemURL"]?>">
                             </a>
                             <h3><?php echo $dados["produtoNome"]?><span class="pull-right"></span></h3>

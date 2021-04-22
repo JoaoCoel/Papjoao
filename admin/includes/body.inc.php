@@ -1,7 +1,15 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors',1);
+error_reporting(E_ALL);
+
 include_once("../includes/config.inc.php");
 $con=mysqli_connect(HOST,USER,PWD,DATABASE);
 $con->set_charset("utf8");
+
+
+session_start();
+
 function top(){
     ?>
     <!DOCTYPE html>
@@ -66,28 +74,40 @@ function top(){
 
 
                     </div>
-                    <div class="navbar-nav ml-auto">
-                        <div class="nav-item dropdown">
-                            <?php
-                            session_start();
-                            if (!isset($_SESSION['id'])){
+                    <?php
 
-                                ?>
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><?php //echo $_SESSION['nome']?></a>
+                    if(isset($_SESSION['id'])){
+                        $con=mysqli_connect("localhost", "root","","pap2021drk");
+                        $sql="select * from utilizadores inner join perfis on utilizadorId=perfilUtilizadorId where utilizadorId=".$_SESSION['id'];
+                        $res = mysqli_query($con, $sql);
+                        $dados=mysqli_fetch_array($res);
+                        ?>
+                        <div class="navbar-nav ml-auto">
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><span><?php echo $dados['perfilNome']?></span>&nbsp;
+                                    <img src="<?php echo $dados['perfilAvatarURL'] ?>" style="width: 40px; height: 40px"></a>
                                 <div class="dropdown-menu">
+                                    <a href="my-account.php" class="dropdown-item">Perfil</a>
                                     <a href="logout.php" class="dropdown-item">Logout</a>
-                                </div>
 
-                                <?php
-                            }else{
-                            ?>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }else{
+                        ?>
+
+                        <div class="navbar-nav ml-auto">
+                            <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Conta do utilizador</a>
                                 <div class="dropdown-menu">
                                     <a href="login.php" class="dropdown-item">Login & Registar</a>
                                 </div>
-                                <?php
-                            }
-                            ?>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
                             <!--a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Conta do utilizador</a>
                             <div class="dropdown-menu">
                                 <a href="login.php" class="dropdown-item">Login & Registar</a>
