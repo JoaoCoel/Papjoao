@@ -340,15 +340,44 @@ https://phpdelusions.net/mysqli_examples/search_filter
                         <div class="sidebar-widget brands">
                             <h2 class="title">Tamanho</h2>
                             <ul>
+
+                                <?php
+
+                                $sql="Select tipoId,tipoNome from tipos";
+                                $result=mysqli_query($con,$sql);
+
+                                while($dados=mysqli_fetch_array($result)){
+                                    $visivel = "";
+                                    if ($categ != 0) {
+                                        $sql="Select * from tamanhos where tipoCategoriaCategoriaId=".$categ." and tipoCategoriaTipoId=".$dados['tipoId'];
+
+                                        $tc=mysqli_query($con,$sql);
+                                        if (mysqli_num_rows($tc)==0) $visivel=" hidden ";
+                                    }
+
+
+                                    ?>
+
+                                    <li>
+                                        <a <?php echo $visivel;?> href="product-list.php?tip=<?php echo $dados['tipoId']?>
+                                <?php if ($categ>0) echo "&cat=".$categ; if (strlen($genero)>0) echo "&gen=".$genero;?>"><?php echo $dados['tipoNome']?>
+                                        </a><span <?php echo $visivel;?> ><?php echo contaCoisas($con,array($dados['tipoId'])); ?></span>
+                                    </li>
+
+                                    <?php
+
+
+                                }
+                                //*******************
+
+                                ?>
+                            <ul>
                                 <li><a href="#">S</a><span>(34)</span></li>
                                 <li><a href="#">M</a><span>(67)</span></li>
                                 <li><a href="#">L</a><span>(74)</span></li>
                                 <li><a href="#">XL</a><span>(89)</span></li>
                             </ul>
                         </div>
-
-
-
             </div>
         </div>
     </div>

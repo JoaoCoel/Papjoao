@@ -77,7 +77,24 @@ top();
                                                 echo "<td align='center'>".$dados['categ']."</td>";
                                                 echo "<td align='center'>".$dados['tipo']."</td>";
                                                 echo "<td align='center'>".$dados['produtoGenero']."</td>";
-                                                echo "<td align='center'>".$dados['produtoDestaque']."</td>";
+                                                //echo "<td align='center'>".$dados['produtoDestaque']."</td>";
+                                                ?>
+                                        <td align="center">
+                                            <form action="confirm-edit-destaque.php" method="post" enctype="multipart/form-data">
+                                                <select type="submit" class="custom-select" id="produtoDestaque" name="produtoDestaque">
+                                                    <?php
+                                                    if ($dados['produtoDestaque']=='Sim') {
+                                                        echo "<option selected value='Sim'>Sim</option>";
+                                                        echo "<option value='Nao'>Não</option>";
+                                                    }else{
+                                                        echo "<option  value='Sim'>Sim</option>";
+                                                        echo "<option selected value='Nao'>Não</option>";
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </form>
+                                        </td>
+                                                <?php
                                                 echo "<td width='20%' align='center'><img width=100px src=\"../".$dados['produtoImagemURL']."\"></td>";
                                                 //echo "<td width='10%'><a href='edit-product.php?id=".$dados['produtoId']."'/a>Editar</td>";
                                                 //echo "<td width='10%'><a href='delete-product.php?id=".$dados['produtoId']."' /a>Eliminar</td>";
