@@ -21,7 +21,7 @@ $tamanhos=mysqli_query($con,$sql);
 $sql="Select * from produtotamanhos where produtoTamanhoProdutoId=".$id;
 $ptamanhos=mysqli_query($con,$sql);
 
-$sql2="select * from produtos where produtoTipoCategoriaTipoId=".$dadosProduto['produtoTipoCategoriaTipoId'];
+$sql2="select * from produtos where produtoTipoCategoriaTipoId=".$dadosProduto['produtoTipoCategoriaTipoId']." and produtoId!=".$id;
 $result2=mysqli_query($con,$sql2);
 
 ?>
