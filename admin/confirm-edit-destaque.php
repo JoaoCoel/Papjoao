@@ -1,7 +1,8 @@
 <?php
 include_once ("includes/body.inc.php");
-$id=intval($_POST['idProduto']);
+$id=intval($_POST['produtoId']);
 $destaque=($_POST['produtoDestaque']);
 
-$sql="Update produtos set produtoDestaque='".$destaque."'";
-mysqli_query($con,$sql) or die(mysqli_error($con));
+$sql="Update produtos set produtoDestaque='".$destaque."' where produtoId=".$id;
+mysqli_query($con,$sql);
+header("location:index.php");
