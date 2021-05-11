@@ -5,7 +5,7 @@ include_once ("includes/body.inc.php");
 //var_dump($_POST);
 //var_dump($_FILES);
 
-$sliURL=($_POST['SlideshowImagemURL']);
+$sliURL=($_POST['slideshowImagemURL']);
 
 //$sql="insert into tipoCategorias(tipoCategoriaCategoriaId,tipoCategoriaTipoId) values ('".(int)$categoriaId."','".(int)$tipoId."')";
 //mysqli_query($con,$sql);// or die(mysqli_error($con));

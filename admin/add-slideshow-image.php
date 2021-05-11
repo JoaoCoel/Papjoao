@@ -21,7 +21,7 @@ $slideshow=mysqli_query($con,$sql);
             </div>
         </div>
         <!-- Breadcrumb End -->
-<form action="confirm-add-category.php" method="post" enctype="multipart/form-data">
+<form action="confirm-add-slideshow-image.php" method="post" enctype="multipart/form-data">
         <!-- Checkout Start -->
         <div class="checkout">
             <div class="container-fluid"> 
@@ -32,7 +32,10 @@ $slideshow=mysqli_query($con,$sql);
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label for="img">Selecione uma imagem para o slideshow:</label><br>
-                                        <input type="file" id="img" name="SlideshowImagemURL" accept="image/*">
+                                        <input type="file" id="img" name="slideshowImagemURL" accept="image/*">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <br>
                                     </div>
                                     <div class="checkout-payment">
                                         <div class="checkout-btn">

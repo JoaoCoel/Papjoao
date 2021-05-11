@@ -13,6 +13,10 @@ top();
         }
     }
 
+    function add()
+    {
+        window.location.href = "add-slideshow-image.php";
+    }
 
 </script>
 
@@ -54,7 +58,9 @@ top();
                 <div class="col-md-12">
                     <div class="table-responsive">
                         <div class="container">
-                            <a class="ml-5" href="add-slideshow-image.php">Adicionar</a>
+                            <?php
+                            echo "<button type='button' class='btn btn-light' onclick=\"add();\" style='background: #FF6F61; color: #FFF'>Adicionar</button>";
+                            ?>
                             <table class="table table-bordered">
                                 <tr>
                                     <thead class="thead-dark">
@@ -65,7 +71,7 @@ top();
                                 </tr>
                                         <tr>
                                             <?php
-                                            $sql="Select categoriaId,categoriaNome from categorias";
+                                            $sql="Select slideshowImagemId,slideshowImagemURL from slideshowImagens";
 
                                             $result=mysqli_query($con,$sql);
 

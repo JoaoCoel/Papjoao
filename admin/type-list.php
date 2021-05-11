@@ -13,6 +13,10 @@ top();
         }
     }
 
+    function add()
+    {
+        window.location.href = "add-type.php";
+    }
 
 </script>
 
@@ -54,7 +58,9 @@ top();
                 <div class="col-md-12">
                     <div class="table-responsive">
                         <div class="container">
-                            <a class="ml-5" href="add-type.php">Adicionar</a>
+                            <?php
+                            echo "<button type='button' class='btn btn-light' onclick=\"add();\" style='background: #FF6F61; color: #FFF'>Adicionar</button>";
+                            ?>
                             <table class="table table-bordered">
                                 <tr>
                                     <thead class="thead-dark">
