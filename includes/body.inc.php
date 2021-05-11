@@ -92,11 +92,11 @@ if(isset($_SESSION['id'])){
     $dados=mysqli_fetch_array($res);
     ?>
                                 <a href="wishlist.php" class="dropdown-item">Lista de Desejos</a>
-                                <a href="contact.html" class="dropdown-item">Contacte-nos</a>
+                                <a href="contact.php" class="dropdown-item">Contacte-nos</a>
     <?php
 }else{
     ?>
-    <a href="contact.html" class="dropdown-item">Contacte-nos</a>
+    <a href="contact.php" class="dropdown-item">Contacte-nos</a>
     <?php
 }
     ?>

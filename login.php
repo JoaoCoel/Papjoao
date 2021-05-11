@@ -25,18 +25,44 @@ $res = mysqli_query($con, $sql) ;
                     <button><i class="fa fa-search"></i></button>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="user">
-                    <a href="wishlist.php" class="btn wishlist">
-                        <i class="fa fa-heart"></i>
-                        <span>(0)</span>
-                    </a>
-                    <a href="cart.php" class="btn cart">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span>(0)</span>
-                    </a>
+            <?php
+
+            if(isset($_SESSION['id'])){
+                $con=mysqli_connect("localhost", "root","","pap2021drk");
+                $sql="select * from utilizadores inner join perfis on utilizadorId=perfilUtilizadorId where utilizadorId=".$_SESSION['id'];
+                $res = mysqli_query($con, $sql);
+                $dados=mysqli_fetch_array($res);
+                ?>
+                <div class="col-md-3">
+                    <div class="user">
+                        <a href="wishlist.php" class="btn wishlist">
+                            <i class="fa fa-heart"></i>
+                            <span>(0)</span>
+                        </a>
+                        <a href="cart.php" class="btn cart">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>(0)</span>
+                        </a>
+                    </div>
                 </div>
-            </div>
+                <?php
+            }else{
+                ?>
+                <div class="col-md-3">
+                    <div class="user">
+                        <a href="login.php" class="btn wishlist">
+                            <i class="fa fa-heart"></i>
+                            <span>(0)</span>
+                        </a>
+                        <a href="login.php" class="btn cart">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>(0)</span>
+                        </a>
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
         </div>
     </div>
 </div>
