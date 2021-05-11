@@ -71,14 +71,10 @@ $res = mysqli_query($con, $sql) ;
                     <div class="col-lg-6">    
                         <div class="register-form">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
 
-                                    <label>Primeiro Nome</label>
-                                    <input class="form-control" type="text" placeholder="First Name">
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Último Nome"</label>
-                                    <input class="form-control" type="text" placeholder="Last Name">
+                                    <label>Nome de utilizador</label>
+                                    <input class="form-control" type="text" placeholder="Name">
                                 </div>
                                 <div class="col-md-6">
                                     <label>E-mail</label>
@@ -101,14 +97,14 @@ $res = mysqli_query($con, $sql) ;
                                         <option>Algeria</option>
                                     </select>
                                 </div>
-                                <div class="col-md-6">
+                                <!--div class="col-md-6">
                                     <label>Cidade</label>
                                     <input class="form-control" type="text" placeholder="City">
                                 </div>
                                 <div class="col-md-6">
                                     <label>Estado</label>
                                     <input class="form-control" type="text" placeholder="State">
-                                </div>
+                                </div-->
                                 <div class="col-md-6">
                                     <label>Código ZIP</label>
                                     <input class="form-control" type="text" placeholder="ZIP Code">

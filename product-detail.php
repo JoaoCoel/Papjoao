@@ -2,6 +2,8 @@
 include_once ("includes/body.inc.php");
 top();
 
+
+
 $id=intval($_GET['id']);
 //$idTipo=intval($_GET['idTipo']);
 
