@@ -25,7 +25,7 @@ if($imagem!=''){
 
 $sql="insert into produtos (produtoNome,produtoPreco,produtoDesconto,produtoDestaque,produtoImagemURL,produtoTipoCategoriaCategoriaId,produtoTipoCategoriaTipoId,produtoGenero,produtoDescricao)";
 $sql .= " values('".$nome."',".$preco.",".$disc.",'Nao','".$imagemUrl."',".$categoriaId.",".$tipoId.",'".$genero."','".$desc."');";
-mysqli_query($con,$sql) or die(mysqli_error($con));
+mysqli_query($con,$sql); //or die(mysqli_error($con))
 
 
 

@@ -35,6 +35,14 @@ $result2 = mysqli_query($con, $sql2);
                     </div>
                 </form>
             </div>
+            <?php
+
+            if(isset($_SESSION['id'])){
+            $con=mysqli_connect("localhost", "root","","pap2021drk");
+            $sql="select * from utilizadores inner join perfis on utilizadorId=perfilUtilizadorId where utilizadorId=".$_SESSION['id'];
+            $res = mysqli_query($con, $sql);
+            $dados=mysqli_fetch_array($res);
+            ?>
             <div class="col-md-3">
                 <div class="user">
                     <a href="wishlist.php" class="btn wishlist">
@@ -47,6 +55,24 @@ $result2 = mysqli_query($con, $sql2);
                     </a>
                 </div>
             </div>
+                <?php
+            }else{
+            ?>
+            <div class="col-md-3">
+                <div class="user">
+                    <a href="login.php" class="btn wishlist">
+                        <i class="fa fa-heart"></i>
+                        <span>(0)</span>
+                    </a>
+                    <a href="login.php" class="btn cart">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span>(0)</span>
+                    </a>
+                </div>
+            </div>
+                <?php
+            }
+            ?>
         </div>
     </div>
 </div>

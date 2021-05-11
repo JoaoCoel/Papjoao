@@ -80,7 +80,7 @@ top();
 
                                                     echo "<tr>";
                                                     echo "<td align='center'>".$dados['slideshowImagemId']."</td>";
-                                                    echo "<td align='center'>".$dados['slideshowImagemURL']."</td>";
+                                                    echo "<td width='20%' align='center'><img width=100px src=\"..".$dados['slideshowImagemURL']."\"></td>";
                                                     echo "<td align='center'><button type='button' class='btn-cart' onclick=\"confirmDelete(".$dados['slideshowImagemId'].");\">Eliminar</button></td>";
                                                     echo "</tr>";
 
