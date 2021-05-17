@@ -2,8 +2,6 @@
 include_once ("includes/body.inc.php");
 top();
 
-
-
 ?>
 <script>
     function searchName()
@@ -114,7 +112,21 @@ if (isset($_GET['search']) or isset($_GET['cat'])  or isset($_GET['tip']) or iss
 
 }
 
+
 $result=mysqli_query($con,$sql) or die (mysqli_error($con));
+
+// $sql1 = "Select produtoId,produtoNome,produtoPreco,produtoDesconto, produtoImagemURL from produtos order by produtoId DESC";
+//$result1 = mysqli_query($con, $sql);
+
+// $sql2 = "Select produtoId,produtoNome,produtoPreco,produtoDesconto, produtoImagemURL from produtos order by produtoPreco DESC";
+//$result2 = mysqli_query($con, $sql);
+
+// $sql3 = "Select produtoId,produtoNome,produtoPreco,produtoDesconto, produtoImagemURL from produtos order by produtoPreco ASC";
+//$result3 = mysqli_query($con, $sql);
+
+// $sql4 = "Select produtoId,produtoNome,produtoPreco,produtoDesconto, produtoImagemURL from produtos order by produtoNome DESC";
+//$result4 = mysqli_query($con, $sql);
+
 
 while($dados=mysqli_fetch_array($result)){
 
@@ -194,8 +206,6 @@ https://phpdelusions.net/mysqli_examples/search_filter
                                     <a class="page-link" href="#" tabindex="-1">Anterior</a>
                                 </li>
                                 <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
                                 <li class="page-item">
                                     <a class="page-link" href="#">Próximo</a>
                                 </li>

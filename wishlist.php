@@ -27,7 +27,6 @@ top();
                                         <tr>
                                             <th>Produto</th>
                                             <th>Preço</th>
-                                            <th>Quantidade</th>
                                             <th>Adicionar ao Cart</th>
                                             <th>Remover</th>
                                         </tr>
@@ -41,13 +40,6 @@ top();
                                                 </div>
                                             </td>
                                             <td>$0.99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
                                             <td><button class="btn-cart">Adicionar ao Cart</button></td>
                                             <td><button><i class="fa fa-trash"></i></button></td>
                                         </tr>
@@ -70,13 +62,6 @@ top();
                                                 </div>
                                             </td>
                                             <td>$0.99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
                                             <td><button class="btn-cart">Adicionar ao Cart</button></td>
                                             <td><button><i class="fa fa-trash"></i></button></td>
                                         </tr>
@@ -88,13 +73,6 @@ top();
                                                 </div>
                                             </td>
                                             <td>$0.99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
                                             <td><button class="btn-cart">Adicionar ao Cart</button></td>
                                             <td><button><i class="fa fa-trash"></i></button></td>
                                         </tr>
@@ -106,13 +84,6 @@ top();
                                                 </div>
                                             </td>
                                             <td>$0.99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
                                             <td><button class="btn-cart">Adicionar ao Cart</button></td>
                                             <td><button><i class="fa fa-trash"></i></button></td>
                                         </tr>

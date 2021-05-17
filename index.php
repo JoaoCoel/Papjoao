@@ -37,11 +37,11 @@ $result2 = mysqli_query($con, $sql2);
             </div>
             <?php
 
-            if(isset($_SESSION['id'])){
-            $con=mysqli_connect("localhost", "root","","pap2021drk");
-            $sql="select * from utilizadores inner join perfis on utilizadorId=perfilUtilizadorId where utilizadorId=".$_SESSION['id'];
-            $res = mysqli_query($con, $sql);
-            $dados=mysqli_fetch_array($res);
+            //if(isset($_SESSION['id'])){
+           // $con=mysqli_connect("localhost", "root","","pap2021drk");
+           // $sql="select * from utilizadores inner join perfis on utilizadorId=perfilUtilizadorId where utilizadorId=".$_SESSION['id'];
+           // $res = mysqli_query($con, $sql);
+           // $dados=mysqli_fetch_array($res);
             ?>
             <div class="col-md-3">
                 <div class="user">
@@ -56,9 +56,9 @@ $result2 = mysqli_query($con, $sql2);
                 </div>
             </div>
                 <?php
-            }else{
+            //}else{
             ?>
-            <div class="col-md-3">
+            <!--div class="col-md-3">
                 <div class="user">
                     <a href="login.php" class="btn wishlist">
                         <i class="fa fa-heart"></i>
@@ -69,9 +69,9 @@ $result2 = mysqli_query($con, $sql2);
                         <span>(0)</span>
                     </a>
                 </div>
-            </div>
+            </div-->
                 <?php
-            }
+           // }
             ?>
         </div>
     </div>
@@ -92,7 +92,7 @@ $result2 = mysqli_query($con, $sql2);
                                     <a class="nav-link" href="#destaques"><i class="fa fa-shopping-bag"></i>Em Destaque</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#recentes"><i class="fa fa-plus-square"></i>Novos Produtos</a>
+                                    <a class="nav-link" href="#recentes"><i class="fa fa-plus-square"></i>Produtos Recentes</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="product-list.php?cat=2"><i class="fa fa-child"></i>Crianças</a>

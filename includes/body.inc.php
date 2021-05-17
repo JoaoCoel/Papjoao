@@ -67,39 +67,14 @@ function top(){
                     <div class="navbar-nav mr-auto" >
                         <a href="index.php" class="nav-item nav-link active">Pagina Principal</a>
                         <a href="admin/editing-list.php" class="nav-item nav-link">Editar Produtos</a>
-    <?php
-
-if(isset($_SESSION['id'])){
-    $con=mysqli_connect("localhost", "root","","pap2021drk");
-    $sql="select * from utilizadores inner join perfis on utilizadorId=perfilUtilizadorId where utilizadorId=".$_SESSION['id'];
-    $res = mysqli_query($con, $sql);
-    $dados=mysqli_fetch_array($res);
-    ?>
                         <a href="cart.php" class="nav-item nav-link">Carrinho</a>
-    <?php
-}
-    ?>
+
                         <!--a href="my-account.php" class="nav-item nav-link">Minha Conta</a-->
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mais Paginas</a>
                             <div class="dropdown-menu">
-    <?php
-
-if(isset($_SESSION['id'])){
-    $con=mysqli_connect("localhost", "root","","pap2021drk");
-    $sql="select * from utilizadores inner join perfis on utilizadorId=perfilUtilizadorId where utilizadorId=".$_SESSION['id'];
-    $res = mysqli_query($con, $sql);
-    $dados=mysqli_fetch_array($res);
-    ?>
                                 <a href="wishlist.php" class="dropdown-item">Lista de Desejos</a>
                                 <a href="contact.php" class="dropdown-item">Contacte-nos</a>
-    <?php
-}else{
-    ?>
-    <a href="contact.php" class="dropdown-item">Contacte-nos</a>
-    <?php
-}
-    ?>
                             </div>
                         </div>
                     </div>
@@ -109,7 +84,7 @@ if(isset($_SESSION['id'])){
                     if(isset($_SESSION['id'])){
                         $con=mysqli_connect("localhost", "root","","pap2021drk");
                         $sql="select * from utilizadores inner join perfis on utilizadorId=perfilUtilizadorId where utilizadorId=".$_SESSION['id'];
-                        $res = mysqli_query($con, $sql);
+                        $res=mysqli_query($con, $sql);
                         $dados=mysqli_fetch_array($res);
                     ?>
                         <div class="navbar-nav ml-auto">
@@ -172,7 +147,7 @@ function bottom(){
 
     <!-- Back to Top -->
     <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-
+    </body>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -181,7 +156,7 @@ function bottom(){
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    </body>
+
     </html>
     <?php
 }
