@@ -5,4 +5,4 @@ $destaque=($_POST['produtoDestaque']);
 
 $sql="Update produtos set produtoDestaque='".$destaque."' where produtoId=".$id;
 mysqli_query($con,$sql);
-header("location:index.php");
+header("location:editing-list.php");

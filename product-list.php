@@ -25,35 +25,8 @@ top();
 <!-- Breadcrumb End -->
 
 <!-- Product List Start -->
-<div class="product-view">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="product-view-top">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <form action="product-list.php?search=$_POST['search']">
-                                        <div class="product-search">
-                                            <input type="text" id="search" name="search" value="">
-                                            <button type="submit"><i class="fa fa-search"></i></button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="product-short">
-                                        <div class="dropdown">
-                                            <div class="dropdown-toggle" data-toggle="dropdown">Ordenar produto por</div>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a href="#" class="dropdown-item">A-Z</a>
-                                                <a href="#" class="dropdown-item">Mais recentes</a>
-                                                <a href="#" class="dropdown-item">Preço +</a>
-                                                <a href="#" class="dropdown-item">Preço -</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
+
                                 <!--div-- class="col-md-4">
                                     <div class="product-price-range">
                                         <div class="dropdown">
@@ -73,9 +46,7 @@ top();
                                         </div>
                                     </div>
                                 </div-->
-                            </div>
-                        </div>
-                    </div>
+
 
 <?php
 
@@ -85,6 +56,7 @@ $sql="Select produtoId,produtoNome,produtoPreco,produtoDesconto,produtoGenero,ca
 $categ=0;
 $tipo=0;
 $genero="";
+$filtro ="";
 if (isset($_GET['search']) or isset($_GET['cat'])  or isset($_GET['tip']) or isset($_GET['gen'])){
     $sql.=" where ";
     if (isset($_GET['search'])){
@@ -111,6 +83,21 @@ if (isset($_GET['search']) or isset($_GET['cat'])  or isset($_GET['tip']) or iss
     if (substr($sql, -5) == " and ") $sql = substr($sql,0, strlen($sql)-5);
 
 }
+$ord = 0;
+if (isset($_GET['ord'])) {
+    $ord = $_GET['ord'];
+    if ($ord == 1) {
+        $sql .= " order by produtoNome ASC";
+    } elseif ($ord == 2)  {
+        $sql .= " order by produtoId DESC";
+    } elseif ($ord == 3)  {
+        $sql .= " order by produtoPreco DESC";
+    } elseif ($ord == 4)  {
+        $sql .= " order by produtoPreco ASC";
+    }
+
+
+}
 
 
 $result=mysqli_query($con,$sql) or die (mysqli_error($con));
@@ -128,6 +115,49 @@ $result=mysqli_query($con,$sql) or die (mysqli_error($con));
 //$result4 = mysqli_query($con, $sql);
 
 
+?>
+<script>
+    function submeteUrl(){
+        let getStr = "?" + document.getElementById("getParams").value;
+        getStr += "&search=" + document.getElementById("search").value;
+        window.location.href = "product-list.php" + getStr;
+    }
+</script>
+<div class="product-view">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-view-top">
+                            <div class="row">
+                                <div class="col-md-4">
+
+                                        <div class="product-search">
+                                            <input type="text" id="search" name="search" value="">
+                                            <input hidden type="text" id="getParams" name="getParams" value="<?php if ($categ>0) echo "&cat=".$categ; if ($tipo!=0) echo "&tip=".$tipo; if (strlen($genero)>0) echo "&gen=".$genero;?>">
+                                            <button id="submit" type="button" onclick="submeteUrl()"><i class="fa fa-search"></i></button>
+                                        </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="product-short">
+                                        <div class="dropdown">
+                                            <div class="dropdown-toggle" data-toggle="dropdown">Ordenar produto por</div>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a href="product-list.php?ord=1<?php if (strlen($filtro)>0) echo "&search=".$filtro; if ($categ>0) echo "&cat=".$categ; if ($tipo!=0) echo "&tip=".$tipo; if (strlen($genero)>0) echo "&gen=".$genero;?>" class="dropdown-item">A-Z</a>
+                                                    <a href="product-list.php?ord=2<?php if (strlen($filtro)>0) echo "&search=".$filtro; if ($categ>0) echo "&cat=".$categ; if ($tipo!=0) echo "&tip=".$tipo; if (strlen($genero)>0) echo "&gen=".$genero;?>" class="dropdown-item">Mais recentes</a>
+                                                    <a href="product-list.php?ord=3<?php if (strlen($filtro)>0) echo "&search=".$filtro; if ($categ>0) echo "&cat=".$categ; if ($tipo!=0) echo "&tip=".$tipo; if (strlen($genero)>0) echo "&gen=".$genero;?>" class="dropdown-item">Preço +</a>
+                                                    <a href="product-list.php?ord=4<?php if (strlen($filtro)>0) echo "&search=".$filtro; if ($categ>0) echo "&cat=".$categ; if ($tipo!=0) echo "&tip=".$tipo; if (strlen($genero)>0) echo "&gen=".$genero;?>" class="dropdown-item">Preço -</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                <h4 class="title">Limpar filtros <a href="product-list.php"><button><i class="fa fa-trash"></i></button></a></h4>
+                                </div>
+                            </div>
+                        </div>
+<?php
 while($dados=mysqli_fetch_array($result)){
 
 /*
@@ -258,6 +288,7 @@ https://phpdelusions.net/mysqli_examples/search_filter
 
             <div class="col-lg-4 sidebar">
                 <div class="sidebar-widget brands">
+
                     <h2 class="title">Categoria</h2>
                     <nav class="navbar bg-light">
                         <ul class="navbar-nav">
@@ -274,7 +305,7 @@ https://phpdelusions.net/mysqli_examples/search_filter
                                 ?>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" <?php echo $visivel; ?>  href="product-list.php?cat=<?php echo $dados['categoriaId']?><?php if ($tipo!=0) echo "&tip=".$tipo; if (strlen($genero)>0) echo "&gen=".$genero;?>">
+                                    <a class="nav-link" <?php echo $visivel; ?>  href="product-list.php?cat=<?php echo $dados['categoriaId']?><?php if (strlen($filtro)>0) echo "&search=".$filtro; if ($tipo!=0) echo "&tip=".$tipo; if (strlen($genero)>0) echo "&gen=".$genero;?>">
                                         <?php echo $dados['categoriaNome']?>
                                     </a>
                                 </li>
@@ -310,6 +341,8 @@ https://phpdelusions.net/mysqli_examples/search_filter
 
                         while($dados=mysqli_fetch_array($result)){
                             $visivel = "";
+                            if ($tipo == $dados['tipoId'])
+                                $visivel = " style='font-weight: bold;' ";
                             if ($categ != 0) {
                                 $sql="Select * from tipocategorias where tipoCategoriaCategoriaId=".$categ." and tipoCategoriaTipoId=".$dados['tipoId'];
 
@@ -321,9 +354,7 @@ https://phpdelusions.net/mysqli_examples/search_filter
                             ?>
 
                             <li>
-                                <a <?php echo $visivel;?> href="product-list.php?tip=<?php echo $dados['tipoId']?>
-                                <?php if ($categ>0) echo "&cat=".$categ; if (strlen($genero)>0) echo "&gen=".$genero;?>"><?php echo $dados['tipoNome']?>
-                                </a><span <?php echo $visivel;?> ><?php echo contaCoisas($con,array($dados['tipoId'])); ?></span>
+                                <a <?php echo $visivel;?> href="product-list.php?tip=<?php echo $dados['tipoId']?><?php if (strlen($filtro)>0) echo "&search=".$filtro; if ($categ>0) echo "&cat=".$categ; if (strlen($genero)>0) echo "&gen=".$genero;?>"><?php echo $dados['tipoNome']?></a><span <?php echo $visivel;?> ><?php echo contaCoisas($con,array($dados['tipoId'])); ?></span>
                             </li>
 
                             <?php
@@ -338,61 +369,43 @@ https://phpdelusions.net/mysqli_examples/search_filter
                 <div class="sidebar-widget brands">
                     <h2 class="title">Género</h2>
                     <ul>
-
-                        <li><a  href="product-list.php?gen=M<?php if ($tipo !=0) echo "&tip=".$tipo?><?php if ($categ!=0) echo "&cat=".$categ; ?>">Homem
+                        <?php
+                        $visivel = "";
+                        if ($genero == "M")
+                        $visivel = " style='font-weight: bold;' ";
+                        ?>
+                        <li><a <?php echo $visivel;?> href="product-list.php?gen=M<?php if (strlen($filtro)>0) echo "&search=".$filtro; if ($tipo !=0) echo "&tip=".$tipo?><?php if ($categ!=0) echo "&cat=".$categ; ?>">Homem
                             </a><span><?php echo contaCoisas($con,array("M"),"produtos",array("produtoGenero")); ?></span></li>
-                        <li><a  href="product-list.php?gen=F<?php if ($tipo !=0) echo "&tip=".$tipo?><?php if ($categ!=0) echo "&cat=".$categ; ?>">Mulher
+                        <?php
+                        $visivel = "";
+                        if ($genero == "F")
+                            $visivel = " style='font-weight: bold;' ";
+                        ?>
+                        <li><a <?php echo $visivel;?> href="product-list.php?gen=F<?php if (strlen($filtro)>0) echo "&search=".$filtro; if ($tipo !=0) echo "&tip=".$tipo?><?php if ($categ!=0) echo "&cat=".$categ; ?>">Mulher
                             </a><span><?php echo contaCoisas($con,array("F"),"produtos",array("produtoGenero")); ?></span></li>
-                        <li><a  href="product-list.php?gen=U<?php if ($tipo !=0) echo "&tip=".$tipo?><?php if ($categ!=0) echo "&cat=".$categ; ?>">Unissexo
+                        <?php
+                        $visivel = "";
+                        if ($genero == "U")
+                            $visivel = " style='font-weight: bold;' ";
+                        ?>
+                        <li><a <?php echo $visivel;?> href="product-list.php?gen=U<?php if (strlen($filtro)>0) echo "&search=".$filtro; if ($tipo !=0) echo "&tip=".$tipo?><?php if ($categ!=0) echo "&cat=".$categ; ?>">Unissexo
                             </a><span><?php echo contaCoisas($con,array("U"),"produtos",array("produtoGenero")); ?></span></li>
                     </ul>
                 </div>
-                        <div class="sidebar-widget brands">
+                        <!--div class="sidebar-widget brands">
                             <h2 class="title">Tamanho</h2>
-                            <ul>
-
-                                <?php
-
-                                $sql="Select tipoId,tipoNome from tipos";
-                                $result=mysqli_query($con,$sql);
-
-                                while($dados=mysqli_fetch_array($result)){
-                                    $visivel = "";
-                                    if ($categ != 0) {
-                                        $sql="Select * from tamanhos where tipoCategoriaCategoriaId=".$categ." and tipoCategoriaTipoId=".$dados['tipoId'];
-
-                                        $tc=mysqli_query($con,$sql);
-                                        if (mysqli_num_rows($tc)==0) $visivel=" hidden ";
-                                    }
-
-
-                                    ?>
-
-                                    <li>
-                                        <a <?php echo $visivel;?> href="product-list.php?tip=<?php echo $dados['tipoId']?>
-                                <?php if ($categ>0) echo "&cat=".$categ; if (strlen($genero)>0) echo "&gen=".$genero;?>"><?php echo $dados['tipoNome']?>
-                                        </a><span <?php echo $visivel;?> ><?php echo contaCoisas($con,array($dados['tipoId'])); ?></span>
-                                    </li>
-
-                                    <?php
-
-
-                                }
-                                //*******************
-
-                                ?>
                             <ul>
                                 <li><a href="#">S</a><span>(34)</span></li>
                                 <li><a href="#">M</a><span>(67)</span></li>
                                 <li><a href="#">L</a><span>(74)</span></li>
                                 <li><a href="#">XL</a><span>(89)</span></li>
                             </ul>
-                        </div>
+                        </--div>
             </div>
         </div>
     </div>
 </div>
-        <!-- Side Bar End -->
+        < Side Bar End -->
 
 
         <!-- Product List End -->
