@@ -5,14 +5,15 @@ include_once ("includes/body.inc.php");
 //var_dump($_POST);
 //var_dump($_FILES);
 
+$slidesc=addslashes($_POST['descImage']);
 $sli=$_FILES['slideshowImagemURL']['name'];
 $sliUrl="images/".$sli;
 
 //$sql="insert into tipoCategorias(tipoCategoriaCategoriaId,tipoCategoriaTipoId) values ('".(int)$categoriaId."','".(int)$tipoId."')";
 //mysqli_query($con,$sql);// or die(mysqli_error($con));
 
-$sql="insert into slideshowImagens (slideshowImagemURL)";
-$sql .= " values('".$sliUrl."');";
+$sql="insert into slideshowImagens (slideshowImagemURL,slideshowImagemTexto)";
+$sql .= " values('".$sliUrl."','".$slidesc."');";
 mysqli_query($con,$sql);//or die(mysqli_error($con))
 header("location:slideshow-image-list.php");
 

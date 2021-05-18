@@ -65,13 +65,14 @@ top();
                                 <tr>
                                     <thead class="thead-dark">
                                         <th align='center'>Id</th>
+                                        <th align='center'>Texto</th>
                                         <th align='center'>Imagem</th>
                                         <th colspan="4" align='center'>Opções</th>
                                     </thead>
                                 </tr>
                                         <tr>
                                             <?php
-                                            $sql="Select slideshowImagemId,slideshowImagemURL from slideshowImagens";
+                                            $sql="Select slideshowImagemId,slideshowImagemURL,slideshowImagemTexto from slideshowImagens";
 
                                             $result=mysqli_query($con,$sql);
 
@@ -80,6 +81,7 @@ top();
 
                                                     echo "<tr>";
                                                     echo "<td align='center'>".$dados['slideshowImagemId']."</td>";
+                                                    echo "<td align='center'>".$dados['slideshowImagemTexto']."</td>";
                                                     echo "<td align='center'><img width=100px src=\"..".$dados['slideshowImagemURL']."\"></td>";
                                                     echo "<td align='center'><button type='button' class='btn-cart' onclick=\"confirmDelete(".$dados['slideshowImagemId'].");\">Eliminar</button></td>";
                                                     echo "</tr>";

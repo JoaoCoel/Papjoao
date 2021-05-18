@@ -31,6 +31,10 @@ $slideshow=mysqli_query($con,$sql);
                             <div class="billing-address">
                                 <div class="row">
                                     <div class="col-md-12">
+                                        <label>Texto da imagem</label>
+                                        <input class="form-control" name="descImage" type="text" placeholder="">
+                                    </div>
+                                    <div class="col-md-12">
                                         <label for="img">Selecione uma imagem para o slideshow:</label><br>
                                         <input type="file" id="img" name="slideshowImagemURL" accept="image/*">
                                     </div>
