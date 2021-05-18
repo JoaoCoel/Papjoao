@@ -392,6 +392,10 @@ https://phpdelusions.net/mysqli_examples/search_filter
                             </a><span><?php echo contaCoisas($con,array("U"),"produtos",array("produtoGenero")); ?></span></li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
                         <!--div class="sidebar-widget brands">
                             <h2 class="title">Tamanho</h2>
                             <ul>
