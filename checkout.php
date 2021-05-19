@@ -117,7 +117,7 @@ top();
                                         <input class="form-control" type="text" placeholder="State">
                                     </div>
                                     <div class="col-md-6">
-                                        <label>Código ZIP</label>
+                                        <label>Código Postal</label>
                                         <input class="form-control" type="text" placeholder="ZIP Code">
                                     </div>
                                 </div>

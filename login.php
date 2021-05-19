@@ -98,23 +98,18 @@ $res = mysqli_query($con, $sql) ;
                         <div class="register-form">
                             <div class="row">
                                 <div class="col-md-12">
-
-                                    <label>Nome de utilizador</label>
-                                    <input class="form-control" type="text" placeholder="Name">
-                                </div>
-                                <div class="col-md-6">
                                     <label>E-mail</label>
                                     <input class="form-control" type="text" placeholder="E-mail">
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Nome de utilizador</label>
+                                    <input class="form-control" type="text" placeholder="Name">
                                 </div>
                                 <div class="col-md-6">
                                     <label>Nº de Telemóvel</label>
                                     <input class="form-control" type="text" placeholder="Mobile No">
                                 </div>
-                                <div class="col-md-12">
-                                    <label>Endereço</label>
-                                    <input class="form-control" type="text" placeholder="Address">
-                                </div>
-                                <div class="col-md-6">
+                                <!--div class="col-md-6">
                                     <label>País</label>
                                     <select class="custom-select">
                                         <option selected>United States</option>
@@ -123,7 +118,7 @@ $res = mysqli_query($con, $sql) ;
                                         <option>Algeria</option>
                                     </select>
                                 </div>
-                                <!--div class="col-md-6">
+                                <div class="col-md-6">
                                     <label>Cidade</label>
                                     <input class="form-control" type="text" placeholder="City">
                                 </div>
@@ -131,10 +126,6 @@ $res = mysqli_query($con, $sql) ;
                                     <label>Estado</label>
                                     <input class="form-control" type="text" placeholder="State">
                                 </div-->
-                                <div class="col-md-6">
-                                    <label>Código ZIP</label>
-                                    <input class="form-control" type="text" placeholder="ZIP Code">
-                                </div>
                                 <div class="col-md-6">
                                     <label>Password</label>
                                     <input class="form-control" type="text" placeholder="Password">

@@ -84,8 +84,8 @@ function top(){
                     if(isset($_SESSION['id'])){
                         $con=mysqli_connect("localhost", "root","","pap2021drk");
                         $sql="select * from utilizadores inner join perfis on utilizadorId=perfilUtilizadorId where utilizadorId=".$_SESSION['id'];
-                        $res=mysqli_query($con, $sql);
-                        $dados=mysqli_fetch_array($res);
+                        $res=mysqli_query($con, $sql) or die(mysqli_error($con));
+                        $dados=mysqli_fetch_array($res) ;
                     ?>
                         <div class="navbar-nav ml-auto">
                             <div class="nav-item dropdown">
