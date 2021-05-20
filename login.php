@@ -3,7 +3,8 @@ include_once ("includes/body.inc.php");
 top();
 
 $con = mysqli_connect("localhost", "root", "", "pap2021drk");
-$sql = "Select * from utilizadores";
+$sql = "Select * from utilizadores left join perfis on perfilId=utilizadorPerfilId";
+//$sql="select utilizadorId,perfis.perfilNome as perfilNome from utilizadores left join perfis on perfilId=utilizadorPerfilId";
 $res = mysqli_query($con, $sql) ;
 ?>
 <!-- Nav Bar End -->
@@ -29,9 +30,10 @@ $res = mysqli_query($con, $sql) ;
 
             if(isset($_SESSION['id'])){
                 $con=mysqli_connect("localhost", "root","","pap2021drk");
-                $sql="select * from utilizadores inner join perfis on utilizadorId=perfilUtilizadorId where utilizadorId=".$_SESSION['id'];
-                $res = mysqli_query($con, $sql);
+                $sql="select utilizadorId,perfis.perfilNome as perfilNome from utilizadores left join perfis on perfilId=utilizadorPerfilId";
+                $res = mysqli_query($con, $sql) or die(mysqli_error($con));
                 $dados=mysqli_fetch_array($res);
+                //var_dump($dados);
                 ?>
                 <div class="col-md-3">
                     <div class="user">
@@ -78,12 +80,12 @@ $res = mysqli_query($con, $sql) ;
             </div>
         </div>
         <!-- Breadcrumb End -->
-    <form action="confirm-login.php" method="post" style="margin-left: 20%">
+    <form action="confirm-login.php" id="loginSlct" method="post" style="margin-left: 20%">
         <select name="utilizador">
             <?php
             while ($dados=mysqli_fetch_array($res)){
                 ?>
-                <option value="<?php echo $dados['utilizadorId']?>"><?php echo $dados['utilizadorNome']?></option>
+                <option value="<?php echo $dados['utilizadorId']?>"><?php echo $dados['perfilNome']?></option>
                 <?php
             }
             ?>
@@ -96,71 +98,77 @@ $res = mysqli_query($con, $sql) ;
                 <div class="row">
                     <div class="col-lg-6">    
                         <div class="register-form">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>E-mail</label>
-                                    <input class="form-control" type="text" placeholder="E-mail">
+                            <form action="confirm-registar.php" id="regForm" method="post" >
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>E-mail</label>
+                                        <input class="form-control" name="email" type="text" placeholder="E-mail" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Nome de utilizador</label>
+                                        <input class="form-control" name="nome" type="text" placeholder="Name" value="<?php if (isset($_POST['nome'])) echo $_POST['nome']; ?>">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Nº de Telemóvel</label>
+                                        <input class="form-control" name="tele" type="text" placeholder="Mobile No" value="<?php if (isset($_POST['tele'])) echo $_POST['tele']; ?>">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Password</label>
+                                        <input class="form-control" name="pass" id="pass1" type="password" placeholder="Password" value="<?php if (isset($_POST['pass1'])) echo $_POST['pass1']; ?>">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Confirmar Password</label>
+                                        <input class="form-control" type="password" id="pass2" placeholder="Password">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn" onclick="submeterRegisto()" value="Submeter">Submeter</button>
+                                    </div>
+                                    <!--div class="col-md-6">
+                                        <label>País</label>
+                                        <select class="custom-select">
+                                            <option selected>United States</option>
+                                            <option>Afghanistan</option>
+                                            <option>Albania</option>
+                                            <option>Algeria</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Cidade</label>
+                                        <input class="form-control" type="text" placeholder="City">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Estado</label>
+                                        <input class="form-control" type="text" placeholder="State">
+                                    </div-->
                                 </div>
-                                <div class="col-md-6">
-                                    <label>Nome de utilizador</label>
-                                    <input class="form-control" type="text" placeholder="Name">
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Nº de Telemóvel</label>
-                                    <input class="form-control" type="text" placeholder="Mobile No">
-                                </div>
-                                <!--div class="col-md-6">
-                                    <label>País</label>
-                                    <select class="custom-select">
-                                        <option selected>United States</option>
-                                        <option>Afghanistan</option>
-                                        <option>Albania</option>
-                                        <option>Algeria</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Cidade</label>
-                                    <input class="form-control" type="text" placeholder="City">
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Estado</label>
-                                    <input class="form-control" type="text" placeholder="State">
-                                </div-->
-                                <div class="col-md-6">
-                                    <label>Password</label>
-                                    <input class="form-control" type="text" placeholder="Password">
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Confirmar Password</label>
-                                    <input class="form-control" type="text" placeholder="Password">
-                                </div>
-                                <div class="col-md-12">
-                                    <button class="btn" href="my-account.html">Submeter</button>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
+
                     <div class="col-lg-6">
                         <div class="login-form">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>E-mail</label>
-                                    <input class="form-control" type="text" placeholder="E-mail / Username">
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Password</label>
-                                    <input class="form-control" type="text" placeholder="Password">
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="newaccount">
-                                        <label class="custom-control-label" for="newaccount">Manter Login</label>
+                            <form action="confirm-login.php" id="loginForm" method="post" >
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>E-mail</label>
+                                        <input class="form-control" type="text" name="email" placeholder="E-mail">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Password</label>
+                                        <input class="form-control" type="password" name="passw" placeholder="Password">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="newaccount">
+                                            <label class="custom-control-label" for="newaccount">Manter Login</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button class="btn" onclick="this.submitForm()">Submeter</button>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <button class="btn">Submeter</button>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -244,6 +252,22 @@ $res = mysqli_query($con, $sql) ;
          Footer End -->
         
         <!-- Footer Bottom Start -->
+<script>
+    function submeterRegisto(){
+        const frm = document.getElementById("regForm");
+        let pass1 = document.getElementById("pass1").value;
+        let pass2 = document.getElementById("pass2").value;
+        if (pass1==pass2){
+            frm.submit();
+        }else {
+            alert("Passwords não coincidem!!!")
+            window.history.forward(-1);
+        }
+    }
+</script>
+
+
+
 <?php
 bottom();
 ?>

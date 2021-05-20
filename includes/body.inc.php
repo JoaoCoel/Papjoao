@@ -83,14 +83,13 @@ function top(){
 
                     if(isset($_SESSION['id'])){
                         $con=mysqli_connect("localhost", "root","","pap2021drk");
-                        $sql="select * from utilizadores inner join perfis on utilizadorId=perfilUtilizadorId where utilizadorId=".$_SESSION['id'];
+                        $sql="select * from utilizadores inner join perfis on utilizadorId=utilizadorPerfilId where utilizadorId=".$_SESSION['id'];
                         $res=mysqli_query($con, $sql) or die(mysqli_error($con));
                         $dados=mysqli_fetch_array($res) ;
                     ?>
                         <div class="navbar-nav ml-auto">
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><span><?php echo $dados['perfilNome']?></span>&nbsp;
-                                    <img src="<?php echo $dados['perfilAvatarURL'] ?>" style="width: 40px; height: 40px"></a>
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><span><?php echo $dados['perfilNome']?></span></a>
                                 <div class="dropdown-menu">
                                     <a href="my-account.php" class="dropdown-item">Perfil</a>
                                     <a href="logout.php" class="dropdown-item">Logout</a>
@@ -181,4 +180,7 @@ function procuraCoisas($cn, $filtro, $table="produtos", $field="produtoNome"){
     $dados=mysqli_fetch_array($result);
     return $dados;
 }
+
+
+
 ?>

@@ -76,7 +76,7 @@ function top(){
 
 
                     </div>
-                    <?php
+                    <?php /*
 
                     if(isset($_SESSION['id'])){
                         $con=mysqli_connect("localhost", "root","","pap2021drk");
@@ -108,7 +108,7 @@ function top(){
                             </div>
                         </div>
                         <?php
-                    }
+                    }*/
                     ?>
                             <!--a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Conta do utilizador</a>
                             <div class="dropdown-menu">
