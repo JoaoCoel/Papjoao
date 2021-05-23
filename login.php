@@ -261,7 +261,6 @@ $res = mysqli_query($con, $sql) ;
             frm.submit();
         }else {
             alert("Passwords não coincidem!!!")
-            window.history.forward(-1);
         }
     }
 </script>
