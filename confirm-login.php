@@ -19,14 +19,15 @@ if (isset($_POST['utilizador'])) {
     if($res->num_rows > 0) {
         $dados=mysqli_fetch_array($res);
         var_dump($dados);
-        if ($pass == $dados['utilizadorPass']){
+        if ($pass == $dados['utilizadorPass'] && $dados['perfilEstado']=="ativo"){
             session_start();
             $_SESSION['id']=$dados['utilizadorId'];
             $_SESSION['nome']=$dados['perfilNome'];
+            header("location:index.php");
         }
     }
 
 
 }
-header("location:index.php");
+header("location:login.php");
 ?>

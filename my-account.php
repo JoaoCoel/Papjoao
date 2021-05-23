@@ -1,6 +1,10 @@
 <?php
 include_once ("includes/body.inc.php");
 top();
+$sql="select * from utilizadores left join perfis on utilizadorPerfilId=perfilId where utilizadorId=".$_SESSION['id'];
+$result=mysqli_query($con,$sql);
+$dados=mysqli_fetch_array($result);
+var_dump($dados);
 ?>
 <!-- Nav Bar End -->
 
@@ -67,35 +71,29 @@ top();
                                 <h4>Detalhes da conta</h4>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="First Name">
+                                        <input class="form-control" type="text"  placeholder="Nome" value="<?php echo $dados['perfilNome']?>" name="perfilNome">
                                     </div>
                                     <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Last Name">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Mobile">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Email">
+                                        <input class="form-control" type="text" placeholder="Telemóvel" value="<?php echo $dados['perfilTele']?>" name="perfilTele">
                                     </div>
                                     <div class="col-md-12">
-                                        <input class="form-control" type="text" placeholder="Address">
-                                    </div>
-                                    <div class="col-md-12">
-                                        <button class="btn">Atualizar a Conta</button>
+                                        <button class="btn">Atualizar a Conta </button>
                                         <br><br>
                                     </div>
                                 </div>
                                 <h4>Mudar Password</h4>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <input class="form-control" type="password" placeholder="Current Password">
+                                        <input class="form-control" id="pass" type="password" placeholder="Current Password">
+                                        <input hidden class="form-control" id="oldpass" value="<?php echo $dados['utilizadorPass']?>" type="password" placeholder="Current Password">
                                     </div>
                                     <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="New Password">
+                                        <label>Password</label>
+                                        <input class="form-control" name="pass" id="pass1" type="password" placeholder="Nova Password" value="<?php if (isset($_POST['pass1'])) echo $_POST['pass1']; ?>">
                                     </div>
                                     <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Confirm Password">
+                                        <label>Confirmar Password</label>
+                                        <input class="form-control" type="password" id="pass2" placeholder="Confirmar Password">
                                     </div>
                                     <div class="col-md-12">
                                         <button class="btn">Salvar Mudanças</button>
@@ -235,6 +233,26 @@ top();
          Footer End -->
         
         <!-- Footer Bottom Start -->
+
+<script>
+    function submeterRegisto() {
+        const frm = document.getElementById("regForm");
+        let oldpass = document.getElementById("pass").value;
+        let pass = document.getElementById("pass").value;
+        let pass1 = document.getElementById("pass1").value;
+        let pass2 = document.getElementById("pass2").value;
+        if (pass != oldpass) {
+            alert("Password errada!!!")
+        } else {
+            if (pass1 == pass2) {
+                frm.submit();
+            } else {
+                alert("Passwords não coincidem!!!")
+                //window.history.forward(-1);
+            }
+        }
+    }
+</script>
 
 <?php
 bottom();

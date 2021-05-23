@@ -83,7 +83,7 @@ function top(){
 
                     if(isset($_SESSION['id'])){
                         $con=mysqli_connect("localhost", "root","","pap2021drk");
-                        $sql="select * from utilizadores inner join perfis on utilizadorId=utilizadorPerfilId where utilizadorId=".$_SESSION['id'];
+                        $sql="select utilizadorId, perfilNome from utilizadores left join perfis on utilizadorPerfilId=perfilId where utilizadorId=".$_SESSION['id'];
                         $res=mysqli_query($con, $sql) or die(mysqli_error($con));
                         $dados=mysqli_fetch_array($res) ;
                     ?>

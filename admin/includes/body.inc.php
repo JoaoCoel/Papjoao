@@ -72,6 +72,7 @@ function top(){
                         <a href="category-list.php" class="nav-item nav-link">Editar Categorias</a>
                         <a href="type-list.php" class="nav-item nav-link">Editar Tipos</a>
                         <a href="size-list.php" class="nav-item nav-link">Editar Tamanhos</a>
+                        <a href="user-list.php" class="nav-item nav-link">Editar utilizadores</a>
 
 
 
