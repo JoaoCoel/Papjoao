@@ -23,33 +23,47 @@ while ($dados=mysqli_fetch_array($cattipo)){
 
 
 <script>
+
+
+    $( document ).ready(function() {
+        catChange();
+    });
+
     function catChange()
     {
-        let catT = document.getElementById('cattipo').value;
         let categoriaDropdown = document.getElementById('categoriaProduto').value;
         let tipoDropdown = document.getElementById('tipoProduto');
-        let lol=JSON.parse(catT);
-        let tipos = [];
-        let i;
-        for (i=0;i<lol.length;i++){
-            if (lol[i][0] == categoriaDropdown)
-            {
-                tipos.push(lol[i][1]);
 
-            }
-        }
-        for (i = 0; i < tipoDropdown.length ; i++) {
-            tipoDropdown.options[i].hidden = true;
-            let k;
-            for (k=0;k<tipos.length;k++){
-                //tipoDropdown.options[i].selected = true;
-                if (tipos[k]==tipoDropdown.value){
+
+        let i;
+
+        if (categoriaDropdown > 2){
+
+            for (i = 0; i < tipoDropdown.length ; i++) {
+                if (i<6) {
+                    tipoDropdown.options[i].hidden = true;
+                    tipoDropdown.options[i].selected = false;
+                } else {
                     tipoDropdown.options[i].hidden = false;
-                    break;
                 }
 
             }
+            tipoDropdown.options[6].selected = true;
+        } else {
+            for (i = 0; i < tipoDropdown.length ; i++) {
+                if (i>5) {
+                    tipoDropdown.options[i].hidden = true;
+                    tipoDropdown.options[i].selected = false;
+                } else {
+                    tipoDropdown.options[i].hidden = false;
+                }
+
+            }
+            tipoDropdown.options[0].selected = true;
         }
+
+
+
     }
 
 </script>
@@ -307,6 +321,11 @@ while ($dados=mysqli_fetch_array($cattipo)){
          Footer End -->
         
         <!-- Footer Bottom Start -->
+<script>
+    $( document ).ready(function() {
+        catChange();
+    });
+</script>
 <?php
 bottom();
 ?>

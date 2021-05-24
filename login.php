@@ -80,18 +80,6 @@ $res = mysqli_query($con, $sql) ;
             </div>
         </div>
         <!-- Breadcrumb End -->
-    <form action="confirm-login.php" id="loginSlct" method="post" style="margin-left: 20%">
-        <select name="utilizador">
-            <?php
-            while ($dados=mysqli_fetch_array($res)){
-                ?>
-                <option value="<?php echo $dados['utilizadorId']?>"><?php echo $dados['perfilNome']?></option>
-                <?php
-            }
-            ?>
-        </select>
-        <input type="submit">
-    </form>
         <!-- Login Start -->
         <div class="login">
             <div class="container-fluid">

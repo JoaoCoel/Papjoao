@@ -69,36 +69,39 @@ var_dump($dados);
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="account-tab" role="tabpanel" aria-labelledby="account-nav">
                                 <h4>Detalhes da conta</h4>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input class="form-control" type="text"  placeholder="Nome" value="<?php echo $dados['perfilNome']?>" name="perfilNome">
+                                <form action="confirm-edit-account.php" method="post" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="text"  placeholder="Nome" value="<?php echo $dados['perfilNome']?>" name="perfilNome">
+                                            <input hidden class="form-control" type="text" placeholder="Nome" value="<?php echo $dados['perfilId']?>" name="perfilId">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="text" placeholder="Telemóvel" value="<?php echo $dados['perfilTele']?>" name="perfilTele">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn">Atualizar a Conta</button>
+                                            <br><br>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <input class="form-control" type="text" placeholder="Telemóvel" value="<?php echo $dados['perfilTele']?>" name="perfilTele">
-                                    </div>
-                                    <div class="col-md-12">
-                                        <button class="btn">Atualizar a Conta </button>
-                                        <br><br>
-                                    </div>
-                                </div>
+                                </form>
                                 <h4>Mudar Password</h4>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <input class="form-control" id="pass" type="password" placeholder="Current Password">
-                                        <input hidden class="form-control" id="oldpass" value="<?php echo $dados['utilizadorPass']?>" type="password" placeholder="Current Password">
+                                <form name="passform" action="confirm-edit-password.php" method="post" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input class="form-control" id="pass"  name="oldpass" type="password" placeholder="Current Password">
+                                            <input hidden class="form-control" type="text" placeholder="Nome" value="<?php echo $dados['utilizadorId']?>" name="utilizadorId">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input class="form-control" id="pass1" name="pass"  type="password" placeholder="Nova Password" value="<?php if (isset($_POST['pass1'])) echo $_POST['pass1']; ?>">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input class="form-control" type="password" id="pass2" placeholder="Confirmar Password">
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button onclick="submeterRegisto()" class="btn">Salvar Mudanças</button>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label>Password</label>
-                                        <input class="form-control" name="pass" id="pass1" type="password" placeholder="Nova Password" value="<?php if (isset($_POST['pass1'])) echo $_POST['pass1']; ?>">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label>Confirmar Password</label>
-                                        <input class="form-control" type="password" id="pass2" placeholder="Confirmar Password">
-                                    </div>
-                                    <div class="col-md-12">
-                                        <button class="btn">Salvar Mudanças</button>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                             <div class="tab-pane fade" id="orders-tab" role="tabpanel" aria-labelledby="orders-nav">
                                 <div class="table-responsive">
@@ -144,13 +147,15 @@ var_dump($dados);
                             </div>
                             <div class="tab-pane fade" id="address-tab" role="tabpanel" aria-labelledby="address-nav">
                                 <h4>Endereço</h4>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <p>123 Payment Street, Los Angeles, CA</p>
-                                        <p>Telemóvel: 012-345-6789</p>
-                                        <a class="btn" href="edit-adress.php">Editar Endereço</a>
+                                <form action="confirm-edit-endereco.php" method="post" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p>123 Payment Street, Los Angeles, CA</p>
+                                            <p>Telemóvel: 012-345-6789</p>
+                                            <a class="btn" href="edit-adress.php">Editar Endereço</a>
+                                        </div>
                                     </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -236,22 +241,18 @@ var_dump($dados);
 
 <script>
     function submeterRegisto() {
-        const frm = document.getElementById("regForm");
-        let oldpass = document.getElementById("pass").value;
+        const frm = document.getElementById("passform");
         let pass = document.getElementById("pass").value;
         let pass1 = document.getElementById("pass1").value;
         let pass2 = document.getElementById("pass2").value;
-        if (pass != oldpass) {
-            alert("Password errada!!!")
+        if (pass1 == pass2) {
+            frm.submit();
         } else {
-            if (pass1 == pass2) {
-                frm.submit();
-            } else {
-                alert("Passwords não coincidem!!!")
-                //window.history.forward(-1);
-            }
+            alert("Passwords não coincidem!!!")
+
         }
     }
+
 </script>
 
 <?php

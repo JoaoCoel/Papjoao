@@ -24,10 +24,11 @@ if (isset($_POST['utilizador'])) {
             $_SESSION['id']=$dados['utilizadorId'];
             $_SESSION['nome']=$dados['perfilNome'];
             header("location:index.php");
+            return;
         }
     }
-
+    header("location:login.php");
 
 }
-header("location:login.php");
+
 ?>

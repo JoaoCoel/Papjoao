@@ -36,7 +36,7 @@ $categorias=mysqli_query($con,$sql);
                                     </div>
                                     <div class="checkout-payment">
                                         <div class="checkout-btn">
-                                            <button input type="submit">Adicionar</button>
+                                            <button type="submit">Adicionar</button>
                                         </div>
                                     </div>
 
