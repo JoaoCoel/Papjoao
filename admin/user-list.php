@@ -59,7 +59,7 @@ top();
                                         //echo "<table class='table table-striped'>";
                                             while($dados=mysqli_fetch_array($result)){
                                         ?>
-                                                <form action="confirm-edit-estado.php" method="post" enctype="multipart/form-data">
+                                                <form action="confirm-edit-user.php" method="post" enctype="multipart/form-data">
                                                     <?php
                                                     echo "<tr>";
                                                     echo "<input type='text' hidden name='perfilId' value=".$dados['perfilId'].">";

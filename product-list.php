@@ -170,7 +170,7 @@ https://phpdelusions.net/mysqli_examples/search_filter
                     <div class="col-md-4">
                         <div class="product-item">
                             <div class="product-title">
-                                <?php echo "<a href='product-detail.php'>".$dados['produtoNome']."</a>";?>
+                                <?php echo "<a href='product-detail.php?id=".$dados['produtoId']."'>".$dados['produtoNome']."</a>";?>
                                 <div class="ratting">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>

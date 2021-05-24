@@ -251,7 +251,7 @@ $result=mysqli_query($con,$sql);
 
                             }
 
-                            $result=mysqli_query($con,$sql) or die (mysqli_error($con));
+                            $result2=mysqli_query($con,$sql2);
 
                             while($dados=mysqli_fetch_array($result2)){
 
@@ -259,7 +259,7 @@ $result=mysqli_query($con,$sql);
                                 <div class="col-lg-3">
                                     <div class="product-item">
                                         <div class="product-title">
-                                            <?php echo "<a href='product-detail.php'>".$dados['produtoNome']."</a>";?>
+                                            <?php echo "<a href='product-detail.php?id=".$dados['produtoId']."'>".$dados['produtoNome']."</a>";?><?php echo $dados['produtoId']; ?>
                                             <div class="ratting">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -275,7 +275,7 @@ $result=mysqli_query($con,$sql);
                                             <div class="product-action">
                                                 <a href="#"><i class="fa fa-cart-plus"></i></a>
                                                 <a href="#"><i class="fa fa-heart"></i></a>
-                                                <a href="product-detail.php"><i class="fa fa-search"></i></a>
+                                                <a href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-search"></i></a>
                                             </div>
                                         </div>
                                         <div class="product-price">
