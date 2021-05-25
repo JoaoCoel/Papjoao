@@ -279,7 +279,7 @@ $result2 = mysqli_query($con, $sql2);
                 <div class="col-lg-3">
                     <div class="product-item">
                         <div class="product-title">
-                            <?php echo "<a href='product-detail.php'>".$dados['produtoNome']."</a>";?>
+                            <?php echo "<a href='product-detail.php?id=".$dados['produtoId']."'>".$dados['produtoNome']."</a>";?>
                             <div class="ratting">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -289,7 +289,7 @@ $result2 = mysqli_query($con, $sql2);
                             </div>
                         </div>
                         <div class="product-image">
-                            <a href="product-detail.php">
+                            <a href="product-detail.php?id=<?php echo $dados['produtoId']; ?>">
                                 <?php echo "<img src=\"".$dados['produtoImagemURL']."\">";?>
                             </a>
                             <div class="product-action">
@@ -374,7 +374,7 @@ $result2 = mysqli_query($con, $sql2);
                     <div class="col-lg-3">
                         <div class="product-item">
                             <div class="product-title">
-                                <?php echo "<a href='product-detail.php'>".$dados['produtoNome']."</a>";?>
+                                <?php echo "<a href='product-detail.php?id=".$dados['produtoId']."'>".$dados['produtoNome']."</a>";?>
                                 <div class="ratting">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -384,7 +384,7 @@ $result2 = mysqli_query($con, $sql2);
                                 </div>
                             </div>
                             <div class="product-image">
-                                <a href="product-detail.php">
+                                <a href="product-detail.php?id=<?php echo $dados['produtoId']; ?>">
                                     <?php echo "<img src=\"".$dados['produtoImagemURL']."\">";?>
                                 </a>
                                 <div class="product-action">
