@@ -6,9 +6,13 @@ $sql = "Select produtoId,produtoNome,produtoPreco,produtoDesconto, produtoImagem
 
 $sql2 = "Select produtoId,produtoNome,produtoPreco,produtoDesconto, produtoImagemURL from produtos where produtoDestaque = 'Sim'";
 
+$sql3 = "Select * from slideshowimagens order by slideshowImagemOrd ASC";
+
 $result = mysqli_query($con, $sql);
 
 $result2 = mysqli_query($con, $sql2);
+
+$result3 = mysqli_query($con, $sql3);
 
 ?>
 
@@ -108,10 +112,24 @@ $result2 = mysqli_query($con, $sql2);
                     </div>
                     <div class="col-md-6">
                         <div class="header-slider normal-slider">
+                            <?php
+
+                                 while ($dados = mysqli_fetch_array($result3)){
+                            ?>
+
                             <div class="header-slider-item">
-                                <img style="width: 100%" src="img/slider-1.jpg" alt="Slider Image"/>
+                                <img style="width: 100%" src="<?php echo $dados['slideshowImagemURL']; ?>" height=400px alt="Slider Image"/>
                                 <div class="header-slider-caption">
-                                    <a class="btn" href="product-list.php?cat=1"><i class="fa fa-shopping-cart"></i>Veja as nossas roupas</a>
+                                    <a class="btn" href="product-list.php?cat=<?php echo $dados['slideshowImagemCat']; ?><?php if ($dados['slideshowImagemGen'] !='T') echo '&gen='.$dados['slideshowImagemGen']; ?>"><i class="fa fa-shopping-cart"></i><?php echo $dados['slideshowImagemTexto']; ?></a>
+                                </div>
+                            </div>
+                            <?php
+                                 }
+                            ?>
+                            <!--div class="header-slider-item">
+                                <img style="width: 100%" src="img/slider-1.jpg" alt="Slider Image" />
+                                <div class="header-slider-caption">
+                                    <a class="btn" href="product-list.php?cat=1"><i class="fa fa-shopping-cart"></i>Veja os nossos Produtos</a>
                                 </div>
                             </div>
                             <div class="header-slider-item">
@@ -125,7 +143,7 @@ $result2 = mysqli_query($con, $sql2);
                                 <div class="header-slider-caption">
                                     <a class="btn" href="product-list.php?cat=1&gen=F"><i class="fa fa-shopping-cart"></i>Para Mulher</a>
                                 </div>
-                            </div>
+                            </div-->
                         </div>
                     </div>
                     <div class="col-md-3">

@@ -8,6 +8,7 @@ if (isset($_POST['utilizador'])) {
     session_start();
     $_SESSION['id']=$dados['utilizadorId'];
     $_SESSION['nome']=$dados['perfilNome'];
+    $_SESSION['admin']=$dados['perfilAdmin'];
 
 } elseif (isset($_POST['email']) and (isset($_POST['passw']))){
     $email=($_POST['email']);
@@ -23,6 +24,7 @@ if (isset($_POST['utilizador'])) {
             session_start();
             $_SESSION['id']=$dados['utilizadorId'];
             $_SESSION['nome']=$dados['perfilNome'];
+            $_SESSION['admin']=$dados['perfilAdmin'];
             header("location:index.php");
             return;
         }

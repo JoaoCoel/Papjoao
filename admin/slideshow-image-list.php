@@ -72,17 +72,36 @@ top();
                                 </tr>
                                         <tr>
                                             <?php
-                                            $sql="Select slideshowImagemId,slideshowImagemURL,slideshowImagemTexto from slideshowImagens";
+                                            $sql="Select * from slideshowImagens";
 
                                             $result=mysqli_query($con,$sql);
 
-
+                                            $nimg= mysqli_num_rows ( $result );
                                                 while($dados=mysqli_fetch_array($result)){
 
                                                     echo "<tr>";
                                                     echo "<td align='center'>".$dados['slideshowImagemId']."</td>";
                                                     echo "<td align='center'>".$dados['slideshowImagemTexto']."</td>";
-                                                    echo "<td align='center'><img width=100px src=\"..".$dados['slideshowImagemURL']."\"></td>";
+                                                    echo "<td align='center'><img width=100px src=\"../".$dados['slideshowImagemURL']."\"></td>";
+                                            ?>
+                                            <form action="confirm-edit-slideshow-order.php" method="post" enctype="multipart/form-data">
+                                                <td align="center">
+                                                <input hidden type="text" name="id" value="<?php echo $dados['slideshowImagemId'] ?>">
+                                                <select onchange="this.form.submit()" type="submit" class="custom-select" id="ord" name="ord">
+                                                    <?php
+                                                        for ($i=1;$i<=$nimg;$i++) {
+                                                            $selected = "";
+                                                            if ($dados['slideshowImagemOrd']==$i) {
+                                                                $selected = "selected";
+                                                            }
+                                                            echo "<option $selected value='".$i."'>$i</option>";
+                                                        }
+
+                                                    ?>
+                                                </select>
+                                                    </td>
+                                            </form>
+                                            <?php
                                                     echo "<td align='center'><button type='button' class='btn-cart' onclick=\"confirmDelete(".$dados['slideshowImagemId'].");\">Eliminar</button></td>";
                                                     echo "</tr>";
 

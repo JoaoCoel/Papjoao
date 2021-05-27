@@ -3,6 +3,9 @@ include_once ("includes/body.inc.php");
 top();
 
 $sql="Select * from slideshowImagens";
+$sql1="Select * from categorias";
+
+$categorias=mysqli_query($con,$sql1);
 $slideshow=mysqli_query($con,$sql);
 
 ?>
@@ -34,10 +37,31 @@ $slideshow=mysqli_query($con,$sql);
                                         <label>Texto da imagem</label>
                                         <input class="form-control" name="descImage" type="text" placeholder="">
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <label>Categoria</label>
+                                        <select class="custom-select" id="categoria" name="categoria">
+                                            <?php
+                                            while ($dados=mysqli_fetch_array($categorias)){
+                                                echo "<option value=\"".$dados['categoriaId']."\">".$dados['categoriaNome']."</option>";
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Género</label>
+                                        <select class="custom-select" id="genero" name="genero">
+                                            <option value="T" selected>Todos</option>
+                                            <option value="M" selected>Homem</option>
+                                            <option value="F">Mulher</option>
+                                            <option value="U">Unissexo</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-6">
                                         <label for="img">Selecione uma imagem para o slideshow:</label><br>
                                         <input type="file" id="img" name="slideshowImagemURL" accept="image/*">
                                     </div>
+
                                     <div class="col-md-12">
                                         <br>
                                     </div>

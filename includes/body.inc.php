@@ -66,17 +66,29 @@ function top(){
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse" >
                     <div class="navbar-nav mr-auto" >
                         <a href="index.php" class="nav-item nav-link active">Pagina Principal</a>
-                        <a href="admin/editing-list.php" class="nav-item nav-link">Editar Produtos</a>
-                        <a href="cart.php" class="nav-item nav-link">Carrinho</a>
+                        <a href="product-list.php" class="nav-item nav-link">Produtos</a>
+                        <?php
+                            if(isset($_SESSION['id'])){
+                                if($_SESSION['admin']== "sim"){
+                        ?>
+                                    <a href="admin/editing-list.php" class="nav-item nav-link">Editar Produtos</a>
+                                    <?php
+                                    }
+                                    ?>
+
+
 
                         <!--a href="my-account.php" class="nav-item nav-link">Minha Conta</a-->
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mais Paginas</a>
                             <div class="dropdown-menu">
                                 <a href="wishlist.php" class="dropdown-item">Lista de Desejos</a>
-                                <a href="contact.php" class="dropdown-item">Contacte-nos</a>
+                                <a href="cart.php" class="dropdown-item">Carrinho</a>
                             </div>
                         </div>
+                                <?php
+                        }
+                    ?>
                     </div>
 
                     <?php
@@ -109,9 +121,9 @@ function top(){
                                 </div>
                             </div>
                         </div>
-    <?php
+                        <?php
                     }
-    ?>
+                    ?>
 
 
 
