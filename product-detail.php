@@ -113,32 +113,31 @@ $result=mysqli_query($con,$sql);
                                         <?php
                                         if ($dadosProduto['produtoDesconto']>0){
                                             ?>
-                                            <h3>
-                                    <span>
-                                    <s>
-                                    <?php
-                                    echo $dadosProduto['produtoPreco'];
-                                    ?>
-                                        <span>€ </span>
-                                    </s>
-                                        &nbsp
-                                    </span>
-                                                <?php
-                                                $preco = $dadosProduto['produtoPreco'] - $dadosProduto['produtoPreco'] * $dadosProduto['produtoDesconto'] / 100;
-                                                echo number_format($preco, 2, '.', ' ');
+                                                    <h3>
+                                            <span>
+                                            <s>
+                                            <?php
+                                            echo $dadosProduto['produtoPreco'];
+                                            ?>
+                                                <span>€ </span>
+                                            </s>
+                                                &nbsp
+                                            </span>
+                                                        <?php
+                                                        $preco = $dadosProduto['produtoPreco'] - $dadosProduto['produtoPreco'] * $dadosProduto['produtoDesconto'] / 100;
+                                                        echo number_format($preco, 2, '.', ' ');
 
-                                                ?>
-                                                <span>€</span>
-                                            </h3>
-
-                                            <a class="btn" href="product-detail.php?id=<?php echo $dadosProduto['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                                        ?>
+                                                        <span>€</span>
+                                                    </h3>
                                             <?php
                                         } else {
                                             ?>
                                             <h3><?php echo $dadosProduto['produtoPreco'];?><span>€</span></h3>
-                                            <a class="btn" href="product-detail.php?id=<?php echo $dadosProduto['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Comprar</a>
+
                                             <?php
                                         }
+
                                         ?>
 
                                     </div>
@@ -183,11 +182,14 @@ $result=mysqli_query($con,$sql);
                                         </div>
                                     </div> -->
                                     <div class="action">
-                                        <a class="btn" href="#"><i class="fa fa-shopping-cart"></i>Adicionar ao Carrinho</a>
-                                        <a class="btn" href="checkout.php"><i class="fa fa-shopping-bag"></i>Comprar</a>
+                                        <a class="btn" href="confirm-add-product-cart.php?id=<?php echo $dadosProduto['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Adicionar ao Carrinho</a>
+                                        <a class="btn" href="confirm-add-product-cart.php?id=<?php echo $dadosProduto['produtoId']; ?>"><i class="fa fa-shopping-bag"></i>Comprar</a>
                                     </div>
+
                                 </div>
+
                             </div>
+
                         </div>
                     </div>
 

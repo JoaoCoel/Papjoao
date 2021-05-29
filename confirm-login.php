@@ -1,16 +1,6 @@
 <?php
-if (isset($_POST['utilizador'])) {
-    $id=intval($_POST['utilizador']);
-    $con=mysqli_connect("localhost","root","","pap2021drk");
-    $sql="Select * from utilizadores left join perfis on perfilId=utilizadorPerfilId where utilizadorId=".$id;
-    $res=mysqli_query($con,$sql);
-    $dados=mysqli_fetch_array($res);
-    session_start();
-    $_SESSION['id']=$dados['utilizadorId'];
-    $_SESSION['nome']=$dados['perfilNome'];
-    $_SESSION['admin']=$dados['perfilAdmin'];
-
-} elseif (isset($_POST['email']) and (isset($_POST['passw']))){
+include_once ("includes/body.inc.php");
+if (isset($_POST['email']) and (isset($_POST['passw']))){
     $email=($_POST['email']);
     $pass=($_POST['passw']);
     $con=mysqli_connect("localhost","root","","pap2021drk");
@@ -23,6 +13,7 @@ if (isset($_POST['utilizador'])) {
         if ($pass == $dados['utilizadorPass'] && $dados['perfilEstado']=="ativo"){
             session_start();
             $_SESSION['id']=$dados['utilizadorId'];
+            $_SESSION['pid']=$dados['perfilId'];
             $_SESSION['nome']=$dados['perfilNome'];
             $_SESSION['admin']=$dados['perfilAdmin'];
             header("location:index.php");

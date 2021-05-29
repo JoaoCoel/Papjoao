@@ -2,20 +2,15 @@
 include_once ("includes/body.inc.php");
 top();
 //ver pap do filipe e ver https://drakelings.bluedrake42.com/index.php?%2Ffile%2F28-stalker-anomaly%2F
-$sql="select"
 
-$lista="(0";
-if(isset($_SESSION['carrinho'])){
-    foreach ($_SESSION['carrinho'] as $produto){
-        $lista.=",".$produto;
-    }
+$sql="select * from carrinho where carrinhoPerfilId=".$_SESSION['pid'];
+$result=mysqli_query($con,$sql) or die (mysqli_error($con));
+if($result->num_rows > 0) {
+    $dados=mysqli_fetch_array($result);
+    $cid = $dados['carrinhoId'];
+    $sql2="select * from carrinhoProdutos inner join produtos on produtoId=carrinhoProdutoProdutoId where carrinhoProdutoCarrinhoId=".$cid;
+    $result2=mysqli_query($con,$sql2);
 }
-
-$lista.=")";
-
-$sql="select * from produtos inner join imagens on produtoId = imagemProdutoId
-                where produtoId in $lista and imagemDestaque='sim'";
-$result=mysqli_query($con,$sql);
 
 
 
@@ -23,28 +18,7 @@ $result=mysqli_query($con,$sql);
 
 
         <!-- Bottom Bar End -->
-<?php
-$id=intval($_POST['idPrd']);
-session_start();
-array_push($_SESSION['carrinho'],$id);
-print_r($_SESSION);
-return true;
-?>
 
-    function adicionaCarrinho(id){
-    alert(id);
-    $.ajax({
-    url:"admin/AJAX/AJAXNovoProdutoCarrinho.php",
-    type:"post",
-    data: {
-    idPrd:id
-    },
-    success:function(result){
-    alert(result);
-    }
-    });
-    }
-        
         <!-- Breadcrumb Start -->
         <div class="breadcrumb-wrap">
             <div class="container-fluid">
@@ -76,110 +50,68 @@ return true;
                                     </thead>
                                     <tbody class="align-middle">
                                     <?php
-                                    $i=1;
-                                    while ($dados=mysqli_fetch_array($result)){
+
+                                    if(isset($result2)) {
+                                    while ($dados=mysqli_fetch_array($result2)){
                                         ?>
                                         <tr>
-                                            <th width="3%"><?php echo $i++?></th>
-                                            <th width="50%"><?php echo $dados['produtoNome']?></th>
-                                            <th width="22%"><img width="80" src="<?php echo $dados['imagemURL']?>"</th>
-                                            <th ><?php echo $dados['produtoPreco']?></th>
-                                            <th >3</th>
-                                            <th width="5%">&nbsp;</th>
+                                            <td>
+                                                <div class="img">
+                                                    <a href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><img src="<?php echo $dados['produtoImagemURL'];?>" alt="Image"></a>
+                                                    <p><?php echo $dados['produtoNome'];?></p>
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div class="quantity">
+                                                    <?php
+                                                    if ($dados['produtoDesconto']>0){
+
+                                                        $preco = $dados['produtoPreco'] - $dados['produtoPreco'] * $dados['produtoDesconto'] / 100;
+                                                        echo number_format($preco, 2, '.', ' ');
+                                                        ?>
+                                                            <span>€</span>
+
+                                                        <?php
+                                                    } else {
+                                                        ?>
+                                                        <?php echo $dados['produtoPreco'];?><span>€</span>
+
+                                                        <?php
+                                                    }
+
+                                                    ?>
+
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <form name="qntForm" action="confirm-add-product-cart.php" method="post">
+                                                    <input hidden type="text" name="produtoId" value="<?php echo $dados['produtoId']; ?>" >
+                                                    <div class="qty">
+                                                        <button name="sign" value="-1" class="btn-minus"><i class="fa fa-minus"></i></button>
+                                                        <input type="text" name="qt" value="<?php echo $dados['carrinhoProdutoQnt'];?>">
+                                                        <button name="sign" value="1" class="btn-plus"><i class="fa fa-plus"></i></button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                            <td>
+
+                                                <?php
+                                                $qt=intval($dados['carrinhoProdutoQnt']);
+                                                $preco = $dados['produtoPreco'] - $dados['produtoPreco'] * $dados['produtoDesconto'] / 100;
+                                                $preço = $preco * $qt;
+                                                echo number_format($preço, 2, '.', ' ');
+                                                ?>
+                                                <span>€</span>
+                                            </td>
+                                            <td><button><i class="fa fa-trash"></i></button></td>
+
                                         </tr>
                                         <?php
                                     }
+                                    }
                                     ?>
-                                    <tr>
-                                        <td>
-                                            <div class="img">
-                                                <a href="product-detail.php"><img src="img/product-1.jpg" alt="Image"></a>
-                                                <p>Produto</p>
-                                            </div>
-                                        </td>
-                                        <td>$0.99</td>
-                                        <td>
-                                            <div class="qty">
-                                                <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                <input type="text" value="1">
-                                                <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                            </div>
-                                        </td>
-                                        <td>$0.99</td>
-                                        <td><button><i class="fa fa-trash"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="img">
-                                                    <a href="product-detail.php"><img src="img/product-2.jpg" alt="Image"></a>
-                                                    <p>Produto</p>
-                                                </div>
-                                            </td>
-                                            <td>$0.99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
-                                            <td>$0.99</td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="img">
-                                                    <a href="product-detail.php"><img src="img/product-3.jpg" alt="Image"></a>
-                                                    <p>Produto</p>
-                                                </div>
-                                            </td>
-                                            <td>$0.99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
-                                            <td>$0.99</td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="img">
-                                                    <a href="product-detail.php"><img src="img/product-4.jpg" alt="Image"></a>
-                                                    <p>Produto</p>
-                                                </div>
-                                            </td>
-                                            <td>$0.99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
-                                            <td>$0.99</td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="img">
-                                                    <a href="product-detail.php"><img src="img/product-5.jpg" alt="Image"></a>
-                                                    <p>Produto</p>
-                                                </div>
-                                            </td>
-                                            <td>$0.99</td>
-                                            <td>
-                                                <div class="qty">
-                                                    <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" value="1">
-                                                    <button class="btn-plus"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
-                                            <td>$0.99</td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
