@@ -147,7 +147,6 @@ $total= 0;
                                                 </span></h2>
                                         </div>
                                         <div class="cart-btn">
-                                            <button>Atualizar Cart</button>
                                             <a href="checkout.php"><button>Checkout</button></a>
                                         </div>
                                     </div>
