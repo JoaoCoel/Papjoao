@@ -12,7 +12,7 @@ if($result->num_rows > 0) {
     $result2=mysqli_query($con,$sql2);
 }
 
-
+$total= 0;
 
 ?>
 
@@ -99,12 +99,13 @@ if($result->num_rows > 0) {
                                                 <?php
                                                 $qt=intval($dados['carrinhoProdutoQnt']);
                                                 $preco = $dados['produtoPreco'] - $dados['produtoPreco'] * $dados['produtoDesconto'] / 100;
-                                                $preço = $preco * $qt;
-                                                echo number_format($preço, 2, '.', ' ');
+                                                $preco = $preco * $qt;
+                                                echo number_format($preco, 2, '.', ' ');
+                                                $total += $preco;
                                                 ?>
                                                 <span>€</span>
                                             </td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
+                                            <td><button onclick="confirmDelete(<?php echo $dados['produtoId']; ?>)"><i class="fa fa-trash"></i></button></td>
 
                                         </tr>
                                         <?php
@@ -124,9 +125,26 @@ if($result->num_rows > 0) {
                                     <div class="cart-summary">
                                         <div class="cart-content">
                                             <h1>Sumário do Cart </h1>
-                                            <p>Sub Total<span>$0.99</span></p>
-                                            <p>Custo de Envio<span>$1</span></p>
-                                            <h2>Total<span>$100</span></h2>
+                                            <p>Sub Total<span><?php echo $total;?> €</span></p>
+                                            <p>Custo de Envio<span>
+                                                    <?php
+                                                    if ($total < 100) {
+                                                        echo "5 €";
+                                                    } else {
+                                                        echo "0 €";
+                                                    }
+                                                    ?>
+                                                </span></p>
+                                            <h2>Total<span>
+                                                    <?php
+                                                        $totalCP = $total;
+                                                        if ($total < 100) {
+                                                            $totalCP += 5;
+                                                        }
+                                                        echo $totalCP;
+                                                    ?>
+                                                    €
+                                                </span></h2>
                                         </div>
                                         <div class="cart-btn">
                                             <button>Atualizar Cart</button>
@@ -140,6 +158,17 @@ if($result->num_rows > 0) {
                 </div>
             </div>
         </div>
+
+    <script>
+        function confirmDelete(prodId)
+        {
+            let r=confirm("Tem a certeza? ("+prodId+")");
+            if (r == true) {
+                window.location.href = "delete-product-cart.php?id="+prodId;
+            }
+        }
+
+    </script>
         <!-- Cart End -->
         
         <!-- Footer Start 
@@ -216,6 +245,7 @@ if($result->num_rows > 0) {
          Footer End -->
         
         <!-- Footer Bottom Start -->
+
 <?php
 bottom();
 ?>
