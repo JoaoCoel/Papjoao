@@ -51,11 +51,9 @@ $result3 = mysqli_query($con, $sql3);
                 <div class="user">
                     <a href="wishlist.php" class="btn wishlist">
                         <i class="fa fa-heart"></i>
-                        <span>(0)</span>
                     </a>
                     <a href="cart.php" class="btn cart">
                         <i class="fa fa-shopping-cart"></i>
-                        <span>(0)</span>
                     </a>
                 </div>
             </div>

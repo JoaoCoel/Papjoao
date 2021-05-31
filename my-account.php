@@ -20,20 +20,20 @@ var_dump($dados);
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="search">
-                    <input type="text" placeholder="Search">
-                    <button><i class="fa fa-search"></i></button>
-                </div>
+                <form action="product-list.php?search=$_POST['search']">
+                    <div class="search">
+                        <input type="text" id="search" name="search" value="">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </form>
             </div>
             <div class="col-md-3">
                 <div class="user">
                     <a href="wishlist.php" class="btn wishlist">
                         <i class="fa fa-heart"></i>
-                        <span>(0)</span>
                     </a>
                     <a href="cart.php" class="btn cart">
                         <i class="fa fa-shopping-cart"></i>
-                        <span>(0)</span>
                     </a>
                 </div>
             </div>
