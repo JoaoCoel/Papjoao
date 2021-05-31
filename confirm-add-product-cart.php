@@ -19,17 +19,17 @@ $uid=intval($_SESSION['id']);
 $pid=intval($_SESSION['pid']);
 
 //Verificar se o utilizador tem carrinho e criar se não tiver
-    $sql="select * from carrinho where carrinhoPerfilId=".$pid;
+    $sql="select * from carrinhos where carrinhoPerfilId=".$pid;
     $result=mysqli_query($con,$sql);
     $dados=mysqli_fetch_array($result);
 
     if($result->num_rows <= 0) {
-        $sql="insert into carrinho (carrinhoPerfilId)";
+        $sql="insert into carrinhos (carrinhoPerfilId)";
         $sql .= " values('".$pid."');";
         mysqli_query($con,$sql); //or die(mysqli_error($con))
     }
 //Inserir produto no carrinho (tabela carrinhoProduto)
-    $sql="select * from carrinho where carrinhoPerfilId=".$pid;
+    $sql="select * from carrinhos where carrinhoPerfilId=".$pid;
     $result=mysqli_query($con,$sql);
     $dados=mysqli_fetch_array($result);
     $carrinhoId = $dados['carrinhoId'];

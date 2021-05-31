@@ -3,7 +3,7 @@ include_once ("includes/body.inc.php");
 top();
 //ver pap do filipe e ver https://drakelings.bluedrake42.com/index.php?%2Ffile%2F28-stalker-anomaly%2F
 
-$sql="select * from carrinho where carrinhoPerfilId=".$_SESSION['pid'];
+$sql="select * from carrinhos where carrinhoPerfilId=".$_SESSION['pid'];
 $result=mysqli_query($con,$sql) or die (mysqli_error($con));
 if($result->num_rows > 0) {
     $dados=mysqli_fetch_array($result);

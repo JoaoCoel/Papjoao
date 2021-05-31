@@ -183,7 +183,7 @@ $result=mysqli_query($con,$sql);
                                     </div> -->
                                     <div class="action">
                                         <a class="btn" href="confirm-add-product-cart.php?id=<?php echo $dadosProduto['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Adicionar ao Carrinho</a>
-                                        <a class="btn" href="confirm-add-product-cart.php?id=<?php echo $dadosProduto['produtoId']; ?>"><i class="fa fa-shopping-bag"></i>Comprar</a>
+                                        <a class="btn" href="confirm-add-product-fav.php?id=<?php echo $dadosProduto['produtoId']; ?>"><i class="fa fa-heart"></i>Adicionar ao favoritos</a>
                                     </div>
 
                                 </div>
@@ -261,7 +261,7 @@ $result=mysqli_query($con,$sql);
                                 <div class="col-lg-3">
                                     <div class="product-item">
                                         <div class="product-title">
-                                            <?php echo "<a href='product-detail.php?id=".$dados['produtoId']."'>".$dados['produtoNome']."</a>";?><?php echo $dados['produtoId']; ?>
+                                            <?php echo "<a href='product-detail.php?id=".$dados['produtoId']."'>".$dados['produtoNome']."</a>";?>
                                             <div class="ratting">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -275,14 +275,14 @@ $result=mysqli_query($con,$sql);
                                                 <?php echo "<img src=\"".$dados['produtoImagemURL']."\">";?>
                                             </a>
                                             <div class="product-action">
-                                                <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                                <a href="#"><i class="fa fa-heart"></i></a>
+                                                <a href="confirm-add-product-cart.php?id=<?php echo $dadosProduto['produtoId']; ?>"><i class="fa fa-cart-plus"></i></a>
+                                                <a href="confirm-add-product-fav.php?id=<?php echo $dadosProduto['produtoId']; ?>"><i class="fa fa-heart"></i></a>
                                                 <a href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-search"></i></a>
                                             </div>
                                         </div>
                                         <div class="product-price">
                                             <h3><span>$</span><?php echo $dados['produtoPreco'];?></h3>
-                                            <a class="btn" href="product-detail.php"><i class="fa fa-shopping-cart"></i>Comprar</a>
+                                            <a class="btn" href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Comprar</a>
                                         </div>
                                     </div>
                                 </div>

@@ -184,8 +184,8 @@ https://phpdelusions.net/mysqli_examples/search_filter
                                     <?php echo "<img src=\"".$dados['produtoImagemURL']."\">";?>
                                 </a>
                                 <div class="product-action">
-                                    <a href="cart.php"><i class="fa fa-cart-plus"></i></a>
-                                    <a href="wishlist.php"><i class="fa fa-heart"></i></a>
+                                    <a href="confirm-add-product-cart.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-cart-plus"></i></a>
+                                    <a href="confirm-add-product-fav.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-heart"></i></a>
                                     <a href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-search"></i></a>
                                 </div>
                             </div>

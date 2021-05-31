@@ -1,6 +1,16 @@
 <?php
 include_once ("includes/body.inc.php");
 top();
+
+$sql="select * from favoritos where favoritoPerfilId=".$_SESSION['pid'];
+$result=mysqli_query($con,$sql) or die (mysqli_error($con));
+if($result->num_rows > 0) {
+    $dados=mysqli_fetch_array($result);
+    $cid = $dados['carrinhoId'];
+    $sql2="select * from favoritoProdutos inner join produtos on produtoId=favoritoProdutoProdutoId where favoritoProdutoFavoritoId=".$cid;
+    $result2=mysqli_query($con,$sql2);
+}
+
 ?>
         <!-- Bottom Bar End --> 
         
@@ -32,61 +42,27 @@ top();
                                         </tr>
                                     </thead>
                                     <tbody class="align-middle">
+                                    <?php
+
+                                    if(isset($result2)) {
+                                    while ($dados=mysqli_fetch_array($result2)){
+                                    ?>
                                         <tr>
                                             <td>
                                                 <div class="img">
-                                                    <a href="product-detail.php"><img src="img/product-6.jpg" alt="Image"></a>
-                                                    <p>Produto</p>
+                                                    <a href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><img src="<?php echo $dados['produtoImagemURL'];?>" alt="Image"></a>
+                                                    <p><?php echo $dados['produtoNome'];?></p>
                                                 </div>
                                             </td>
-                                            <td>$0.99</td>
-                                            <td><button class="btn-cart">Adicionar ao Cart</button></td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
+                                            <td><?php echo $dados['produtoPreco'];?><span>€</span></td>
+                                            <td><a class="btn-cart" href="confirm-add-product-cart.php?id=<?php echo $dados['produtoId']; ?>">Adicionar ao Cart</a></td>
+                                            <td><button onclick="confirmDelete(<?php echo $dados['produtoId']; ?>)"><i class="fa fa-trash"></i></button></td>
+
                                         </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="img">
-                                                    <a href="product-detail.php"><img src="img/product-7.jpg" alt="Image"></a>
-                                                    <p>Produto</p>
-                                                </div>
-                                            </td>
-                                            <td>$0.99</td>
-                                            <td><button class="btn-cart">Adicionar ao Cart</button></td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="img">
-                                                    <a href="product-detail.php"><img src="img/product-8.jpg" alt="Image"></a>
-                                                    <p>Produto</p>
-                                                </div>
-                                            </td>
-                                            <td>$0.99</td>
-                                            <td><button class="btn-cart">Adicionar ao Cart</button></td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="img">
-                                                    <a href="product-detail.php"><img src="img/product-9.jpg" alt="Image"></a>
-                                                    <p>Produto</p>
-                                                </div>
-                                            </td>
-                                            <td>$0.99</td>
-                                            <td><button class="btn-cart">Adicionar ao Cart</button></td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="img">
-                                                    <a href="product-detail.php"><img src="img/product-10.jpg" alt="Image"></a>
-                                                    <p>Produto</p>
-                                                </div>
-                                            </td>
-                                            <td>$0.99</td>
-                                            <td><button class="btn-cart">Adicionar ao Cart</button></td>
-                                            <td><button><i class="fa fa-trash"></i></button></td>
-                                        </tr>
+                                    <?php
+                                    }
+                                    }
+                                    ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -95,6 +71,18 @@ top();
                 </div>
             </div>
         </div>
+
+
+<script>
+    function confirmDelete(prodId)
+    {
+        let r=confirm("Tem a certeza? ("+prodId+")");
+        if (r == true) {
+            window.location.href = "delete-product-fav.php?id="+prodId;
+        }
+    }
+
+</script>
         <!-- Wishlist End -->
         
         <!-- Footer Start
