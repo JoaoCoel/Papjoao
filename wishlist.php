@@ -2,14 +2,9 @@
 include_once ("includes/body.inc.php");
 top();
 
-$sql="select * from favoritos where favoritoPerfilId=".$_SESSION['pid'];
+$sql="select * from favoritos left join produtos on produtoId=favoritoProdutoId where favoritoPerfilId=".$_SESSION['pid'];
 $result=mysqli_query($con,$sql) or die (mysqli_error($con));
-if($result->num_rows > 0) {
-    $dados=mysqli_fetch_array($result);
-    $cid = $dados['carrinhoId'];
-    $sql2="select * from favoritoProdutos inner join produtos on produtoId=favoritoProdutoProdutoId where favoritoProdutoFavoritoId=".$cid;
-    $result2=mysqli_query($con,$sql2);
-}
+
 
 ?>
         <!-- Bottom Bar End --> 
@@ -44,8 +39,8 @@ if($result->num_rows > 0) {
                                     <tbody class="align-middle">
                                     <?php
 
-                                    if(isset($result2)) {
-                                    while ($dados=mysqli_fetch_array($result2)){
+                                    if(isset($result)) {
+                                    while ($dados=mysqli_fetch_array($result)){
                                     ?>
                                         <tr>
                                             <td>
@@ -55,7 +50,7 @@ if($result->num_rows > 0) {
                                                 </div>
                                             </td>
                                             <td><?php echo $dados['produtoPreco'];?><span>€</span></td>
-                                            <td><a class="btn-cart" href="confirm-add-product-cart.php?id=<?php echo $dados['produtoId']; ?>">Adicionar ao Cart</a></td>
+                                            <td><a class="btn" href="confirm-add-product-cart.php?id=<?php echo $dados['produtoId']; ?>">Adicionar ao Cart</a></td>
                                             <td><button onclick="confirmDelete(<?php echo $dados['produtoId']; ?>)"><i class="fa fa-trash"></i></button></td>
 
                                         </tr>

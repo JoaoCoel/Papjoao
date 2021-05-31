@@ -14,6 +14,9 @@ if (isset($_GET['id'])) {
 if(isset($_POST['sign'])) {
    $sign = $_POST['sign'];
 }
+if (isset($_GET['orig'])) {
+    $orig = $_GET['orig'];
+}
 
 $uid=intval($_SESSION['id']);
 $pid=intval($_SESSION['pid']);
@@ -63,7 +66,12 @@ header("location:login.php");
 if(isset($sign)){
     header("location:cart.php");
 } else {
-    header("location:product-detail.php?id=".$id);
+    $ref = $_SERVER['HTTP_REFERER'];
+
+    $pos = strrpos ($ref,"/");
+    $ref= substr($ref,$pos+1, strlen($ref)-$pos);
+    var_dump($ref);
+    header("location:".$ref);
 }
 
 ?>
