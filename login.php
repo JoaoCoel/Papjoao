@@ -20,51 +20,6 @@ $res = mysqli_query($con, $sql) ;
                     </a>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="search">
-                    <input type="text" placeholder="Search">
-                    <button><i class="fa fa-search"></i></button>
-                </div>
-            </div>
-            <?php
-
-            if(isset($_SESSION['id'])){
-                $con=mysqli_connect("localhost", "root","","pap2021drk");
-                $sql="select utilizadorId,perfis.perfilNome as perfilNome from utilizadores left join perfis on perfilId=utilizadorPerfilId";
-                $res = mysqli_query($con, $sql) or die(mysqli_error($con));
-                $dados=mysqli_fetch_array($res);
-                //var_dump($dados);
-                ?>
-                <div class="col-md-3">
-                    <div class="user">
-                        <a href="wishlist.php" class="btn wishlist">
-                            <i class="fa fa-heart"></i>
-                            <span>(0)</span>
-                        </a>
-                        <a href="cart.php" class="btn cart">
-                            <i class="fa fa-shopping-cart"></i>
-                            <span>(0)</span>
-                        </a>
-                    </div>
-                </div>
-                <?php
-            }else{
-                ?>
-                <div class="col-md-3">
-                    <div class="user">
-                        <a href="login.php" class="btn wishlist">
-                            <i class="fa fa-heart"></i>
-                            <span>(0)</span>
-                        </a>
-                        <a href="login.php" class="btn cart">
-                            <i class="fa fa-shopping-cart"></i>
-                            <span>(0)</span>
-                        </a>
-                    </div>
-                </div>
-                <?php
-            }
-            ?>
         </div>
     </div>
 </div>

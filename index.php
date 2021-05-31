@@ -51,9 +51,25 @@ $result3 = mysqli_query($con, $sql3);
                 <div class="user">
                     <a href="wishlist.php" class="btn wishlist">
                         <i class="fa fa-heart"></i>
+                        <span><?php
+                            if (isset($_SESSION['id'])) {
+                                $pid=$_SESSION['pid'];
+                                echo contaCoisas($con,array($pid),"favoritos",array("favoritoPerfilId"));
+                            }
+
+                            ?></span>
                     </a>
                     <a href="cart.php" class="btn cart">
                         <i class="fa fa-shopping-cart"></i>
+
+                            <span><?php
+                                if (isset($_SESSION['id'])) {
+                                    $pid=$_SESSION['pid'];
+                                    echo contaCarrinho($con, $pid);
+                                }
+
+                                ?>
+                            </span>
                     </a>
                 </div>
             </div>

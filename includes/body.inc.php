@@ -174,7 +174,6 @@ function bottom(){
 
 function contaCoisas($cn, $filtro, $table="produtos", $field=array("produtoTipoCategoriaTipoId")){
     $sql="Select COUNT(*) as nProdutos from ".$table." where ";
-
     for ($i=0;$i<count($field);$i++){
         $sql.=$field[$i]."='".$filtro[$i]."' and ";
     }
@@ -182,6 +181,13 @@ function contaCoisas($cn, $filtro, $table="produtos", $field=array("produtoTipoC
 
     $result=mysqli_query($cn,$sql);
     $dados=mysqli_fetch_array($result) or die (mysqli_error($cn));
+    return $dados['nProdutos'] ;
+}
+
+function contaCarrinho($cn, $pid) {
+    $sql="Select SUM(carrinhoProdutoQnt) as nProdutos from carrinhos right join carrinhoprodutos on carrinhoProdutoCarrinhoId=carrinhoId where carrinhoPerfilId=".$pid;
+    $result=mysqli_query($cn,$sql) or die (mysqli_error($cn));
+    $dados=mysqli_fetch_array($result) ;
     return $dados['nProdutos'] ;
 }
 
