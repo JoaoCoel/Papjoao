@@ -40,12 +40,7 @@ $result3 = mysqli_query($con, $sql3);
                 </form>
             </div>
             <?php
-
-            //if(isset($_SESSION['id'])){
-           // $con=mysqli_connect("localhost", "root","","pap2021drk");
-           // $sql="select * from utilizadores inner join perfis on utilizadorId=perfilUtilizadorId where utilizadorId=".$_SESSION['id'];
-           // $res = mysqli_query($con, $sql);
-           // $dados=mysqli_fetch_array($res);
+            if(isset($_SESSION['id'])){
             ?>
             <div class="col-md-3">
                 <div class="user">
@@ -74,7 +69,7 @@ $result3 = mysqli_query($con, $sql3);
                 </div>
             </div>
                 <?php
-            //}else{
+            }
             ?>
             <!--div class="col-md-3">
                 <div class="user">
@@ -88,9 +83,6 @@ $result3 = mysqli_query($con, $sql3);
                     </a>
                 </div>
             </div-->
-                <?php
-           // }
-            ?>
         </div>
     </div>
 </div>
