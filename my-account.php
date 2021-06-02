@@ -1,10 +1,19 @@
 <?php
 include_once ("includes/body.inc.php");
 top();
+$pid=intval($_SESSION['pid']);
 $sql="select * from utilizadores left join perfis on utilizadorPerfilId=perfilId where utilizadorId=".$_SESSION['id'];
 $result=mysqli_query($con,$sql);
 $dados=mysqli_fetch_array($result);
-var_dump($dados);
+
+
+$sql1="select * from enderecos left join perfis on enderecoPerfilId=perfilId where perfilId=".$pid;
+$result1=mysqli_query($con,$sql1);
+$dados1=mysqli_fetch_array($result1);
+
+
+
+
 ?>
 <!-- Nav Bar End -->
 
@@ -27,16 +36,50 @@ var_dump($dados);
                     </div>
                 </form>
             </div>
-            <div class="col-md-3">
+            <?php
+            if(isset($_SESSION['id'])){
+                ?>
+                <div class="col-md-3">
+                    <div class="user">
+                        <a href="wishlist.php" class="btn wishlist">
+                            <i class="fa fa-heart"></i>
+                            <span><?php
+                                if (isset($_SESSION['id'])) {
+                                    $pid=$_SESSION['pid'];
+                                    echo contaCoisas($con,array($pid),"favoritos",array("favoritoPerfilId"));
+                                }
+
+                                ?></span>
+                        </a>
+                        <a href="cart.php" class="btn cart">
+                            <i class="fa fa-shopping-cart"></i>
+
+                            <span><?php
+                                if (isset($_SESSION['id'])) {
+                                    $pid=$_SESSION['pid'];
+                                    echo contaCarrinho($con, $pid);
+                                }
+
+                                ?>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
+            <!--div class="col-md-3">
                 <div class="user">
-                    <a href="wishlist.php" class="btn wishlist">
+                    <a href="login.php" class="btn wishlist">
                         <i class="fa fa-heart"></i>
+                        <span>(0)</span>
                     </a>
-                    <a href="cart.php" class="btn cart">
+                    <a href="login.php" class="btn cart">
                         <i class="fa fa-shopping-cart"></i>
+                        <span>(0)</span>
                     </a>
                 </div>
-            </div>
+            </div-->
         </div>
     </div>
 </div>
@@ -150,9 +193,9 @@ var_dump($dados);
                                 <form action="confirm-edit-endereco.php" method="post" enctype="multipart/form-data">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <p>123 Payment Street, Los Angeles, CA</p>
-                                            <p>Telemóvel: 012-345-6789</p>
-                                            <a class="btn" href="edit-adress.php">Editar Endereço</a>
+                                            <p>Morada: <?php echo $dados1['enderecoMorada']?></p>
+                                            <p>Cod. Postal: <?php echo $dados1['enderecoCodPostal']?> <?php echo $dados1['enderecoLocal']?></p>
+                                            <a class="btn" href="edit-address.php">Editar Endereço</a>
                                         </div>
                                     </div>
                                 </form>

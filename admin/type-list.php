@@ -7,7 +7,7 @@ top();
 <script>
     function confirmDelete(tipId)
     {
-        let r=confirm("Tem a certeza? ("+tipId+")");
+        let r=confirm("Tem a certeza? Irá APAGAR todos os produtos deste tipo.");
         if (r == true) {
             window.location.href = "delete-type.php?id="+tipId;
         }

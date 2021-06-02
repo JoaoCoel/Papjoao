@@ -5,9 +5,9 @@ top();
 ?>
 
 <script>
-    function confirmDelete(catId)
+    function confirmDelete(catId,catN)
     {
-        let r=confirm("Tem a certeza? ("+catId+")");
+        let r=confirm("Tem a certeza? Irá APAGAR todos os produtos desta categoria.");
         if (r == true) {
             window.location.href = "delete-category.php?id="+catId;
         }

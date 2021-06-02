@@ -1,50 +1,82 @@
 <?php
 include_once ("includes/body.inc.php");
 top();
+
+$pid=intval($_SESSION['pid']);
+
+$sql="select * from enderecos where enderecoPerfilId=".$pid;
+$result=mysqli_query($con,$sql);
+$dados=mysqli_fetch_array($result);
+
 ?>
 
 <!-- Nav Bar End -->
 
 <!-- Bottom Bar Start -->
-<div class="bottom-bar">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-md-3">
-                <div class="logo">
-                    <a href="index.php">
-                        <img src="img/logo.png" alt="Logo">
-                    </a>
+    <div class="bottom-bar">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <div class="logo">
+                        <a href="index.php">
+                            <img src="img/logo.png" alt="Logo">
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="search">
-                    <input type="text" placeholder="Search">
-                    <button><i class="fa fa-search"></i></button>
+                <div class="col-md-6">
+                    <form action="product-list.php?search=$_POST['search']">
+                        <div class="search">
+                            <input type="text" id="search" name="search" value="">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                    </form>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="user">
-                    <a href="wishlist.php" class="btn wishlist">
-                        <i class="fa fa-heart"></i>
-                        <span>(0)</span>
-                    </a>
-                    <a href="cart.php" class="btn cart">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span>(0)</span>
-                    </a>
-                </div>
+                <?php
+                if(isset($_SESSION['id'])){
+                    ?>
+                    <div class="col-md-3">
+                        <div class="user">
+                            <a href="wishlist.php" class="btn wishlist">
+                                <i class="fa fa-heart"></i>
+                                <span><?php
+                                        echo contaCoisas($con,array($pid),"favoritos",array("favoritoPerfilId"));
+                                    ?></span>
+                            </a>
+                            <a href="cart.php" class="btn cart">
+                                <i class="fa fa-shopping-cart"></i>
+
+                                <span><?php
+                                        echo contaCarrinho($con, $pid);
+                                    ?>
+                            </span>
+                            </a>
+                        </div>
+                    </div>
+                    <?php
+                }
+                ?>
+                <!--div class="col-md-3">
+                    <div class="user">
+                        <a href="login.php" class="btn wishlist">
+                            <i class="fa fa-heart"></i>
+                            <span>(0)</span>
+                        </a>
+                        <a href="login.php" class="btn cart">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>(0)</span>
+                        </a>
+                    </div>
+                </div-->
             </div>
         </div>
     </div>
-</div>
         <!-- Bottom Bar End --> 
         
         <!-- Breadcrumb Start -->
         <div class="breadcrumb-wrap">
             <div class="container-fluid">
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.php">Página Principal</a></li>
-                    <li class="breadcrumb-item"><a href="product-list.php">Login & Registar</a></li>
+                    <li class="breadcrumb-item"><a href="my-account.php">Perfil</a></li>
                     <li class="breadcrumb-item active">Endereço</li>
                 </ul>
             </div>
@@ -52,39 +84,31 @@ top();
         <!-- Breadcrumb End -->
         
         <!-- Login Start -->
-        <div class="login">
+    <form action="confirm-edit-address.php" method="post" enctype="multipart/form-data">
+        <div class="checkout">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-6">    
-                        <div class="register-form">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Endereço</label>
-                                    <input class="form-control" type="text" placeholder="Address">
-                                </div>
-                                <div class="col-md-6">
-                                    <label>País</label>
-                                    <select class="custom-select">
-                                        <option selected>United States</option>
-                                        <option>Afghanistan</option>
-                                        <option>Albania</option>
-                                        <option>Algeria</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Cidade</label>
-                                    <input class="form-control" type="text" placeholder="City">
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Estado</label>
-                                    <input class="form-control" type="text" placeholder="State">
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Código ZIP</label>
-                                    <input class="form-control" type="text" placeholder="ZIP Code">
-                                </div>
-                                <div class="col-md-12">
-                                    <button class="btn">Submeter</button>
+                    <div class="col-lg-8">
+                        <div class="checkout-inner">
+                            <div class="billing-address">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Morada</label>
+                                        <input class="form-control" type="text" name="mor" value="<?php echo $dados['enderecoMorada']?>">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Código Postal</label>
+                                        <input class="form-control" type="text" name="codP" value="<?php echo $dados['enderecoCodPostal']?>">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Localidade</label>
+                                        <input class="form-control" type="text" name="loc" value="<?php echo $dados['enderecoLocal']?>">
+                                    </div>
+                                    <div class="checkout-payment">
+                                        <div class="checkout-btn">
+                                            <button type="submit">Editar</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -92,6 +116,7 @@ top();
                 </div>
             </div>
         </div>
+    </form>
         <!-- Login End -->
         
         <!-- Footer Start

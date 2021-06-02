@@ -17,56 +17,55 @@ $tamanhos=mysqli_query($con,$sql) or die;
 
 $sql="Select * from produtotamanhos where produtoTamanhoProdutoId=$id";;
 $ptamanhos=mysqli_query($con,$sql) or die;
+
+$sql="Select * from tipocategorias";
+$categ=1;
+$cattipo=mysqli_query($con,$sql) or die;
+$cattipoarr=array();
+
+while ($dados=mysqli_fetch_array($cattipo)){
+    array_push($cattipoarr,$dados);
+
+}
+
 ?>
 
 <script>
-
 
     function catChange()
     {
         let categoriaDropdown = document.getElementById('categoriaProduto').value;
         let tipoDropdown = document.getElementById('tipoProduto');
-
+        let cattipo = JSON.parse(document.getElementById('cattipo').value);
 
         let i;
+        let k;
+        let select=0;
 
-        if (categoriaDropdown > 2){
-
-            for (i = 0; i < tipoDropdown.length ; i++) {
-                if (i<6) {
-                    tipoDropdown.options[i].hidden = true;
-                    tipoDropdown.options[i].selected = false;
-                } else {
-                    tipoDropdown.options[i].hidden = false;
-                }
-
-            }
-            tipoDropdown.options[6].selected = true;
-        } else {
-            for (i = 0; i < tipoDropdown.length ; i++) {
-                if (i>5) {
-                    tipoDropdown.options[i].hidden = true;
-                    tipoDropdown.options[i].selected = false;
-                } else {
-                    tipoDropdown.options[i].hidden = false;
-                }
-
-            }
-            tipoDropdown.options[0].selected = true;
+        for (i = 0; i < tipoDropdown.length ; i++) {
+            tipoDropdown.options[i].hidden = true;
+            tipoDropdown.options[i].selected = false;
         }
 
+        for (i=0;i<cattipo.length;i++) {
+            if (categoriaDropdown == cattipo[i][0]) {
+                for (k=0; tipoDropdown.length ; k++) {
+                    if (tipoDropdown.options[k].value == cattipo[i][1] ){
+                        tipoDropdown.options[k].hidden = false;
+                        if (select==0) {
+                            tipoDropdown.options[k].selected = true;
+                            select=1;
+                        }
+                        break;
+                    }
+                }
 
+            }
+
+        }
 
     }
 
-
-    /*while (currentYear >= earliestYear) {
-        let dateOption = document.createElement('option');
-        dateOption.text = currentYear;
-        dateOption.value = currentYear;
-        dateDropdown.add(dateOption);
-        currentYear -= 1;
-    }*/
 </script>
 <!-- Bottom Bar End -->
 
@@ -100,6 +99,7 @@ $ptamanhos=mysqli_query($con,$sql) or die;
                                     <label>Nome do produto</label>
                                     <input class="form-control" name="nomeProduto" type="text" placeholder="" value="<?php echo $dadosProduto['produtoNome']?>">
                                 </div>
+                                <input class="form-control" name="cattipo" id="cattipo" hidden value='<?php echo json_encode($cattipoarr);?>' type="text" placeholder="">
                                 <div class="col-md-6">
                                     <label>Categoria</label>
                                     <select onchange="catChange();" class="custom-select" id="categoriaProduto" name="categoriaProduto">

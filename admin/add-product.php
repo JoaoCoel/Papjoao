@@ -18,51 +18,43 @@ while ($dados=mysqli_fetch_array($cattipo)){
     array_push($cattipoarr,$dados);
 
 }
-
+//var_dump($cattipoarr);
 ?>
 
 
 <script>
 
-
-    $( document ).ready(function() {
-        catChange();
-    });
-
     function catChange()
     {
         let categoriaDropdown = document.getElementById('categoriaProduto').value;
         let tipoDropdown = document.getElementById('tipoProduto');
-
+        let cattipo = JSON.parse(document.getElementById('cattipo').value);
 
         let i;
+        let k;
+        let select=0;
 
-        if (categoriaDropdown > 2){
-
-            for (i = 0; i < tipoDropdown.length ; i++) {
-                if (i<6) {
-                    tipoDropdown.options[i].hidden = true;
-                    tipoDropdown.options[i].selected = false;
-                } else {
-                    tipoDropdown.options[i].hidden = false;
-                }
-
-            }
-            tipoDropdown.options[6].selected = true;
-        } else {
-            for (i = 0; i < tipoDropdown.length ; i++) {
-                if (i>5) {
-                    tipoDropdown.options[i].hidden = true;
-                    tipoDropdown.options[i].selected = false;
-                } else {
-                    tipoDropdown.options[i].hidden = false;
-                }
-
-            }
-            tipoDropdown.options[0].selected = true;
+        for (i = 0; i < tipoDropdown.length ; i++) {
+            tipoDropdown.options[i].hidden = true;
+            tipoDropdown.options[i].selected = false;
         }
 
+        for (i=0;i<cattipo.length;i++) {
+            if (categoriaDropdown == cattipo[i][0]) {
+                for (k=0; tipoDropdown.length ; k++) {
+                    if (tipoDropdown.options[k].value == cattipo[i][1] ){
+                        tipoDropdown.options[k].hidden = false;
+                        if (select==0) {
+                            tipoDropdown.options[k].selected = true;
+                            select=1;
+                        }
+                        break;
+                    }
+                }
 
+            }
+
+        }
 
     }
 
