@@ -26,6 +26,9 @@ $ptamanhos=mysqli_query($con,$sql);
 $sql2="select * from produtos where produtoTipoCategoriaTipoId=".$dadosProduto['produtoTipoCategoriaTipoId']." and produtoId!=".$id;
 $result2=mysqli_query($con,$sql2);
 
+
+
+
 ?>
 
     <!-- Bottom Bar Start -->
@@ -160,7 +163,7 @@ $result=mysqli_query($con,$sql);
                                                 while ($dt=mysqli_fetch_array($ptamanhos)) {
                                                     if ($dt['produtoTamanhoTamanhoId']==$i){
                                                         echo "<div class=\"btn-group btn-group-sm\">";
-                                                        echo "<button class=\"btn\" type=\"button\" id=\"size".$i."\" name=\"size".$i."\" value=\"".$dados['tamanhoId']."\"/>".$dados['tamanhoNome']."</button>";
+                                                        echo "<button onclick=\"confirmTam('".$dados['tamanhoNome']."');\" class=\"btn\" type=\"button\" id=\"size".$i."\" name=\"size".$i."\" value=\"".$dados['tamanhoId']."\">".$dados['tamanhoNome']."</button>";
                                                         echo "</div>";
                                                         break;
                                                     }
@@ -180,16 +183,19 @@ $result=mysqli_query($con,$sql);
                                         </div>
                                     </div> -->
                                     <div class="action">
-                                        <a class="btn" href="confirm-add-product-cart.php?id=<?php echo $dadosProduto['produtoId']; ?>"><i class="fa fa-shopping-cart"></i>Adicionar ao Carrinho</a>
+                                        <input type="text" hidden id="prodTam" value=""/>
+                                        <button class="btn" onclick="confirmCar(<?php echo $dadosProduto['produtoId']; ?>)"><i class="fa fa-shopping-cart"></i> Adicionar ao Carrinho</button>
                                         <a class="btn" href="confirm-add-product-fav.php?id=<?php echo $dadosProduto['produtoId']; ?>"><i class="fa fa-heart"></i>Adicionar ao favoritos</a>
                                     </div>
-
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
+
+
+
+
+
 
 
                     <div class="row product-detail-bottom">
@@ -273,7 +279,6 @@ $result=mysqli_query($con,$sql);
                                                 <?php echo "<img src=\"".$dados['produtoImagemURL']."\">";?>
                                             </a>
                                             <div class="product-action">
-                                                <a href="confirm-add-product-cart.php?id=<?php echo $dadosProduto['produtoId']; ?>"><i class="fa fa-cart-plus"></i></a>
                                                 <a href="confirm-add-product-fav.php?id=<?php echo $dadosProduto['produtoId']; ?>"><i class="fa fa-heart"></i></a>
                                                 <a href="product-detail.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-search"></i></a>
                                             </div>
@@ -421,6 +426,19 @@ $result=mysqli_query($con,$sql);
      Footer End -->
 
     <!-- Footer Bottom Start -->
+    <script>
+        function confirmCar(prodId) {
+            let pt=document.getElementById("prodTam").value;
+            window.location.href = "confirm-add-product-cart.php?id="+prodId+"&tam="+pt;
+        }
+
+        function confirmTam(prodTam) {
+            let pt=document.getElementById("prodTam");
+            pt.value = prodTam;
+
+        }
+
+    </script>
 <?php
 bottom();
 ?>

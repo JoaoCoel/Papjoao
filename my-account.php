@@ -168,22 +168,6 @@ $dados1=mysqli_fetch_array($result1);
                                                 <td>Aprovado</td>
                                                 <td><button class="btn">Ver</button></td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Produto</td>
-                                                <td>01 Jan 2020</td>
-                                                <td>$0.99</td>
-                                                <td>Aprovado</td>
-                                                <td><button class="btn">Ver</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Produto</td>
-                                                <td>01 Jan 2020</td>
-                                                <td>$0.99</td>
-                                                <td>Aprovado</td>
-                                                <td><button class="btn">Ver</button></td>
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>

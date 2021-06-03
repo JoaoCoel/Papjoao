@@ -6,20 +6,22 @@ include_once ("includes/body.inc.php");
 //var_dump($_FILES);
 if(isset($_SESSION['id'])){
 
-if (isset($_GET['id'])) {
-    $id=intval($_GET['id']);
-} elseif (isset($_POST['produtoId'])) {
-    $id=intval($_POST['produtoId']);
-}
-if(isset($_POST['sign'])) {
-   $sign = $_POST['sign'];
-}
-if (isset($_GET['orig'])) {
-    $orig = $_GET['orig'];
-}
+    if (isset($_GET['id'])) {
+        $id=intval($_GET['id']);
 
-$uid=intval($_SESSION['id']);
-$pid=intval($_SESSION['pid']);
+    } elseif (isset($_POST['produtoId'])) {
+        $id=intval($_POST['produtoId']);
+    }
+    if(isset($_POST['sign'])) {
+       $sign = $_POST['sign'];
+    }
+
+    $uid=intval($_SESSION['id']);
+    $pid=intval($_SESSION['pid']);
+    $tam="";
+    if (isset($_GET['tam'])) {
+        $tam=$_GET['tam'];
+    }
 
 //Verificar se o utilizador tem carrinho e criar se não tiver
     $sql="select * from carrinhos where carrinhoPerfilId=".$pid;
@@ -55,7 +57,7 @@ $pid=intval($_SESSION['pid']);
         }
     }
     If (!$exists) {
-        $sql = "insert into carrinhoProdutos (carrinhoProdutoCarrinhoId,carrinhoProdutoProdutoId) values(".$carrinhoId.",".$id.")";
+        $sql = "insert into carrinhoProdutos (carrinhoProdutoCarrinhoId,carrinhoProdutoProdutoId,carrinhoProdutoTam) values(".$carrinhoId.",".$id.",'".$tam."')";
         mysqli_query($con,$sql) or die(mysqli_error($con));
     }
 
