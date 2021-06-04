@@ -47,68 +47,40 @@ top();
                             <table class="table table-bordered">
                                 <tr>
                                     <thead class="thead-dark">
-                                        <th align='center'>Id</th>
                                         <th align='center'>Nome</th>
+                                        <th align='center'>Quantidade</th>
+                                        <th align='center'>Tamanho</th>
                                         <th align='center'>Preço</th>
-                                        <th align='center'>Desconto</th>
-                                        <th align='center'>Categoria</th>
-                                        <th align='center'>Tipo</th>
-                                        <th align='center'>Género</th>
-                                        <th align='center'>Destaque</th>
                                         <th width="20%" align='center'>Imagem</th>
-                                        <th colspan="4" width="25%">Opções</th>
                                     </thead>
                                 </tr>
                                     <tr>
                                         <?php
-                                        $sql="Select produtoId,produtoNome,produtoPreco,produtoDesconto,produtoDestaque,produtoGenero,categorias.categoriaNome as categ,tipos.tipoNome as tipo, produtoImagemURL from produtos 
-                                        left join categorias on produtoTipoCategoriaCategoriaId=categoriaId left join tipos on produtoTipoCategoriaTipoId=tipoId";
+                                        $sql="Select * from encomendas left join encomendaprodutos on encomendaId=encomendaProdutoEncomendaId where encomendaPerfilId=".$_SESSION['pid'];
 
                                         $result=mysqli_query($con,$sql);
 
                                         //echo "<table class='table table-striped'>";
                                             while($dados=mysqli_fetch_array($result)){
                                         ?>
-                                                <form action="confirm-edit-destaque.php" method="post" enctype="multipart/form-data">
+                                        <a href="product-detail.php?id=<?php echo $dados['encomendaProdutoProdutoId']; ?>">
                                                     <?php
                                                     echo "<tr>";
-                                                    echo "<input type='text' name='produtoId' hidden value='".$dados['produtoId']."'>";
-                                                    echo "<td align='center' >".$dados['produtoId']."</td>";
-                                                    echo "<td align='center'>".$dados['produtoNome']."</td>";
-                                                    echo "<td align='center'>".$dados['produtoPreco']."€</td>";
-                                                    echo "<td align='center'>".$dados['produtoDesconto']."%</td>";
-                                                    echo "<td align='center'>".$dados['categ']."</td>";
-                                                    echo "<td align='center'>".$dados['tipo']."</td>";
-                                                    echo "<td align='center'>".$dados['produtoGenero']."</td>";
-                                                //echo "<td align='center'>".$dados['produtoDestaque']."</td>";
-                                                    ?>
-                                        <td align="center">
-                                                <select onchange="this.form.submit()" type="submit" class="custom-select" id="produtoDestaque" name="produtoDestaque">
-                                                    <?php
-
-                                                    if ($dados['produtoDestaque']=='Sim') {
-                                                        echo "<option selected value='Sim'>Sim</option>";
-                                                        echo "<option value='Nao'>Não</option>";
-                                                    }else{
-                                                        echo "<option  value='Sim'>Sim</option>";
-                                                        echo "<option selected value='Nao'>Não</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                        </td>
-                                                </form>
-                                                <?php
-                                                echo "<td width='20%' align='center'><img width=100px src=\"../".$dados['produtoImagemURL']."\"></td>";
-                                                //echo "<td width='10%'><a href='edit-product.php?id=".$dados['produtoId']."'/a>Editar</td>";
-                                                //echo "<td width='10%'><a href='delete-product.php?id=".$dados['produtoId']."' /a>Eliminar</td>";
-                                                echo "<td align='center'><button type='button' class='btn-cart' onclick=\"edit(".$dados['produtoId'].");\">Editar</button></td>";
-                                                echo "<td align='center'><button type='button' class='btn-cart' onclick=\"confirmDelete(".$dados['produtoId'].");\">Eliminar</button></td>";
-                                                echo "</tr>";
-
-                                            }
-                                            //*******************
-                                            //echo "</table>";
+                                                    echo "<td width='20%' align='center'><img width=100px src=\"../".$dados['produtoImagemURL']."\">".$dados['encomendaProdutoNome']."</td>";
                                         ?>
+                                        </a>
+
+                                        <?php
+                                                    echo "<td align='center'>".$dados['encomendaProdutoQnt']."</td>";
+                                                    echo "<td align='center'>".$dados['encomendaProdutoTam']."</td>";
+                                                    echo "<td align='center'>".$dados['encomendaprodutoPrec']."€</td>";
+                                            }
+                                                    ?>
+
+
+
+
+                                            //*******************
                                     </tr>
                             </table>
 
@@ -127,25 +99,3 @@ top();
 <?php
 bottom();
 ?>
-<script>
-    function confirmDelete(prodId)
-    {
-        let r=confirm("Tem a certeza? ("+prodId+")");
-        if (r == true) {
-            window.location.href = "delete-product.php?id="+prodId;
-        }
-    }
-
-
-    function edit(prodId)
-    {
-        window.location.href = "edit-product.php?id="+prodId;
-    }
-
-    function add()
-    {
-        window.location.href = "add-product.php";
-    }
-
-
-</script>

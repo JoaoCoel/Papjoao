@@ -12,6 +12,11 @@ $result1=mysqli_query($con,$sql1);
 $dados1=mysqli_fetch_array($result1);
 
 
+$sql2="select * from encomendas left join perfis on encomendaPerfilId=perfilId left join encomendaprodutos on encomendaProdutoEncomendaId=encomendaId where perfilId=".$pid;
+$result2=mysqli_query($con,$sql2);
+$dados2=mysqli_fetch_array($result2);
+
+
 
 
 ?>
@@ -152,22 +157,43 @@ $dados1=mysqli_fetch_array($result1);
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>Nº</th>
-                                                <th>Produto</th>
                                                 <th>Data</th>
                                                 <th>Preço</th>
+                                                <th>Pagamento</th>
+                                                <th>Morada</th>
+                                                <th>Cod. Postal</th>
+                                                <th>Localidade</th>
                                                 <th>Estado</th>
                                                 <th>Ações</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+
+                                        <script>
+                                            function ver(encId)
+                                            {
+                                                window.location.href = "edit-product.php?id="+encId;
+                                            }
+                                        </script>
+
+                                        <?php
+                                        $result2=mysqli_query($con,$sql2);
+                                        while($dados2=mysqli_fetch_array($result2)){
+                                        ?>
                                             <tr>
-                                                <td>1</td>
-                                                <td>Produto</td>
-                                                <td>01 Jan 2020</td>
-                                                <td>$0.99</td>
-                                                <td>Aprovado</td>
-                                                <td><button class="btn">Ver</button></td>
+                                                <td><?php echo $dados['encomendaNum'];?></td>
+                                                <td><?php echo $dados['encomendaData'];?></td>
+                                                <td><?php echo $dados['encomendaPrec'];?></td>
+                                                <td><?php echo $dados['encomendaPagam'];?></td>
+                                                <td><?php echo $dados['encomendaMorada'];?></td>
+                                                <td><?php echo $dados['encomendaCodPostal'];?></td>
+                                                <td><?php echo $dados['encomendaLocal'];?></td>
+                                                <td><?php echo $dados['encomendaEstado'];?></td>
+                                                <td><button class="btn" onclick="ver(<?php echo $dados['encomendaId'];?>);">Ver</button></td>
                                             </tr>
+                                        <?php
+                                        }
+                                        ?>
                                         </tbody>
                                     </table>
                                 </div>

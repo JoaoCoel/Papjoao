@@ -25,13 +25,14 @@ $result=mysqli_query($con,$sql) or die (mysqli_error($con));
             <div class="container-fluid">
                 <div class="wishlist-page-inner">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-9">
                             <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>Produto</th>
                                             <th>Preço</th>
+                                            <th>Adicionar ao Cart</th>
                                             <th>Remover</th>
                                         </tr>
                                     </thead>
@@ -48,32 +49,8 @@ $result=mysqli_query($con,$sql) or die (mysqli_error($con));
                                                     <p><?php echo $dados['produtoNome'];?></p>
                                                 </div>
                                             </td>
-                                            <td>
-                                                <?php
-                                                if ($dados['produtoDesconto']>0){
-                                                    ?>
-                                                    <span>
-                                                        <strike>
-                                                            <?php
-                                                            echo $dados['produtoPreco'];
-                                                            ?>
-                                                            <span>€ </span>
-                                                        </strike>
-                                                        &nbsp
-                                                    </span>
-                                                    <?php
-                                                    $preco = $dados['produtoPreco'] - $dados['produtoPreco'] * $dados['produtoDesconto'] / 100;
-                                                    echo number_format($preco, 2, '.', ' ');
-                                                    ?>
-                                                    <span>€</span>
-                                                    <?php
-                                                } else {
-                                                    ?>
-                                                    <?php echo $dados['produtoPreco'];?><span>€</span>
-                                                    <?php
-                                                }
-                                                ?>
-                                            </td>
+                                            <td><?php echo $dados['produtoPreco'];?><span>€</span></td>
+                                            <td><a class="btn" href="product-detail.php?id=<?php echo $dados['produtoId']; ?>">Adicionar ao Cart</a></td>
                                             <td><button onclick="confirmDelete(<?php echo $dados['produtoId']; ?>)"><i class="fa fa-trash"></i></button></td>
 
                                         </tr>
