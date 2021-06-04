@@ -12,9 +12,8 @@ $result1=mysqli_query($con,$sql1);
 $dados1=mysqli_fetch_array($result1);
 
 
-$sql2="select * from encomendas left join perfis on encomendaPerfilId=perfilId left join encomendaprodutos on encomendaProdutoEncomendaId=encomendaId where perfilId=".$pid;
-$result2=mysqli_query($con,$sql2);
-$dados2=mysqli_fetch_array($result2);
+
+
 
 
 
@@ -172,24 +171,26 @@ $dados2=mysqli_fetch_array($result2);
                                         <script>
                                             function ver(encId)
                                             {
-                                                window.location.href = "edit-product.php?id="+encId;
+                                                window.location.href = "order-detail.php?encId="+encId;
                                             }
                                         </script>
 
                                         <?php
+                                        $sql2="select * from encomendas where encomendaPerfilId=".$pid;
+
                                         $result2=mysqli_query($con,$sql2);
                                         while($dados2=mysqli_fetch_array($result2)){
                                         ?>
                                             <tr>
-                                                <td><?php echo $dados['encomendaNum'];?></td>
-                                                <td><?php echo $dados['encomendaData'];?></td>
-                                                <td><?php echo $dados['encomendaPrec'];?></td>
-                                                <td><?php echo $dados['encomendaPagam'];?></td>
-                                                <td><?php echo $dados['encomendaMorada'];?></td>
-                                                <td><?php echo $dados['encomendaCodPostal'];?></td>
-                                                <td><?php echo $dados['encomendaLocal'];?></td>
-                                                <td><?php echo $dados['encomendaEstado'];?></td>
-                                                <td><button class="btn" onclick="ver(<?php echo $dados['encomendaId'];?>);">Ver</button></td>
+                                                <td><?php echo $dados2['encomendaNum'];?></td>
+                                                <td><?php echo $dados2['encomendaData'];?></td>
+                                                <td><?php echo $dados2['encomendaPrec'];?></td>
+                                                <td><?php echo $dados2['encomendaPagam'];?></td>
+                                                <td><?php echo $dados2['encomendaMorada'];?></td>
+                                                <td><?php echo $dados2['encomendaCodPostal'];?></td>
+                                                <td><?php echo $dados2['encomendaLocal'];?></td>
+                                                <td><?php echo $dados2['encomendaEstado'];?></td>
+                                                <td><button class="btn" onclick="ver(<?php echo $dados2['encomendaId'];?>);">Ver</button></td>
                                             </tr>
                                         <?php
                                         }

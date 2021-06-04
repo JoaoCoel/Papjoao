@@ -20,9 +20,9 @@ if(isset($_SESSION['id'])){
     $sql="select * from carrinhos where carrinhoPerfilId=".$pid;
     $result=mysqli_query($con,$sql);
     $dados=mysqli_fetch_array($result);
-    $num="0";
+    $carrinhoId = $dados['carrinhoId'];
     $pag="";
-
+    $num= date("Y").$pid.sprintf("%'.05d\n", $carrinhoId);
     if(isset($_POST['Paypal'])){
         $pag="Paypal";
     }elseif (isset($_POST['Multibanco'])){
@@ -32,7 +32,7 @@ if(isset($_SESSION['id'])){
     }
 
     $sql="insert into encomendas (encomendaPerfilId,encomendaCodPostal,encomendaMorada,encomendaLocal,encomendaNum,encomendaPagam,encomendaPrec)";
-    $sql .= " values('".$pid."','".$cod."','".$mor."','".$loc."','".$num."','".$pag."','".$tot."');";
+    $sql .= " values('".$pid."','".$cod."','".$mor."','".$loc."','".$num."','".$pag."',".$tot.");";
     mysqli_query($con,$sql)or die(mysqli_error($con)); //or die(mysqli_error($con))
 
     $sql="select * from encomendas order by encomendaId DESC limit 1";
@@ -40,20 +40,18 @@ if(isset($_SESSION['id'])){
     $dados=mysqli_fetch_array($result)or die(mysqli_error($con));
     $encid = $dados['encomendaId'];
 
-//Seleciona o carrinho
-    $sql="select * from carrinhos where carrinhoPerfilId=".$pid;
-    $result=mysqli_query($con,$sql)or die(mysqli_error($con));
-    $dados=mysqli_fetch_array($result)or die(mysqli_error($con));
-    $carrinhoId = $dados['carrinhoId'];
+
+
 //Copiar os produtos atualmenete no carrinho para encomenda
 
-    $sql="select * from carrinhoProdutos where carrinhoProdutoCarrinhoId=".$carrinhoId;
+    $sql="select * from carrinhoProdutos left join produtos on produtoId=carrinhoProdutoProdutoId where carrinhoProdutoCarrinhoId=".$carrinhoId;
     $result2 = mysqli_query($con,$sql)or die(mysqli_error($con));
 
     while($dados=mysqli_fetch_array($result2)) {
         $qt=$dados['carrinhoProdutoQnt'];
-        $sql = "Insert into encomendaProdutos (encomendaProdutoQnt,encomendaProdutoTam,encomendaProdutoProdutoId,encomendaProdutoEncomendaId)";
-        $sql .= " values('".$qt."','".$dados['carrinhoProdutoTam']."','".$dados['carrinhoProdutoProdutoId']."','".$encid."');";
+        $prec = $dados['produtoPreco'] - $dados['produtoPreco'] * $dados['produtoDesconto'] / 100;
+        $sql = "Insert into encomendaProdutos (encomendaProdutoQnt,encomendaProdutoTam,encomendaProdutoPrec,encomendaProdutoProdutoId,encomendaProdutoEncomendaId)";
+        $sql .= " values('".$qt."','".$dados['carrinhoProdutoTam']."','".$prec."','".$dados['carrinhoProdutoProdutoId']."','".$encid."');";
         $result=mysqli_query($con,$sql) or die(mysqli_error($con));
     }
 
