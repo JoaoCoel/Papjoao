@@ -33,22 +33,22 @@ if(isset($_SESSION['id'])){
 
     $sql="insert into encomendas (encomendaPerfilId,encomendaCodPostal,encomendaMorada,encomendaLocal,encomendaNum,encomendaPagam,encomendaPrec)";
     $sql .= " values('".$pid."','".$cod."','".$mor."','".$loc."','".$num."','".$pag."','".$tot."');";
-    mysqli_query($con,$sql); //or die(mysqli_error($con))
+    mysqli_query($con,$sql)or die(mysqli_error($con)); //or die(mysqli_error($con))
 
     $sql="select * from encomendas order by encomendaId DESC limit 1";
-    $result=mysqli_query($con,$sql);
-    $dados=mysqli_fetch_array($result);
+    $result=mysqli_query($con,$sql)or die(mysqli_error($con));
+    $dados=mysqli_fetch_array($result)or die(mysqli_error($con));
     $encid = $dados['encomendaId'];
 
 //Seleciona o carrinho
     $sql="select * from carrinhos where carrinhoPerfilId=".$pid;
-    $result=mysqli_query($con,$sql);
-    $dados=mysqli_fetch_array($result);
+    $result=mysqli_query($con,$sql)or die(mysqli_error($con));
+    $dados=mysqli_fetch_array($result)or die(mysqli_error($con));
     $carrinhoId = $dados['carrinhoId'];
 //Copiar os produtos atualmenete no carrinho para encomenda
 
     $sql="select * from carrinhoProdutos where carrinhoProdutoCarrinhoId=".$carrinhoId;
-    $result2 = mysqli_query($con,$sql);
+    $result2 = mysqli_query($con,$sql)or die(mysqli_error($con));
 
     while($dados=mysqli_fetch_array($result2)) {
         $qt=$dados['carrinhoProdutoQnt'];

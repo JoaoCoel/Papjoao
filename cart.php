@@ -42,6 +42,7 @@ $total= 0;
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>Produto</th>
+                                            <th>Tamanho</th>
                                             <th>Preço</th>
                                             <th>Quantidade</th>
                                             <th>Total</th>
@@ -61,7 +62,7 @@ $total= 0;
                                                     <p><?php echo $dados['produtoNome'];?></p>
                                                 </div>
                                             </td>
-
+                                            <td><?php echo $dados['carrinhoProdutoTam'];?></td>
                                             <td>
                                                 <div class="quantity">
                                                     <?php
