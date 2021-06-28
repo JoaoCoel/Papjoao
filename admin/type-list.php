@@ -12,6 +12,10 @@ top();
             window.location.href = "delete-type.php?id="+tipId;
         }
     }
+    function confirmEdit(tipId)
+    {
+        window.location.href = "edit-type.php?id="+tipId;
+    }
 
     function add()
     {
@@ -66,7 +70,7 @@ top();
                                     <thead class="thead-dark">
                                         <th align='center'>Id</th>
                                         <th align='center'>Tipo</th>
-                                        <th align='center'>Opções</th>
+                                        <th colspan="4" align='center'>Opções</th>
                                     </thead>
                                     </tr>
                                         <tr>
@@ -80,6 +84,7 @@ top();
                                                     echo "<tr>";
                                                     echo "<td align='center'>".$dados['tipoId']."</td>";
                                                     echo "<td align='center'>".$dados['tipoNome']."</td>";
+                                                    echo "<td align='center'><button type='button' class='btn-cart' onclick=\"confirmEdit(".$dados['tipoId'].");\">Editar</button></td>";
                                                     echo "<td align='center'><button type='button' class='btn-cart' onclick=\"confirmDelete(".$dados['tipoId'].");\">Eliminar</button></td>";
                                                     echo "</tr>";
 

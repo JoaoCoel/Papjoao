@@ -87,7 +87,6 @@ top();
                                                     echo "<td align='center'>".$dados['categoriaNome']."</td>";
                                                     echo "<td align='center'><button type='button' class='btn-cart' onclick=\"confirmEdit(".$dados['categoriaId'].");\">Editar</button></td>";
                                                     echo "<td align='center'><button type='button' class='btn-cart' onclick=\"confirmDelete(".$dados['categoriaId'].");\">Eliminar</button></td>";
-
                                                     echo "</tr>";
 
                                                 }
