@@ -4,8 +4,8 @@ top();
 $idC=intval($_GET['id']);
 
 $sql="Select * from categorias where categoriaId=".$idC;
-$categorias=mysqli_query($con,$sql);
-
+$result=mysqli_query($con,$sql);
+$dadosC=mysqli_fetch_array($result);
 ?>
 
 
@@ -33,8 +33,8 @@ $categorias=mysqli_query($con,$sql);
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label>Nome da categoria</label>
-                                        <input name="idCategoria" hidden value="<?php echo $categorias['categoriaId']?>"/>
-                                        <input class="form-control" name="nomeCategoria" type="text" value="<?php echo $categorias['categoriaNome']?>">
+                                        <input name="idCategoria" hidden value="<?php echo $dadosC['categoriaId']?>"/>
+                                        <input class="form-control" name="nomeCategoria" type="text" value="<?php echo $dadosC['categoriaNome']?>">
                                     </div>
                                     <div class="checkout-payment">
                                         <div class="checkout-btn">
