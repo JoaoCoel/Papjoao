@@ -31,8 +31,8 @@ if(isset($_SESSION['id'])){
         $pag="Tranferência";
     }
 
-    $sql="insert into encomendas (encomendaPerfilId,encomendaCodPostal,encomendaMorada,encomendaLocal,encomendaNum,encomendaPagam,encomendaPrec)";
-    $sql .= " values('".$pid."','".$cod."','".$mor."','".$loc."','".$num."','".$pag."',".$tot.");";
+    $sql="insert into encomendas (encomendaPerfilId,encomendaCodPostal,encomendaMorada,encomendaLocal,encomendaNum,encomendaPagam,encomendaPrec,encomendaData)";
+  echo $sql .= " values('".$pid."','".$cod."','".$mor."','".$loc."','".$num."','".$pag."',".$tot.",now())";
     mysqli_query($con,$sql)or die(mysqli_error($con)); //or die(mysqli_error($con))
 
     $sql="select * from encomendas order by encomendaId DESC limit 1";

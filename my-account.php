@@ -299,10 +299,11 @@ $dados1=mysqli_fetch_array($result1);
         let pass = document.getElementById("pass").value;
         let pass1 = document.getElementById("pass1").value;
         let pass2 = document.getElementById("pass2").value;
-        if (pass1 == pass2) {
+        if (pass1 == pass2){
+            alert("Password foi atualizada.")
             frm.submit();
         } else {
-            alert("Passwords não coincidem!!!")
+            alert("Passwords não coincidem.")
 
         }
     }

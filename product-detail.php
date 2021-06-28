@@ -50,16 +50,38 @@ $result2=mysqli_query($con,$sql2);
                         </div>
                     </form>
                 </div>
-                <div class="col-md-3">
-                    <div class="user">
-                        <a href="wishlist.php" class="btn wishlist">
-                            <i class="fa fa-heart"></i>
-                        </a>
-                        <a href="cart.php" class="btn cart">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
+                <?php
+                if(isset($_SESSION['id'])){
+                    ?>
+                    <div class="col-md-3">
+                        <div class="user">
+                            <a href="wishlist.php" class="btn wishlist">
+                                <i class="fa fa-heart"></i>
+                                <span><?php
+                                    if (isset($_SESSION['id'])) {
+                                        $pid=$_SESSION['pid'];
+                                        echo contaCoisas($con,array($pid),"favoritos",array("favoritoPerfilId"));
+                                    }
+
+                                    ?></span>
+                            </a>
+                            <a href="cart.php" class="btn cart">
+                                <i class="fa fa-shopping-cart"></i>
+
+                                <span><?php
+                                    if (isset($_SESSION['id'])) {
+                                        $pid=$_SESSION['pid'];
+                                        echo contaCarrinho($con, $pid);
+                                    }
+
+                                    ?>
+                            </span>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                    <?php
+                }
+                ?>
             </div>
         </div>
     </div>
