@@ -1,8 +1,9 @@
 <?php
 include_once ("includes/body.inc.php");
 top();
+$idC=intval($_GET['id']);
 
-$sql="Select * from categorias";
+$sql="Select * from categorias where categoriaId=".$idC;
 $categorias=mysqli_query($con,$sql);
 
 ?>
