@@ -44,6 +44,9 @@ $res = mysqli_query($con, $sql) ;
                             <form action="confirm-registar.php" id="regForm" method="post" >
                                 <div class="row">
                                     <div class="col-md-12">
+                                        <label style="font-size: large; color: #ff7633; " >Registar</label>
+                                    </div>
+                                    <div class="col-md-12">
                                         <label>E-mail</label>
                                         <input class="form-control" name="email" type="text" placeholder="E-mail" value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>">
                                     </div>
@@ -94,6 +97,9 @@ $res = mysqli_query($con, $sql) ;
                             <form action="confirm-login.php" id="loginForm" method="post" >
                                 <div class="row">
                                     <div class="col-md-12">
+                                        <label style="font-size: large; color: #ff7633; ">Login</label>
+                                    </div>
+                                    <div class="col-md-12">
                                         <label>E-mail</label>
                                         <input class="form-control" type="text" name="email" placeholder="E-mail">
                                     </div>
@@ -101,12 +107,12 @@ $res = mysqli_query($con, $sql) ;
                                         <label>Password</label>
                                         <input class="form-control" type="password" name="passw" placeholder="Password">
                                     </div>
-                                    <div class="col-md-12">
+                                    <!--div class="col-md-12">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="newaccount">
                                             <label class="custom-control-label" for="newaccount">Manter Login</label>
                                         </div>
-                                    </div>
+                                    </div-->
                                     <div class="col-md-12">
                                         <button class="btn" onclick="this.submitForm()">Submeter</button>
                                     </div>

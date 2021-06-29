@@ -42,7 +42,7 @@ if(isset($_SESSION['id'])){
 
 
 
-//Copiar os produtos atualmenete no carrinho para encomenda
+//Copiar os produtos atualmente no carrinho para encomenda
 
     $sql="select * from carrinhoProdutos left join produtos on produtoId=carrinhoProdutoProdutoId where carrinhoProdutoCarrinhoId=".$carrinhoId;
     $result2 = mysqli_query($con,$sql)or die(mysqli_error($con));

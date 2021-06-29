@@ -340,7 +340,7 @@ https://phpdelusions.net/mysqli_examples/search_filter
                             ?>
 
                             <li>
-                                <a <?php echo $visivel;?> href="product-list.php?tip=<?php echo $dados['tipoId']?><?php if (strlen($filtro)>0) echo "&search=".$filtro; if ($categ>0) echo "&cat=".$categ; if (strlen($genero)>0) echo "&gen=".$genero;?>"><?php echo $dados['tipoNome']?></a><span <?php echo $visivel;?> ><?php echo contaCoisas($con,array($dados['tipoId'])); ?></span>
+                                <a <?php echo $visivel;?> href="product-list.php?tip=<?php echo $dados['tipoId']?><?php if (strlen($filtro)>0) echo "&search=".$filtro; if ($categ>0) echo "&cat=".$categ; if (strlen($genero)>0) echo "&gen=".$genero;?>"><?php echo $dados['tipoNome']?></a><span <?php echo $visivel;?>></span>
                             </li>
 
                             <?php
@@ -361,21 +361,21 @@ https://phpdelusions.net/mysqli_examples/search_filter
                         $visivel = " style='font-weight: bold;' ";
                         ?>
                         <li><a <?php echo $visivel;?> href="product-list.php?gen=M<?php if (strlen($filtro)>0) echo "&search=".$filtro; if ($tipo !=0) echo "&tip=".$tipo?><?php if ($categ!=0) echo "&cat=".$categ; ?>">Homem
-                            </a><span><?php echo contaCoisas($con,array("M"),"produtos",array("produtoGenero")); ?></span></li>
+                            </a></li>
                         <?php
                         $visivel = "";
                         if ($genero == "F")
                             $visivel = " style='font-weight: bold;' ";
                         ?>
                         <li><a <?php echo $visivel;?> href="product-list.php?gen=F<?php if (strlen($filtro)>0) echo "&search=".$filtro; if ($tipo !=0) echo "&tip=".$tipo?><?php if ($categ!=0) echo "&cat=".$categ; ?>">Mulher
-                            </a><span><?php echo contaCoisas($con,array("F"),"produtos",array("produtoGenero")); ?></span></li>
+                            </a></li>
                         <?php
                         $visivel = "";
                         if ($genero == "U")
                             $visivel = " style='font-weight: bold;' ";
                         ?>
                         <li><a <?php echo $visivel;?> href="product-list.php?gen=U<?php if (strlen($filtro)>0) echo "&search=".$filtro; if ($tipo !=0) echo "&tip=".$tipo?><?php if ($categ!=0) echo "&cat=".$categ; ?>">Unissexo
-                            </a><span><?php echo contaCoisas($con,array("U"),"produtos",array("produtoGenero")); ?></span></li>
+                            </a></li>
                     </ul>
                 </div>
             </div>
