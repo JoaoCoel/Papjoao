@@ -298,7 +298,7 @@ $result=mysqli_query($con,$sql);
                                         </div>
                                         <div class="product-image">
                                             <a href="product-detail.php">
-                                                <?php echo "<img src=\"".$dados['produtoImagemURL']."\">";?>
+                                                <?php echo "<img src=\"".$dados['produtoImagemURL']."\" height=\"400px\">";?>
                                             </a>
                                             <div class="product-action">
                                                 <a href="confirm-add-product-fav.php?id=<?php echo $dadosProduto['produtoId']; ?>"><i class="fa fa-heart"></i></a>

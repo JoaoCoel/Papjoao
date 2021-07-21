@@ -314,7 +314,7 @@ $result3 = mysqli_query($con, $sql3);
                         </div>
                         <div class="product-image">
                             <a href="product-detail.php?id=<?php echo $dados['produtoId']; ?>">
-                                <?php echo "<img src=\"".$dados['produtoImagemURL']."\">";?>
+                                <?php echo "<img src=\"".$dados['produtoImagemURL']."\" height=\"400px\">";?>
                             </a>
                             <div class="product-action">
                                 <a href="confirm-add-product-fav.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-heart"></i></a>
@@ -408,7 +408,7 @@ $result3 = mysqli_query($con, $sql3);
                             </div>
                             <div class="product-image">
                                 <a href="product-detail.php?id=<?php echo $dados['produtoId']; ?>">
-                                    <?php echo "<img src=\"".$dados['produtoImagemURL']."\">";?>
+                                    <?php echo "<img src=\"".$dados['produtoImagemURL']."\" height=\"400px\">";?>
                                 </a>
                                 <div class="product-action">
                                     <a href="confirm-add-product-fav.php?id=<?php echo $dados['produtoId']; ?>"><i class="fa fa-heart"></i></a>
