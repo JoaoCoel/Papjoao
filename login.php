@@ -6,9 +6,12 @@ $con = mysqli_connect("localhost", "root", "", "pap2021drk");
 $sql = "Select * from utilizadores left join perfis on perfilId=utilizadorPerfilId";
 //$sql="select utilizadorId,perfis.perfilNome as perfilNome from utilizadores left join perfis on perfilId=utilizadorPerfilId";
 $res = mysqli_query($con, $sql) ;
+//var_dump($_POST);
+
 ?>
 <!-- Nav Bar End -->
 
+</script>
 <!-- Bottom Bar Start -->
 <div class="bottom-bar">
     <div class="container-fluid">
@@ -23,6 +26,8 @@ $res = mysqli_query($con, $sql) ;
         </div>
     </div>
 </div>
+<div hidden id="msgu"></div>
+<div style=""
         <!-- Bottom Bar End --> 
         
         <!-- Breadcrumb Start -->
@@ -52,7 +57,7 @@ $res = mysqli_query($con, $sql) ;
                                     </div>
                                     <div class="col-md-6">
                                         <label>Nome de utilizador</label>
-                                        <input class="form-control" name="nome" type="text" placeholder="Name" value="<?php if (isset($_POST['nome'])) echo $_POST['nome']; ?>">
+                                        <input class="form-control" id="nomeu" name="nome" type="text" placeholder="Name" value="<?php if (isset($_POST['nome'])) echo $_POST['nome']; ?>">
                                     </div>
                                     <div class="col-md-6">
                                         <label>Nº de Telemóvel</label>
@@ -207,9 +212,11 @@ $res = mysqli_query($con, $sql) ;
         let pass1 = document.getElementById("pass1").value;
         let pass2 = document.getElementById("pass2").value;
         if (pass1==pass2){
+            document.getElementById("msgu").innerText = "Novo utilizador: " + document.getElementById("nomeu").value;
             frm.submit();
+            alert("Obrigado pelo registo "+ document.getElementById("nomeu").value +". Aguarde pela ativação.");
         }else {
-            alert("Passwords não coincidem!!!")
+            alert("Passwords não coincidem!!!");
         }
     }
 </script>
