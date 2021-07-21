@@ -6,6 +6,13 @@ $idT=intval($_GET['id']);
 $sql="Select * from tipos where tipoId=".$idT;
 $result=mysqli_query($con,$sql);
 $dadosT=mysqli_fetch_array($result);
+
+$sql="Select * from categorias";
+$categorias=mysqli_query($con,$sql);
+
+
+$sql="Select * from tipoCategorias where tipoCategoriaTipoId=".$idT;
+$categoriasT=mysqli_query($con,$sql);
 ?>
 
 
@@ -16,8 +23,8 @@ $dadosT=mysqli_fetch_array($result);
     <div class="container-fluid">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-            <li class="breadcrumb-item active"><a href="category-list.php">Lista de categorias</a></li>
-            <li class="breadcrumb-item active">Editar categoria</li>
+            <li class="breadcrumb-item active"><a href="type-list.php">Lista de tipos</a></li>
+            <li class="breadcrumb-item active">Editar tipo</li>
         </ul>
     </div>
 </div>
@@ -32,13 +39,35 @@ $dadosT=mysqli_fetch_array($result);
                         <div class="billing-address">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label>Nome da categoria</label>
+                                    <label>Categorias a que se aplica:</label><br>
+
+                                    <?php
+                                    $i=0;
+                                    while ($dados=mysqli_fetch_array($categorias)){
+                                        $select = "";
+                                        while ($dt=mysqli_fetch_array($categoriasT)){
+                                            if ($dt['tipoCategoriaCategoriaId'] == $dados['categoriaId']) {
+                                                $select = "checked";
+                                                break;
+                                            }
+                                        }
+                                        $i++;
+                                        echo  "<input $select disabled='true' type='checkbox' id=\"id".$i."\" name=\"categ".$i."\" value=\"".$dados['categoriaId']."\">".$dados['categoriaNome']."</option>&nbsp&nbsp";
+                                        mysqli_data_seek($categoriasT, 0);
+                                    }
+                                    echo  "<input hidden type='text' value=\"".$i."\" id='ncateg'>";
+                                    ?>
+                                    <br>
+                                    <br>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Nome do tipo</label>
                                     <input name="idTipo" hidden value="<?php echo $dadosT['tipoId']?>"/>
                                     <input class="form-control" name="nomeTipo" type="text" value="<?php echo $dadosT['tipoNome']?>">
                                 </div>
                                 <div class="checkout-payment">
                                     <div class="checkout-btn">
-                                        <button type="submit">Editar</button>
+                                        <button type="submit">Guardar</button>
                                     </div>
                                 </div>
 

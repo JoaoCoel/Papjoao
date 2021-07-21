@@ -22,8 +22,10 @@ function validateForm()
 
     if (nselect>0 && desctipo.length>0){
         document.getElementById("but").disabled = false;
+        document.getElementById("erro").hidden = true;
     }else {
         document.getElementById("erro").hidden = false;
+        document.getElementById("but").disabled = true;
 
     }
 
